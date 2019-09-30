@@ -21,7 +21,7 @@ title_separator: "-"
 subtitle: # site tagline that appears below site title in masthead
 name: "코린이(코딩 어린이)의 개발일기"
 description: "코린이에서 Front-end 개발자로 가는 일기 블로그"
-url: "{{site.url}}"
+url: { { site.url } }
 baseurl: # 서브 경로가 있는 경우 기재
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser: "/assets/images/yosup.jpg"
