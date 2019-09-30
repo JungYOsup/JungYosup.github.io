@@ -89,7 +89,7 @@ facebook:
   username:
   app_id:
   publisher:
-og_image: # Open Graph/Twitter default site image
+og_image: "/assets/images/yosup.jpg"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -106,8 +106,8 @@ analytics:
 
 # Site Author
 author:
-  name: "Your Name"
-  avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
+  name: "코린이(코딩 어린이)의 개발일기"
+  avatar: "/assets/images/yosup.jpg"
   bio: "I am an **amazing** person."
   location: "Somewhere"
   email:
