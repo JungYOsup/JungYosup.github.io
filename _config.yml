@@ -105,10 +105,10 @@ analytics:
     anonymize_ip: # true, false (default)
 
 # Site Author
-author: "코딩어린이"
-  name: "정요섭"
+author:
+  name: "코딩 어린이"
   avatar: "/assets/images/yosup.jpg"
-  bio: "**Front-end 개발자**가 되기 위한 코린이""
+  bio: "Front-end 개발자가 되기 위한 코린이""
   location: "South korea"
   email: "15queue@hanmail.net"
   links:
@@ -142,7 +142,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "https://github.com/JungYOsup/JungYosup.github.io"
+      # url:
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
