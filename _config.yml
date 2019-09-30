@@ -142,7 +142,7 @@ footer:
       # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      url: "JungYosup.github.io"
+      url: "https://github.com/JungYOsup/JungYosup.github.io"
     - label: "GitLab"
       icon: "fab fa-fw fa-gitlab"
       # url:
