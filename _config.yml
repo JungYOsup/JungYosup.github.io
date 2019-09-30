@@ -105,8 +105,8 @@ analytics:
     anonymize_ip: # true, false (default)
 
 # Site Author
-author:
-  name: "코딩 어린이"
+author: "코딩어린이"
+  name: "정요섭"
   avatar: "/assets/images/yosup.jpg"
   bio: "**Front-end 개발자**가 되기 위한 코린이""
   location: "South korea"
