@@ -1,14 +1,5 @@
 # main links
 main:
-  - title: "블로그 방문하기"
-    url: https://jungyosup.github.io/
-
-  - title: "About"
-    url: /about/
-
-  - title: "404"
-    url: /404.html
-
   - title: "참고사이트"
     url: https://devinlife.com
 
@@ -17,9 +8,6 @@ main:
 
   - title: "테그별"
     url: /tags/
-
-  - title: "윤동주"
-    url: /categories/윤동주/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
