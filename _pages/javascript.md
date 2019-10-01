@@ -1,7 +1,7 @@
 ---
 title: "자바스크립트"
 permalink: /javascript/
-layout: archive
+layout: single
 author_profile: true
 ---
 
