@@ -11,6 +11,9 @@ main:
 
   - title: "참고사이트"
     url: https://devinlife.com
+
+  - title: "카테고리별"
+    url: /categories/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
