@@ -1,6 +1,6 @@
 ---
-title: "github.io 블로그 시작하기"
-excerpt: "GitHub Blog 서비스인 github.io 블로그 시작하기로 했다."
+title: "댓글기능 실행되나요"
+excerpt: "확인해보자"
 
 categories:
   - Blog
