@@ -1,5 +1,17 @@
 # main links
 main:
+  - title: "Javascript"
+  - url: /javascript/
+
+  - title: "Javascript_FrameWork"
+  - url: /javascript_framework/
+
+  - title: "Project"
+  - url: /project/
+
+  - title: "알고리즘"
+  - url: /argorithm/
+
   - title: "참고사이트"
     url: https://devinlife.com
 
