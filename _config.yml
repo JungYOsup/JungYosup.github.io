@@ -24,7 +24,7 @@ description: "코린이에서 Front-end 개발자로 가는 일기 블로그"
 url: { { site.url } }
 baseurl: # 서브 경로가 있는 경우 기재
 repository: # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser: "/assets/images/yosup.jpg"
+teaser: # "/assets/images/yosup.jpg"
 logo: # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
 masthead_title: # overrides the website title displayed in the masthead, use " " for no title
 # breadcrumbs            : false # true, false (default)
@@ -89,7 +89,7 @@ facebook:
   username:
   app_id:
   publisher:
-og_image: "/assets/images/yosup.jpg"
+og_image: # "/assets/images/yosup.jpg"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
@@ -107,7 +107,7 @@ analytics:
 # Site Author
 author:
   name: "정요섭"
-  avatar: "/assets/images/yosup.jpg"
+  avatar: # "/assets/images/yosup.jpg"
   bio: "Front-end 개발자가 되기 위한 코린이"
   location: "South korea"
   email: "15queue@hanmail.net"
