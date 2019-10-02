@@ -1,6 +1,6 @@
 ---
 title: "Javscript"
-permalink: /abc/
+permalink: /javascript/
 layout: single
 author_profile: true
 ---
