@@ -7,13 +7,13 @@ main:
     url: /abc/
 
   - title: "프레임워크"
-   url: /def/
+    url: /def/
 
   - title: "프로젝트"
     url: /project/
 
   - title: "알고리즘"
-    url: /algorithm/ 
+    url: /algorithm/
 
   - title: "카테고리별"
     url: /categories/
