@@ -1,7 +1,7 @@
 # main links
 main:
   - title: "자바스크립트"
-  - url: https://jungyosup.github.io/javascript/
+  - url: /javascript/
 
   - title: "프레임워크"
   - url: /javascript_framework/
