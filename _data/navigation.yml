@@ -4,16 +4,16 @@ main:
     url: https://devinlife.com
 
   - title: "자바스크립트"
-    url: /javascript/
+    url: /abc/
 
   - title: "프레임워크"
-   url: /javascriptframework/
+   url: /def/
 
   - title: "프로젝트"
     url: /project/
 
   - title: "알고리즘"
-    url: /argorithm/
+    url: /algorithm/ 
 
   - title: "카테고리별"
     url: /categories/
