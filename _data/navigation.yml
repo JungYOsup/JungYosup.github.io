@@ -20,6 +20,9 @@ main:
 
   - title: "테그별"
     url: /tags/
+
+  - title: "archive"
+    url: /archive/
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
