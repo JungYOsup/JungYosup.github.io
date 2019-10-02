@@ -5,7 +5,7 @@ layout: single
 author_profile: true
 ---
 
-Javascriptframework 개인적인 공부에 관한 내용을 잊지 않기 위한 곳입니다.
+Javascriptframework 개인적인 공부에 관한 내용을 잊지 않기 위한 곳입니다. 알겠습니까??
 
 # 1. Javascriptwork 일기
 
