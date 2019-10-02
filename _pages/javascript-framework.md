@@ -10,7 +10,7 @@ Javascriptframework 개인적인 공부에 관한 내용을 잊지 않기 위한
 # 1. Javascriptwork 일기
 
 <ul>
-  {% for post in site.posts %}
+  {% for framework in site.framework %}
     <li>
       <a href="{{ framework.url }}">{{ framework.title }}</a>
     {{ post.excerpt }}
