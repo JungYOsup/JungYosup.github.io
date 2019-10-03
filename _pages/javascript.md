@@ -9,8 +9,6 @@ Javascript 개인적인 공부에 관한 내용을 잊지 않기 위한 곳입�
 
 # 1. Javascript 일기
 
-{% if posts.tags == "javascript"}
-
 <ul>
   
   {% for post in site.posts %}
@@ -20,5 +18,3 @@ Javascript 개인적인 공부에 관한 내용을 잊지 않기 위한 곳입�
     </li>
   {% endfor %}
 </ul>
-
-{% endfor %}
