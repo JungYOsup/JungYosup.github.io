@@ -1,13 +1,13 @@
 # main links
 main:
   -title: "자바스크립트"
-  -url: /javascript/
+    url: /javascript/
 
   -title: "프레임워크"
-  -url: /framework/
+    url: /framework/
 
   -title: "알고리즘"
-  -url: /algorithm/
+    url: /algorithm/
 
   - title: "About"
     url: /about/
