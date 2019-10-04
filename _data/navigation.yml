@@ -1,10 +1,10 @@
 # main links
 main:
-  - title: "참고사이트"
-    url: https://devinlife.com
-
   - title: "자바스크립트"
     url: /javascript/
+
+  - title: "참고사이트"
+    url: https://devinlife.com
 
   - title: "프레임워크"
     url: /framework/
