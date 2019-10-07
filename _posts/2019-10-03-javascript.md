@@ -1,5 +1,5 @@
 ---
-title: "알고리즘 고급"
+title: "자바스크립트"
 excerpt: "알고리즘 고급에 관한것"
 categories:
   - javascript

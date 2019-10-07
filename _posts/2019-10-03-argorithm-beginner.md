@@ -1,5 +1,5 @@
 ---
-title: "허허 되나요?"
+title: "알고리즘 초급"
 excerpt: "알고리즘 시작에 관한것"
 categories:
   - beginner
