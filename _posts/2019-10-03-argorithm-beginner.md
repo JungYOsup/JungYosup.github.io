@@ -1,7 +1,6 @@
 ---
 title: "허허 되나요?"
 excerpt: "알고리즘 시작에 관한것"
-search: true
 categories:
   - advanced
 tags:
