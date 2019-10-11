@@ -1,21 +1,19 @@
 ---
-title:  _config.yml 설정하기
+title: _config.yml 설정하기
 excerpt: "minimal-mistakes 테마에서의 _config.yml 설정에 대하여"
 search: true
-categories: 
-  - blogging
-tags: 
+categories:
+  - react
+tags:
   - jekyll
 last_modified_at: 2018-07-01T13:05:00+09:00
 ---
 
-
-minimal-mistakes 테마의 기본 _config.yml을 수정한 내용입니다
+minimal-mistakes 테마의 기본 \_config.yml을 수정한 내용입니다
 
 개인적인 의견으로 작성 시 기본 설정 파일을 가지고 내용을 추가해 나가는 것이 편합니다!
 
-
-### _config.yml
+### \_config.yml
 
 ```yml
 # Welcome to Jekyll!
@@ -35,7 +33,7 @@ minimal-mistakes 테마의 기본 _config.yml을 수정한 내용입니다
 theme                  : "minimal-mistakes-jekyll"
 #remote_theme           : "mmistakes/minimal-mistakes"
 
-# 스킨을 설정하는 부분입니다. 
+# 스킨을 설정하는 부분입니다.
 minimal_mistakes_skin    : "dark" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 
@@ -56,7 +54,7 @@ baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "imreplay/blog" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 # breadcrumbs            : false # true, false (default)
-words_per_minute         : 200 #read time을 계산하기 위한 분당 읽는 글자수 입니다. 
+words_per_minute         : 200 #read time을 계산하기 위한 분당 읽는 글자수 입니다.
 comments: # 댓글 설정에 대한부분입니다. 기본적으로 false 로 되어있습니다.
   provider               : "disqus" # false (default), "disqus", "discourse", "facebook", "google-plus", "staticman", "staticman_v2" "custom"
   disqus:   #개인적으로 disqus 댓글 모듈을 사용하였습니다.
@@ -114,7 +112,7 @@ naver_site_verification  :
 twitter:
   username               :
 facebook:
-  username               : 
+  username               :
   app_id                 :
   publisher              :
 og_image                 : # Open Graph/Twitter default site image
@@ -318,7 +316,7 @@ defaults:
       author_profile: true
 
 # Travis-ci 를 사용하기 위해 추가한 부분입니다.
-# Jasper2 테마의 Travis-ci 설정부분을 사용합니다. 
+# Jasper2 테마의 Travis-ci 설정부분을 사용합니다.
 #
 #build option
 # Settings for builing master branch with travis-ci
