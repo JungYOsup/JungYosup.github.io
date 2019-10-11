@@ -4,5 +4,3 @@ layout: archive
 permalink: /algorithm/intermediate
 author_profile: true
 ---
-
-# 알고리즘 중급과정
