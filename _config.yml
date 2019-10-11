@@ -296,7 +296,7 @@ defaults:
 
   # _posts/blogging
   - scope:
-      path: "_posts/blogging"
+      path: "_posts/framework"
       type: posts
     values:
       layout: single
