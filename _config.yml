@@ -294,19 +294,6 @@ defaults:
       classes: wide
       author_profile: true
 
-  # # _posts/algorithm
-  # - scope:
-  #     path: "_posts/algorithm"
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     classes: wide
-  #     author_profile: true
-  #     comments: true
-  #     share: true
-  #     search: true
-  #     related: true
-
   # _posts/framework
   - scope:
       path: "_posts/framework"
@@ -319,15 +306,3 @@ defaults:
       share: true
       search: true
       related: true
-  # # _posts/java_script
-  # - scope:
-  #     path: "_posts/java_script"
-  #     type: posts
-  #   values:
-  #     layout: single
-  #     classes: wide
-  #     author_profile: true
-  #     comments: true
-  #     share: true
-  #     search: true
-  #     related: true
