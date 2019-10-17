@@ -4,5 +4,3 @@ layout: archive
 permalink: /algorithm/beginner
 author_profile: true
 ---
-
-
