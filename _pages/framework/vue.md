@@ -5,6 +5,8 @@ permalink: /framework/vue
 author_profile: true
 ---
 
-# Vue.js 의 공식문서를 기반
+{% assign posts = site.categories.vue | sort:"date" %}
 
-[Vue.js 공식문서](https://kr.vuejs.org/v2/guide/index.html)
+{% for post in posts %}
+{% include archive-single.html type=page.entries_layout %}
+{% endfor %}
