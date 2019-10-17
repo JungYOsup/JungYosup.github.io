@@ -322,7 +322,7 @@ defaults:
 
   # _posts/framework
   - scope:
-      path: "_posts/javascript"
+      path: "_posts/java_script"
       type: posts
     values:
       layout: single
