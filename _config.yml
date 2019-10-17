@@ -294,7 +294,7 @@ defaults:
       classes: wide
       author_profile: true
 
-    # _posts/framework
+  # _posts/algorithm
   - scope:
       path: "_posts/algorithm"
       type: posts
