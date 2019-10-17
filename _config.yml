@@ -306,3 +306,16 @@ defaults:
       share: true
       search: true
       related: true
+
+    # _posts/framework
+  - scope:
+      path: "_posts/algorithm"
+      type: posts
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      comments: true
+      share: true
+      search: true
+      related: true
