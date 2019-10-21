@@ -1,6 +1,6 @@
 ---
 title: "Posts by Javascript"
-layout: categories
+layout: archive
 permalink: /javascript/
 author_profile: true
 ---
