@@ -29,31 +29,31 @@ toc_sticky: true
 ```java
 public static void main(String[] args) {
 
-		Scanner scan = new Scanner(System.in);
+	Scanner scan = new Scanner(System.in);
 
-		int num = scan.nextInt();
-		scan.nextLine();
-		//Scanner.nextInt 메소드는 사용자 입력의 가장 마지막 개행문자(엔터, newline)를 제거하지 않음
-		//개행문자(엔터) 전까지만 숫자로 입력 받습니다.
-		//개행문자(엔터)는 다음에 호출된 Scanner.nextLine( ) 메소드의 입력으로 처리되서 문제기 발생합니다.
-		//출처: https://allg.tistory.com/17 [프로그래밍 해볼까]
+	int num = scan.nextInt();
+	scan.nextLine();
+	//Scanner.nextInt 메소드는 사용자 입력의 가장 마지막 개행문자(엔터, newline)를 제거하지 않음
+	//개행문자(엔터) 전까지만 숫자로 입력 받습니다.
+	//개행문자(엔터)는 다음에 호출된 Scanner.nextLine( ) 메소드의 입력으로 처리되서 문제기 발생합니다.
+	//출처: https://allg.tistory.com/17 [프로그래밍 해볼까]
 
-		while(num-->0) {
+	while(num-->0) {
 
-			String s = scan.nextLine(); //scan.next()로 할경우 문장을 인지를 못함,
+	    String s = scan.nextLine(); //scan.next()로 할경우 문장을 인지를 못함,
 										//즉 i am 같은 경우 i만 변수가 받음 그래서 scan.nextLine()으로 받음
-			char[] array = s.toCharArray();
-			Stack<String> stack = new Stack<>();
+		char[] array = s.toCharArray();
+		Stack<String> stack = new Stack<>();
 
-			for(int i=0; i<array.length; i++) {
+		for(int i=0; i<array.length; i++) {
 
-				if(array[i]==' ') {
-					while(!stack.isEmpty()) {
-						System.out.print(stack.pop());
-					}
+			if(array[i]==' ') {
+				while(!stack.isEmpty()) {
+					System.out.print(stack.pop());
+				}
 					System.out.print(' ');
-				}else {
-					stack.add(array[i]+""); //stack에는 String 값 이 들어가야하므로 ""를 더해줌
+			}else {
+				stack.add(array[i]+""); //stack에는 String 값 이 들어가야하므로 ""를 더해줌
 
 				}
 			}
@@ -66,7 +66,8 @@ public static void main(String[] args) {
 	}
 ```
 
-> 결과 : 틀렸습니다.
+> 결과 : _틀렸습니다._
+>
 > 이유 : 잘모르겠다..., System.out.pront(' '); 로 띄어쓰기를 구성하면 안된다는 가정을 함
 
 #### 두번째 도전
