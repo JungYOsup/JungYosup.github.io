@@ -28,4 +28,4 @@ toc_sticky: true
 
 - [x] 생각으로만
 - [x] Hint 보고
-- [] 답 보고
+- [ ] 답 보고
