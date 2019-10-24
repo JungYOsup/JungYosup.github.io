@@ -163,3 +163,192 @@ public static void main(String[] args) throws IOException {
 - [x] 생각으로만
 - [x] Hint 보고
 - [ ] 답 보고
+
+### 문제2. 괄호
+
+[괄호 9012번](https://www.acmicpc.net/problem/9012)
+
+> 1.괄호 문자열이 주어졌을 때, 올바른 괄호 문자열인지 아닌지를 알아보는 문제
+
+> 2.괄호 문자열: (와 )로만 이루어진 문자열
+
+> 3.올바른 괄호 문자열: 괄호의 쌍이 올바른 문제
+
+#### 첫번째 도전
+
+나의 생각: Stack에 하나씩 넣고 한 모양과 다른 모양이 서로 반대일 경우 지워버림 , 지웠음에도 Stack에 괄호가 남아있다면 NO로 출력하자
+
+```java
+public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
+		Stack<Character> stack = new Stack<>();
+
+		while(num--> 0) {
+
+			String s = scan.next();
+
+			for(char c : s.toCharArray()) {
+
+				if(c=='(') {
+					stack.add(c);
+				}else {
+					stack.pop();
+				}
+
+			}
+
+			if(stack.isEmpty()) {
+				System.out.println("YES");
+			}else {
+				System.out.println("NO");
+			}
+		}
+
+	}
+```
+
+> 결과 : 오류발생, java.util.EmptyStackException
+>
+> 이유 : stack에 아무것도 없는데 pop()을 할경우 생기는 문제
+>
+> 이 문제를 해결하기 위해 상당히 시간을 많이 씀..
+
+#### 두번째 도전
+
+나의 생각: _java.util.EmptyStackException_ 이 문제를 해결하기 위해 어떻게 해야할지 고민을 하던중
+다양한 생각을 해보게됨..
+첫째, stack에 값이 있으면 무조건 NO
+둘째, stack에 아무것도 없는데 pop()을 하면 무조건 NO
+
+이 두 조건을 만족하기 위한 코딩을 해봄..
+
+```java
+public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
+		Stack<Character> stack = new Stack<>();
+		boolean isc = true;
+		while(num--> 0) {
+
+			String s = scan.next();
+
+			for(char c : s.toCharArray()) {
+
+				if(c=='(') {
+					stack.add(c);
+				}else {
+
+					if(!stack.isEmpty()) {
+						stack.pop();
+					}else {  //둘째, stack에 아무것도 없는데 pop()을 하면 무조건 NO
+						isc = false;
+						break;
+					}
+				}
+
+
+			}
+
+			if(!stack.isEmpty()) isc = false; //첫째, stack에 값이 있으면 무조건 NO
+
+			if(isc) {
+				System.out.println("YES");
+			}else {
+				System.out.println("NO");
+			}
+
+
+		}
+
+	}
+```
+
+> 결과 : 틀렸습니다.
+>
+> 이유 : 출력결과는 통과인데,다른 반례에서 틀렸나본데 그 반례를 못찾겠다..
+> 반례를 찾음 -> 연속해서 수를 입력할경우
+> 2
+> )( ->no
+> () ->no 가 나옴 그 이유는 stack에 (게 쌓이기 때문
+
+#### 세번쨰 도전
+
+나의 생각: 그러다가 굳이 stack을 쓰지 않아도 될것 같은 결론을 얻게 됨..
+
+```java
+public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+		int num = scan.nextInt();
+		int sum =0;
+		while(num--> 0) {
+			sum =0;
+			String s = scan.next();
+
+			for(char c : s.toCharArray()) {
+
+				if(c=='(') {
+					sum+=1;
+				}else {
+					sum+=-1;
+					if(sum<0) {
+						break;
+					}
+				}
+
+			}
+
+			if(sum==0) {
+				System.out.println("YES");
+			}else {
+				System.out.println("NO");
+			}
+		}
+
+	}
+
+```
+
+> ~~결과 : 틀렸습니다.~~
+
+> 이유 : 출력결과는 통과인데,다른 반례에서 틀렸나본데 그 반례를 못찾겠다..
+> 반례를 찾음 -> 두번재 도전과 마찬가지로 sum에 값이 계속 쌓이기 때문에 새로운 괄호를 입력할때는
+> sum을 초기화 시켜줘야한다.
+
+#### 네번쨰 도전
+
+나의 생각 : 잘 모르겠어서 그냥 답을 봄.. 근데 차이를 잘모르겠다..
+
+```java
+ public static String isValid(String s) {
+        int n = s.length();
+        int cnt = 0;
+        for (int i=0; i<n; i++) {
+            if (s.charAt(i) == '(') {
+                cnt += 1;
+            } else {
+                cnt -= 1;
+            }
+            if (cnt < 0) {
+                return "NO";
+            }
+        }
+        if (cnt == 0) {
+            return "YES";
+        } else {
+            return "NO";
+        }
+    }
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        while (n-- > 0) {
+            System.out.println(isValid(sc.next()));
+        }
+    }
+```
+
+> 결과 : 맞았습니다.
