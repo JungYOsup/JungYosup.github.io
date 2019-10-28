@@ -364,6 +364,8 @@ public static void main(String[] args) {
 
 ### 문제3. 스택수열
 
+> 문제를 잘 이해 못하겠음..
+
 ### 문제4. 에디터
 
 [에디터 1406번](https://www.acmicpc.net/problem/1406)
@@ -436,9 +438,7 @@ public class 에디터 {
 				}
 			}
 
-
 		}
-
 
 		while(!stack1.isEmpty()) {
 			stack2.add(stack1.pop());
@@ -469,9 +469,6 @@ public static void main(String[] args) throws IOException {
 
 		String s = br.readLine();
 		int num = Integer.parseInt(br.readLine());
-
-
-
 
 		Stack<Character>stack1 = new Stack<>();
 		Stack<Character>stack2 = new Stack<>();
@@ -508,9 +505,7 @@ public static void main(String[] args) throws IOException {
 				}
 			}
 
-
 		}
-
 
 		while(!stack1.isEmpty()) {
 			stack2.add(stack1.pop());
