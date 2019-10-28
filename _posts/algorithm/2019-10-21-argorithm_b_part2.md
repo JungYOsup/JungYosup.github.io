@@ -361,3 +361,171 @@ public static void main(String[] args) {
 - [x] 생각으로만
 - [x] Hint 보고
 - [ ] 답 보고
+
+### 문제3. 스택수열
+
+### 문제4. 에디터
+
+[에디터 1406번](https://www.acmicpc.net/problem/1406)
+
+> 1.커서: 문장의 맨 앞, 맨 뒤, 문장 중간 임의의 곳에 위치할 수 있다.
+>
+> 2.L: 커서를 왼쪽으로 한 칸 옮김
+>
+> 3.D: 커서를 오른쪽으로 한 칸 옮김
+>
+> 4.B: 커서 왼쪽에 있는 문자를 삭제함
+>
+> 5.P $: $라는 문자를 커서 오른쪽에 추가함. 커서는 \$에 위치함
+
+#### 첫번째 도전
+
+나의생각: String으로 풀경우 시간이 너무 오래걸린다는 판단을 하였다. 자리이동을 시켜야 하기 때문에
+그래서 Hint를 보고 Stack을 이용해서 풀려고 했는데, 잘 모르겠다.
+그래서 답을 보고 이해하는 방법을 선택했다.
+
+```java
+package 연습하기;
+
+import java.util.Scanner;
+import java.util.Stack;
+
+public class 에디터 {
+
+	public static void main(String[] args) {
+
+		Scanner scan = new Scanner(System.in);
+
+		String s = scan.next();
+		int num = scan.nextInt();
+
+		scan.nextLine();
+
+		Stack<Character>stack1 = new Stack<>();
+		Stack<Character>stack2 = new Stack<>();
+
+		for(char c : s.toCharArray()) {
+			stack1.add(c);
+		}
+
+		while(num-->0) {
+
+			String input = scan.nextLine();
+
+			if(input.charAt(0) == 'P') {
+				char c = input.charAt(2);
+				stack1.add(c);
+			}
+
+			if(input.charAt(0) == 'L') { //input == "L" 이거는 왜 안돼는거지 ?
+				if(!stack1.isEmpty()) {
+					stack2.add(stack1.pop());
+				}
+
+			}
+
+			if(input.charAt(0) == 'D') {
+				if(!stack2.isEmpty()) {
+					stack1.add(stack2.pop());
+				}
+			}
+
+			if(input.charAt(0) == 'B') {
+				if(!stack1.isEmpty()) {
+					stack1.pop();
+				}
+			}
+
+
+		}
+
+
+		while(!stack1.isEmpty()) {
+			stack2.add(stack1.pop());
+		}
+
+		while(!stack2.isEmpty()) {
+			System.out.print(stack2.pop());
+		}
+
+	}
+
+}
+
+```
+
+> 결과 : 틀렸습니다.
+>
+> 이유 : 시간초과...
+
+#### 두번째 도전
+
+나의생각 : 시간 초과가 발생했으니 Scanner 말고 BufferReader을 사용해보자 !!
+
+```java
+public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+		String s = br.readLine();
+		int num = Integer.parseInt(br.readLine());
+
+
+
+
+		Stack<Character>stack1 = new Stack<>();
+		Stack<Character>stack2 = new Stack<>();
+
+		for(char c : s.toCharArray()) {
+			stack1.add(c);
+		}
+
+		while(num-->0) {
+
+			String input = br.readLine();
+
+			if(input.charAt(0) == 'P') {
+				char c = input.charAt(2);
+				stack1.add(c);
+			}
+
+			if(input.charAt(0) == 'L') { //input == "L" 이거는 왜 안돼는거지 ?
+				if(!stack1.isEmpty()) {
+					stack2.add(stack1.pop());
+				}
+
+			}
+
+			if(input.charAt(0) == 'D') {
+				if(!stack2.isEmpty()) {
+					stack1.add(stack2.pop());
+				}
+			}
+
+			if(input.charAt(0) == 'B') {
+				if(!stack1.isEmpty()) {
+					stack1.pop();
+				}
+			}
+
+
+		}
+
+
+		while(!stack1.isEmpty()) {
+			stack2.add(stack1.pop());
+		}
+
+		while(!stack2.isEmpty()) {
+			System.out.print(stack2.pop());
+		}
+
+	}
+
+```
+
+> 결과 : 맞았습니다.
+
+- [x] 생각으로만
+- [x] Hint 보고
+- [x] 답 보고
