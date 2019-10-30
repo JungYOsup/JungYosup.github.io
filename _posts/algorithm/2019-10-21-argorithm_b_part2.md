@@ -1,5 +1,5 @@
 ---
-title: "2. 알고리즘 기초1/2"
+title: "2. 알고리즘 기초1/2 자료구조"
 excerpt: "백준 알고리즘 두번째강의 '자료구조1' "
 categories:
   - beginner
