@@ -209,3 +209,77 @@ public static void main(String[] args) throws IOException {
 ```
 
 > 결과 : 맞았습니다
+
+### 문제3. 오큰수
+
+[오큰수 17298번](https://www.acmicpc.net/problem/17298)
+
+> 1.크기가 N인 수열 A = A1, A2, …, AN이 있고, 각 원소 Ai의 오큰수 NGE(i)를 구하려고 한다.
+>
+> 2.Ai의 오큰수는 오른쪽에 있으면서 Ai보다 큰 수 중에서 가장 왼쪽에 있는 수를 의미한다. 그러한
+>
+> 수가 없는 경우에 오큰수는 -1이다.
+>
+> 3.A = [3, 5, 2, 7] → NGE = [5, 7, 7, -1]
+>
+> A = [9, 5, 4, 8] → NGE = [-1, 8, 8, -1]
+
+#### 첫번째 도전
+
+나의생각 : for문을 2번써서 돌려서 기준보다 큰수는 기준을 큰수로 바꿔주고 , 그런수가 없다면 -1로 나오게끔 해줌
+
+```java
+public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+
+		int num = Integer.parseInt(br.readLine());
+
+		int[] array = new int[num];
+
+		for(int i=0; i<array.length; i++) {
+
+
+			array[i] = br.read()-48; //read()로 잃어오면 아키스코드를 숫자로 반환하기 때문에 -48을 해줌
+
+			br.readLine(); //개행문자 참여방지
+
+		}
+
+		for(int i=0; i<array.length-1; i++) {
+
+			for(int j=i+1; j<array.length; j++) {
+
+
+				if(array[i]<array[j]) {
+
+					array[i] = array[j];
+					break;
+
+				}else {
+					if(j==array.length-1) {
+						array[i] = -1;
+					} //array[i]보다 큰수가 없을때 -1을 주기위함
+					continue;
+				}
+
+			}
+
+		}
+		array[num-1] = -1; //맨 마지막은 어차피 -1이므로
+
+
+		for(int i=0; i<array.length; i++) {
+			System.out.print(array[i]+" ");
+		}
+
+	}
+
+```
+
+> 결과 : 시간초과..
+>
+> 출력 결과는 예시와 같지만, 시간초과가 발생한다. 그 이유인즉슨 조건이 1000000이기 때문이고 나의 코드가 O(n^2)이므로
+>
+> 시간복잡도가 백만^2 이 나오므로 시간초과가 발생하는것이다.
