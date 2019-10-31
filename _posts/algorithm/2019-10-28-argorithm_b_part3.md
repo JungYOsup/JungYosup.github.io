@@ -229,23 +229,22 @@ public static void main(String[] args) throws IOException {
 나의생각 : for문을 2번써서 돌려서 기준보다 큰수는 기준을 큰수로 바꿔주고 , 그런수가 없다면 -1로 나오게끔 해줌
 
 ```java
-public static void main(String[] args) throws NumberFormatException, IOException {
+	public static void main(String[] args){
 
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-		int num = Integer.parseInt(br.readLine());
+		Scanner scan = new Scanner(System.in);
+
+		int num =scan.nextInt();
 
 		int[] array = new int[num];
 
 		for(int i=0; i<array.length; i++) {
 
+			array[i] = scan.nextInt();
 
-			array[i] = br.read()-48; //read()로 잃어오면 아키스코드를 숫자로 반환하기 때문에 -48을 해줌
-
-			br.readLine(); //개행문자 참여방지
 
 		}
+		System.out.println();
 
 		for(int i=0; i<array.length-1; i++) {
 
@@ -259,20 +258,23 @@ public static void main(String[] args) throws NumberFormatException, IOException
 
 				}else {
 					if(j==array.length-1) {
-						array[i] = -1;
-					} //array[i]보다 큰수가 없을때 -1을 주기위함
+						array[i] = -1; // array[i]보다 큰 값이 없을때 -1로 넣어주기 위해서
+					}
 					continue;
 				}
 
 			}
 
 		}
-		array[num-1] = -1; //맨 마지막은 어차피 -1이므로
+		array[num-1] = -1; //어차피 맨 마지막은 -1 이므로
 
 
 		for(int i=0; i<array.length; i++) {
 			System.out.print(array[i]+" ");
 		}
+
+	}
+
 
 	}
 
