@@ -285,3 +285,66 @@ public static void main(String[] args) throws IOException {
 > 출력 결과는 예시와 같지만, 시간초과가 발생한다. 그 이유인즉슨 조건이 1000000이기 때문이고 나의 코드가 O(n^2)이므로
 >
 > 시간복잡도가 백만^2 이 나오므로 시간초과가 발생하는것이다.
+
+#### 두번째 도전
+
+나의생각 : 그렇다면 어떻게 시간을 줄일수 있을까나..???
+Hint를 보니 이문제는 위치를 저장함으로써 쉽게 풀수 있다고 한다..
+Hint를 봐도 잘 모르겠어서 그냥 답을 보면서 풀었는데, 이게 왜 속도가 빠른지는 아직 잘 모르겠다..
+
+```java
+public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		int num = Integer.parseInt(br.readLine());
+		int[] a = new int[num];
+		int[] ans = new int[num];
+		Stack<Integer> stack = new Stack<>();
+		//why? 이거는 안됄까?
+				//for(int i=0 ;i<num; i++){
+		//	a[i] = br.read();
+		//}
+		// read()로 할경우 아스키코드를 int형으로 바꿔즈무로 1을 입력시 49로 가져옴
+		// 그렇다면 a[i] = br.read()-48로 하면 되지 않을까?
+		// No.. 이렇게 해보니까
+		// 이상하게 값을 가져오더라
+		// 그래서 readLine()으로 가져오고 거기서 공백을 제거하고 temp배열에 넣어준다음. temp배열에 넣은 값을 a에 뿌려줌
+		String[] temp = br.readLine().split(" ");
+
+
+		for(int i=0; i<num; i++) {
+			a[i] = Integer.parseInt(temp[i]);
+		}
+
+		stack.add(0);
+
+		for(int i=1; i<a.length; i++) {
+
+			if(stack.isEmpty()) {
+				stack.add(i);
+			}
+
+			while(!stack.isEmpty() && a[stack.peek()]< a[i]) {
+				ans[stack.pop()] = a[i];
+			}
+			stack.add(i);
+		}
+		while(!stack.isEmpty()) {
+			ans[stack.pop()] = -1;
+		}
+
+		for (int i=0; i<num; i++) {
+			bw.write(ans[i] + " ");
+		}
+		bw.write("\n");
+		bw.flush();
+
+
+
+	}
+```
+
+> 결과 : 맞았습니다..
+>
+> 시간복잡도는 O(N) 이라고 생각됨...
