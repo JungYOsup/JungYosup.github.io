@@ -208,6 +208,8 @@ public static void main(String[] args) throws IOException {
 
 ```
 
+### 문제2. 잘모르겠음 .. 한번 답을 보고 다시 해봐야겠다.
+
 > 결과 : 맞았습니다
 
 ### 문제3. 오큰수
