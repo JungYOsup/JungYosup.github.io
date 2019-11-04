@@ -350,3 +350,5 @@ public static void main(String[] args) throws IOException {
 > 결과 : 맞았습니다..
 >
 > 시간복잡도는 O(N) 이라고 생각됨...
+>
+> 장소를 옮겨도 되나요?
