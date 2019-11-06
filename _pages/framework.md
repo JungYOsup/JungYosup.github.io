@@ -1,6 +1,6 @@
 ---
 title: "Posts by Framework"
-layout: splash
+layout: single
 permalink: /framework/
 author_profile: true
 ---
