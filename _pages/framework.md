@@ -1,6 +1,6 @@
 ---
 title: "Posts by Framework"
-layout: single
+layout: default
 permalink: /framework/
 author_profile: true
 ---
