@@ -1,6 +1,6 @@
 ---
 title: "Posts by Framework"
-layout: categories
+layout: archive
 permalink: /framework/
 author_profile: true
 ---

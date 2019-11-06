@@ -1,6 +1,6 @@
 ---
 title: "Posts by Algorithm"
-layout: categories
+layout: archive
 permalink: /algorithm/
 author_profile: true
 ---
