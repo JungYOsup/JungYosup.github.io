@@ -306,10 +306,22 @@ defaults:
       share: true
       search: true
       related: true
-
-  # _posts/framework
+  # _posts/framework/React
   - scope:
-      path: "_posts/framework"
+      path: "_posts/framework/Vue.js"
+      type: posts
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      comments: true
+      share: true
+      search: true
+      related: true
+
+  # _posts/framework/React
+  - scope:
+      path: "_posts/framework/React"
       type: posts
     values:
       layout: single
