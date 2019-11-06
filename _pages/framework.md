@@ -1,6 +1,6 @@
 ---
 title: "Posts by Framework"
-layout: collection
+layout: posts
 permalink: /framework/
 author_profile: true
 ---
