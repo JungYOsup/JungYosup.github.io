@@ -280,6 +280,145 @@ export default App;
 
 ### 3. State
 
+#### 3.0 Class Components and State
+
+##### 3.0의 핵심
+
+> 1.state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+>
+> 2.component는 함수형(function component)과 클래스형(class component)이 있다.
+>
+> 3.react는 자동적으로 class component의 render method를 자동으로 실행한다.
+>
+> 4.class component를 사용하는 이유는 stat를 사용하기 위함이며 state는 객체이고 component의 data를 넣을공간이 있고
+> 그 데이터는 동적 데이터이다. (즉 변하는 데이터)
+
+```javascript
+import React from "react";
+
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    console.log("add");
+  };
+
+  minus = () => {
+    console.log("minus");
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+#### 3.1 All you need to know about State
+
+##### 3.1의 핵심
+
+> 1.state를 건들기 위해 즉 데이터를 변화시키기 위해서는 this.state 를 쓰는게 아니라 this.setState() 를 사용한다.
+>
+> 2.state를 변화했을 때 새로운 state와 함께 render()가 다시작동한다.
+> 즉 render() -> state변화 -> 변화된 state와 함께 render() 가 다시 동작
+>
+> 3.외부에서 state를 직접 건드는것은 좋은 방법이 아니다.
+
+```javascript
+import React from "react";
+
+class App extends React.Component {
+  state = {
+    count: 0
+  };
+
+  add = () => {
+    this.setState({
+      count: this.state.count + 1 //좋은 코딩은 아니다. why? 외부에서 state를 의존하기 때문에 좋은방법이 아니다.
+    });
+  };
+
+  minus = () => {
+    //current = this.state
+    this.setState(current => ({
+      count: current.count - 1 //좋은 코딩이다.
+    }));
+  };
+
+  render() {
+    return (
+      <div>
+        <h1>The number is {this.state.count}</h1>
+        <button onClick={this.add}>Add</button>
+        <button onClick={this.minus}>Minus</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+#### 3.2 Component Life Cycle
+
+##### 3.2의 핵심
+
+> 1.Mounting -> 태어남
+> constructor() : 가장 먼저 호출되는 function()으로, javascript에서 class를 만들 떄 호출되는거임
+> render()
+> componentDidMount() : component가 처음 render 됐는지 알려줌, 따라서 첫 render 때만 동작하고 , 다음 render때는 동작안함
+>
+> 2.Updateing ->일반적인 업데이트
+> componentDidUpdate() : 새로운 render가 발생할때마다 동작하는 함수 , state를 setstate해서 render가 다시 동작할때 적용
+>
+> 3.UnMounting -> 죽음 , component 가 죽는걸 의미함
+> componentWillUnmount() : 컴포넌트가 떠날때 호출 됨 , 다른페이지로 갈때 적용
+
+#### 3.3 Planning the Movie Component
+
+##### 3.3의 핵심
+
+> 1.Es6, const {isLoading} = this.state 와 const isLoading = this.state.isLoading 는 같다.
+>
+> 2.State에 나중에 쓸경우 초기화 하는습관을 들이는게 좋다.
+
+```javascript
+import React from "react";
+
+class App extends React.Component {
+  state = {
+    ischecked: false,
+    book: "" //나중에 book이 쓰일것을 대비하여 초기화함 (쓰지 않아도 되지만 초기화 습관들이는게 좋다.)
+  };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState({
+        ischecked: true,
+        book: false
+      });
+    }, 6000);
+  }
+
+  render() {
+    const { ischecked } = this.state; // const ischecked = this.state.ischecked
+    return <div>{ischecked ? "We are ready" : "not Ready"}</div>;
+  }
+}
+
+export default App;
+```
+
 ### 4. Making the Movie App
 
 ### 5. Conclusions
