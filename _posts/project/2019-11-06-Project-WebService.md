@@ -24,7 +24,7 @@ Nomad Coders를 기반으로 하고 있다.
 
 #### 2.0 Creating your first React Component
 
-##### _2.0에서의 핵심_
+##### 2.0에서의 핵심
 
 > 1.컴포넌트(component)는 HTML을 반환(return)하는 함수이다.
 >
@@ -92,7 +92,7 @@ export default App; // Component를 외부에서 import하기위해서
 
 #### 2.1 Reusable Components with JSX + Props
 
-##### _2.1에서의 핵심_
+##### 2.1에서의 핵심
 
 > 1.컴포넌트(components)에 정보를 보낼수 있다.
 >
@@ -132,7 +132,7 @@ export default App;
 
 #### 2.2 Dynamic Component Generation
 
-##### _2.2에서의 핵심_
+##### 2.2에서의 핵심
 
 > 1.map은 array의 각 item(값)에 function을 적용하고 array을 준다.
 >
@@ -179,19 +179,114 @@ function App() {
 export default App;
 ```
 
-#### 2.4 map Recap
+#### 2.3 map Recap
 
-##### _2.4에서의 핵심_
+##### 2.3에서의 핵심
 
-> 1.
+> 1.모든 react의 element 요소들은 유일성이 있어야 한다. 따라서 key를 부여해야한다.
+
+```javascript
+import React from "react";
+
+function Food({ name, country }) {
+  return (
+    <div>
+      <h1>my name is {name}</h1>
+      <h1>country is {country}</h1>
+    </div>
+  );
+}
+
+const abc = [
+  { name: "kimchi", country: "korea", id: 1 },
+  { name: "sushi", country: "japan", id: 2 },
+  { name: "maratang", country: "china", id: 3 }
+];
+
+function App() {
+  return (
+    <div>
+      {abc.map(function(value) {
+        return (
+          <Food key={value.id} name={value.name} country={value.country} />
+        );
+      })}
+    </div>
+  );
+}
+
+export default App;
+```
+
+#### 2.4 Protection with Proptypes
+
+##### 2.4의 핵심
+
+> 1.prop-types란 내가 전달받은 props가 내가원하는 props인지를 확인해 주는것
 >
-> 2.
+> 2.prop-types 사용하기 (npm i porp-types)
+>
+> 3.prop-types를 다운받은다음에는 pacakge.json에 잘 설치되었는지 확인한후
+> 사용할 곳에 import Propypes from "prop-types"를 해줘야한다.
+>
+> 4.내가 props를 보낼때 발생할수 있는 문제들에 대해서 해결해주는 역할을 prop-types가 대신해줌
+
+```javascript
+import React from "react";
+import PropTypes from "prop-types";
+
+function Food({ name, country, score }) {
+  return (
+    <div>
+      <h1>my name is {name}</h1>
+      <h1>country is {country}</h1>
+    </div>
+  );
+}
+
+Food.propTypes = {
+  name: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  score: PropTypes.string.isRequired //여기서 score의 타입이 무조건 string을 요구한다고 했는데
+  //보내는 객체의 value값이 int 형이므로 propTypes에서 "나는 String을 원햇지만 int형 을 보내고 있다고 확인해보라고 오류가 뜬다"
+  //But 화면에 보이는 결과값은 제대로 나온다.
+};
+
+const abc = [
+  { name: "kimchi", country: "korea", id: 1, score: 5.0 },
+  { name: "sushi", country: "japan", id: 2, score: 4.4 },
+  { name: "maratang", country: "china", id: 3, score: 4.5 }
+];
+
+function App() {
+  return (
+    <div>
+      {abc.map(function(value) {
+        return (
+          <Food
+            key={value.id}
+            name={value.name}
+            country={value.country}
+            score={value.score}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+export default App;
+```
 
 ### 3. State
 
 ### 4. Making the Movie App
 
 ### 5. Conclusions
+
+```
+
+```
 
 ```
 
