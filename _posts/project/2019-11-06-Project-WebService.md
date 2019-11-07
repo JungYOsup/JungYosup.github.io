@@ -98,7 +98,7 @@ export default App; // Component를 외부에서 import하기위해서
 >
 > 2.컴포넌트는 재사용이 가능하다.
 >
-> 3.Es6 기능으로 객체의 내부값을 아규먼트로 받을수 있게 되었다.
+> 3.Es6 기능으로 {}를 사용함으로써 객체의 내부값을 아규먼트로 받을수 있게 되었다.
 
 ```javascript
 import React from "react";
@@ -119,7 +119,6 @@ function App() {
   return (
     <div>
       <h1>Hello</h1>
-
       <Food favorite="kimchi" abc="abc" />
       <Food favorite="kimchi2" abc="abc2" />
       <Food favorite="kimchi3" abc="abc3" />
@@ -131,9 +130,66 @@ function App() {
 export default App;
 ```
 
+#### 2.2 Dynamic Component Generation
+
+##### _2.2에서의 핵심_
+
+> 1.map은 array의 각 item(값)에 function을 적용하고 array을 준다.
+>
+> 2.[arrow function](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Functions/%EC%95%A0%EB%A1%9C%EC%9A%B0_%ED%8E%91%EC%85%98);
+>
+> 3.component 함수 내에서 {}의 선언은 {}안에 javascript로 쓰겠다는것을 의미한다.
+>
+> 4.map에서 사용되는 파라미터는 객체이다. ex) yosup.map(function(object){return }) 에서 object는 객체
+>
+> 5.파라미터는 앞서말헀듯이 .을 쓸수가 없다. 그래서 객체의 내부값을 받기 위해서는 ES6에서 {}를 제공해줬는데
+> 객체의 내부값을 아규먼트로 받을때 {arg} 를 썻다면 내부값 두개를 받을때는 {arg1, arg2}를 쓰면 된다.
+
+```javascript
+import React from "react";
+
+function Food({ name, country }) {
+  //5. 내부 아규먼트 두개를 받을때는 {arg1, arg2}
+  return (
+    <div>
+      <h1>my name is {name}</h1>
+      <h1>country is {country}</h1>
+    </div>
+  );
+}
+
+const abc = [
+  { name: "kimchi", country: "korea" },
+  { name: "sushi", country: "japan" },
+  { name: "maratang", country: "china" }
+];
+
+// 여기서 value는 객체
+function App() {
+  return (
+    <div>
+      {abc.map(function(value) {
+        return <Food name={value.name} country={value.country} />;
+      })}
+    </div>
+    // === abc.map(value => <Food name={value.name} country={value.country} />) , arrow function
+  );
+}
+
+export default App;
+```
+
+#### 2.4 map Recap
+
+##### _2.4에서의 핵심_
+
+> 1.
+>
+> 2.
+
 ### 3. State
 
-### 4.Making the Movie App
+### 4. Making the Movie App
 
 ### 5. Conclusions
 
