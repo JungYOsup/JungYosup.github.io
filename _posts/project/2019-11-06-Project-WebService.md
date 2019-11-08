@@ -290,7 +290,7 @@ export default App;
 >
 > 3.react는 자동적으로 class component의 render method를 자동으로 실행한다.
 >
-> 4.class component를 사용하는 이유는 stat를 사용하기 위함이며 state는 객체이고 component의 data를 넣을공간이 있고
+> 4.class component를 사용하는 이유는 state를 사용하기 위함이며 state는 객체이고 component의 data를 넣을공간이 있고
 > 그 데이터는 동적 데이터이다. (즉 변하는 데이터)
 
 ```javascript
@@ -421,7 +421,165 @@ export default App;
 
 ### 4. Making the Movie App
 
+#### 4.0 Fetching Movies from API
+
+##### 4.0의 핵심
+
+> 1.fetch(가져옴) 와 axios의 역할은 api를 가져올때 쓴다..?
+>
+> 2.[fetch vs axios](https://blog.logrocket.com/axios-or-fetch-api/), axois는 데이터를 Json 형태로 자동으로 바꿔준다
+>
+> 3.npm i axios (axios 설치방법)
+>
+> 4.async 와 await , async(Asynchronous : 비동기) 라는 뜻으로 데이터를 받는 방식이다.
+> 동기식은 말 그래도 동시에 일어난다는 뜻이다. 요청과 결과가 동시에 일어난다는 약속
+> 비동기식은 요청과 결과가 동시에 일어나지 않는다.
+> [동기와 vs 비동기](https://private.tistory.com/24)
+
+```javascript
+import React from "react";
+import axios from "axios";
+
+class App extends React.Component {
+  state = {
+    ischecked: false,
+    book: ""
+  };
+
+  getMovies = async () => {
+    // async 함수를 비동기화 시킴 , 즉 이 함수는 순차적으로 진행되어야하는 함수야, 그래서 await를 한것을 다 기다린후에 함수를 실행시킬게~ 라는말이다.
+    const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { ischecked } = this.state;
+    console.log(this.state.ischecked);
+    console.log(this.state.book);
+    return <div>{ischecked ? "We are ready" : "not Ready"}</div>;
+  }
+}
+
+export default App;
+```
+
+#### 4.1 Rendering the Movies
+
+##### 4.1의 핵심
+
+> 1.언제 class component를 쓸지 , 언제 function component를 쓸지 알아야한다. 앞서 말했듯이 state를 사용하려면 class component를 써야함
+> 따라서 Movie.js는 class compontnt를 쓸 필요가 없다.
+>
+> 2.밑 코드에서 ES6 기능들이 어떻게 쓰였는지 확인해보자
+
+<u>App.js</u>
+
+```javascript
+import React from "react";
+import axios from "axios";
+import Movie from "./Movie";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+
+  getMovies = async () => {
+    // async 함수를 비동기화 시킴 , 즉 이 함수는 순차적으로 진행되어야하는 함수야, 그래서 await를 한것을 다 기다린후에 함수를 실행시킬게~ 라는말이다.
+    //const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    //console.log(movies.data.data.movies); // 우리가 가져올 데이터는 movies.data.data.movies이다
+    //그러나 이런 예쁘지 않은 코딩은 Es6버전에서 새롭게 바뀌었다.
+
+    const {
+      data: {
+        data: { movies }
+      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+    } = await axios.get(
+      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    );
+
+    this.setState({
+      movies, // == movies: movies
+      isLoading: false
+    });
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading, movies } = this.state; //Es6
+
+    console.log(this.state.isLoading);
+    console.log(this.state.book);
+    return (
+      <div>
+        {isLoading
+          ? "Loading..."
+          : movies.map(movie => {
+              return (
+                <Movie
+                  key={movie.id}
+                  id={movie.id}
+                  year={movie.year}
+                  title={movie.title}
+                  summary={movie.summary}
+                  poster={movie.poster}
+                />
+              );
+            })}
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+<u>Movies.js</u>
+
+```javascript
+import React from "react";
+import PropTypes from "prop-types";
+
+//Movies.js 는 state가 필요 없기 때문에 class component로 선언해줄 필요가 없다.
+//why 필요가 없어?
+//class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+//그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster }) {
+  return <h1>{title}</h1>;
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired
+};
+
+export default Movies;
+```
+
+#### 4.2 Rendering the Movies
+
+##### 4.2의 핵심
+
 ### 5. Conclusions
+
+```
+
+```
+
+```
+
+```
 
 ```
 
