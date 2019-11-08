@@ -567,9 +567,256 @@ Movies.prototype = {
 export default Movies;
 ```
 
-#### 4.2 Rendering the Movies
+#### 4.2 Styling the Movies
 
 ##### 4.2의 핵심
+
+> 1.className이 아닌 class를 property로 써도 오류는 뜨지만 결과값은 같게 나옴
+>
+> 2.map에서는 div로 감싼다음에 return을 쓰지 않아도 되던데, 기 이유가 div로 감싸면서 html처럼 사용해야하기 때문인가? 왜지...???
+>
+> 3.인라인테그로 css를 적용하는것보다, css file을 만들어서 사용하는것이 더 좋다.
+
+<u>App.js</u>
+
+```javascript
+import React from "react";
+import axios from "axios";
+import Movie from "./Movie";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+
+  getMovies = async () => {
+    // async 함수를 비동기화 시킴 , 즉 이 함수는 순차적으로 진행되어야하는 함수야, 그래서 await를 한것을 다 기다린후에 함수를 실행시킬게~ 라는말이다.
+    //const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    //console.log(movies.data.data.movies); // 우리가 가져올 데이터는 movies.data.data.movies이다
+    //그러나 이런 예쁘지 않은 코딩은 Es6버전에서 새롭게 바뀌었다.
+
+    const {
+      data: {
+        data: { movies }
+      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+    } = await axios.get(
+      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    );
+
+    this.setState({
+      movies, // == movies: movies
+      isLoading: false
+    });
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading, movies } = this.state;
+
+    return (
+      <section class="container">
+        {isLoading ? (
+          <div className="loader">
+            <span className="loader_text">"Loading..."</span>
+          </div>
+        ) : (
+          <div class="movies">
+            {movies.map(movie => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    );
+  }
+}
+
+export default App;
+```
+
+<u>Movies.js</u>
+
+```javascript
+import React from "react";
+import PropTypes from "prop-types";
+
+//Movies.js 는 state가 필요 없기 때문에 class component로 선언해줄 필요가 없다.
+//why 필요가 없어?
+//class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+//그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster }) {
+  return (
+    <div className="movie">
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title">{title}</h3>
+        <h5 className="movie__year">{year}</h5>
+        <p className="movie__summary">{summary}</p>
+      </div>
+    </div>
+  );
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired
+};
+
+export default Movies;
+```
+
+#### 4.3Adding Genres
+
+##### 4.3의 핵심
+
+> 1.map에 있는 각각의 item은 key가 필요하다. map의 index 아규먼트를 사용함으로써 key의 value를 채울수도 있다.
+>
+> 2.하지만 index를 잘 사용하지는 않는다고 들었던것 같다.
+
+<u>App.js</u>
+
+```javascript
+import React from "react";
+import axios from "axios";
+import Movie from "./Movie";
+import "./Movie.css";
+
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: []
+  };
+
+  getMovies = async () => {
+    // async 함수를 비동기화 시킴 , 즉 이 함수는 순차적으로 진행되어야하는 함수야, 그래서 await를 한것을 다 기다린후에 함수를 실행시킬게~ 라는말이다.
+    //const movies = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    //console.log(movies.data.data.movies); // 우리가 가져올 데이터는 movies.data.data.movies이다
+    //그러나 이런 예쁘지 않은 코딩은 Es6버전에서 새롭게 바뀌었다.
+
+    const {
+      data: {
+        data: { movies }
+      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+    } = await axios.get(
+      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    );
+
+    this.setState({
+      movies, // == movies: movies
+      isLoading: false
+    });
+  };
+
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading, movies } = this.state;
+
+    return (
+      <section class="container">
+        {isLoading ? (
+          <div className="loader">
+            <span className="loader_text">"Loading..."</span>
+          </div>
+        ) : (
+          <div class="movies">
+            {movies.map(movie => (
+              <Movie
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+                genres={movie.genres}
+              />
+            ))}
+          </div>
+        )}
+      </section>
+    );
+  }
+}
+
+export default App;
+```
+
+<u>Movies.js</u>
+
+```javascript
+import React from "react";
+import PropTypes from "prop-types";
+import "./Movie.css";
+
+//Movies.js 는 state가 필요 없기 때문에 class component로 선언해줄 필요가 없다.
+//why 필요가 없어?
+//class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+//그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster, genres }) {
+  return (
+    <div className="movie">
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title">{title}</h3>
+        <h5 className="movie__year">{year}</h5>
+        <ul className="genres">
+          {genres.map((genre, index) => (
+            <li key={index} className="genres__genre">
+              {genre}
+            </li>
+          ))}
+        </ul>
+        <p className="movie__summary">{summary}</p>
+      </div>
+    </div>
+  );
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired //프로프타입이 String인 배열이 요구되어진다.
+};
+
+export default Movies;
+```
+
+#### 4.4 Styles Timelapse
+
+##### 4.4의 핵심
+
+> 1.화면꾸미기 CSS를 사용해서 꾸며보는데 , 최신 CSS 기술들을 활용해서 꾸며보는게 중요할것 같다.
+>
+> 2.flex 나 grid를 사용해보자
+>
+> 3.스스로 한번 꾸며보는 연습을 해보자
+
+#### 4.5 Cutting the summary
+
+##### 4.5의 핵심
+
+> 1.slice로 summary를 자름..
 
 ### 5. Conclusions
 
