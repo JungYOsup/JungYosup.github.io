@@ -820,18 +820,25 @@ export default Movies;
 
 ### 5. Conclusions
 
-```
+#### 5.0 Deploying to Github Pages
 
-```
+##### 5.0의 핵심
 
-```
+> 프로젝트 배포방법
+>
+> 1.gh-pages : github의 github page 도메인에 나타나게 해줌(설치방법 : npm i gh-pages)
+>
+> 2.package.json으로 가서 home page 를 추가시킴("homepage": "https://jungyosup.github.io/movie_app_2019")
+> 주의할점 : homepage명은 소문자여야함
+>
+> 3.build 를 실행시킴 (npm run build) , build 폴더가 생성됨
 
-```
+> 4.package.json으로 가서 script 에서 두가지를 "deploy": "gh-pages -d build", "predeploy": "npm run build" 을 추가한다.
+> npm run deploy 를 통해 gh-pages를 호출하고 , gh-pages에 build 폴더를 업로드한다. 하지만 그전에 deploy는 먼저 predeploy를 호출한다.
+> 따라서 npm run deploy를 하면 predeploy를 실행시켜 num run build를 하게하고 build폴더가 생성되고, gh-page를 호출하고 , gh-pages에 build 폴더를 업로드 한다.
 
-```
-
-```
-
-```
-
-```
+> 5.업로드 될때까지 5분정도 기다리면 페이지가 뜬다.
+>
+> 6.[Movie_app_2019 Project](https://jungyosup.github.io/movie_app_2019)
+>
+> 7.다음에 수정된 것을 업로드 하기 위해서는 npm run deploy만 하면 된다. 우리가 npm run deply 입력만 하면 모든 동작을 하게끔 설정을 해놨기 떄문 (predploy로)
