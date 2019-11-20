@@ -1,5 +1,5 @@
 ---
-title: "1. Javascript로 Chrome 만들기"
+title: "2. Javascript로 Chrome 만들기"
 excerpt: "javascript 프로젝트 첫번째"
 categories:
   - javascript
@@ -99,10 +99,151 @@ Nomad Coders를 기반으로 하고 있다.
 > 1.javascript에서는 문자열을 표현할때 "" 와 '' 를 사용한다.
 >
 > 2.하지만 지금은 백틱(`)을 사용한다.
-> function sayHello(name, age){
-> console.log("Hello"+name+"you are'+age+"years old");
-> }
->
-> "Hello"+name+"you are'+age+"years old" == `Hello $(name) you are ${age} years old``
 >
 > 3.백틱을 쓸경우 띄어씌기 Enter까지 다 반영한다.
+>
+> 4.javascript에서 return의 중요성
+> (1). return을 하게 되면 그 값을 받을 변수가 필요하다.
+> (2). return문을 실행하면 다음 실행문들을 수행하지 않고 함수를 마친다.
+
+#### 2.3 Modifying the DOM with JS
+
+##### 2.3에서의 핵심
+
+> 1.Dom 탐색시 getElementById를 통해 id를 찾곤 했는데, 요즘에는 document.querySelector("#id명");로 id를 찾거나
+> document.querySelector(".class명")로 class를 찾는방법이 더 효율적이다.
+
+#### 2.4 Events and event handlers
+
+##### 2.4에서의 핵심
+
+> 1.javascript는 HTML과 CSS를 바꾸고 싶어서 javascript를 사용하는것일까? NO
+> javascript는 반응형웹을 만들기 위해 사용하는것이다. 즉 이벤트를 사용하기 위해 javascript를 사용하는것이다.
+>
+> 2.addEventListener("resize",handleResize) 와 addEventListener("resize",handleResize())의 차이점
+> 전자는 resize가 발생해야지 handleResize 함수가 동작하고 , 후자는 resize가 발생하기전에 handleResze함수가 동작한다.
+
+#### 2.5 if, else, and, or
+
+##### 2.5에서의 핵심
+
+> 1."===" 와 "=="의 차이점은 ===는 타입까지 완전 같아야 true를 반환한다.
+>
+> 2.ex) "7" === 7 (false) , "7" == 7 (true)
+
+#### 2.6 DOM - If else - Function practice
+
+##### 2.6에서의 핵심
+
+> 1. [자바스크립트의 이벤트 확인, javscript MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript)
+
+#### 2.7 DOM - If else - Function practice part Two
+
+##### 2.7에서의 핵심
+
+> 1.CSS는 CSS파일에서만 작업하는게 좋고, HTML은 HTML로만 작업하는게 좋다.
+>
+> 2.Javascript를 이용해서 CSS랑 HTML을 건드는 것은 별로 좋지 않은 방법
+>
+> 3.Javascript는 Javascript의 역할만 한다.(반응형)
+>
+> 4.classList를 활용한 방법
+>
+> 5.toggle()을 활용한 방법
+
+javscript를 이용해서 CSS를 건드는 좋지 않은 방법의 코딩
+
+```javascript
+const title = document.querySelector("#title");
+
+const BASE_COLOR = "rgb(52, 73, 94)";
+const OTHER_COLOR = "#a52a2a";
+
+function handleClick() {
+  const currentColor = title.style.color; // rgh로 받는다.
+
+  if (currentColor === BASE_COLOR) {
+    title.style.color = OTHER_COLOR;
+  } else {
+    title.style.color = BASE_COLOR;
+  }
+}
+
+function init() {
+  title.style.color = BASE_COLOR; //rgb 형태가 아닌
+}
+title.addEventListener("click", handleClick);
+
+init();
+
+//주의
+//BASE_COLOR를 핵스형태인 #34495e로 할경우
+//init()함수에서 title에 color를 넣을때 나는 헥스형태로 넣었어도 rgh형태로 html에 표시되기 때문에
+//const currentColor = title.style.color 을 할때 rgh 형태로 받아온다.
+//따라서 BASE_COLOR를 핵스 형트로 하면 rgh와 핵스를 비교하는것이므로 비교가 안됨
+```
+
+```css
+없음
+```
+
+javascript 와 CSS를 따로 분리시킨 코딩(포인트 뿐만아니라 색깔변화도 됨)
+
+```javascript
+const title = document.querySelector("#title");
+
+const CLICKED_CLASS = "clicked";
+
+function handleClick() {
+  const hasClass = title.classList.contains(CLICKED_CLASS);
+
+  if (!hasClass) {
+    title.classList.add(CLICKED_CLASS);
+  } else {
+    title.classList.remove(CLICKED_CLASS);
+  }
+}
+
+function init() {
+  title.addEventListener("click", handleClick);
+}
+
+init();
+```
+
+```css
+.btn {
+  cursor: pointer;
+}
+
+.clicked {
+  color: blue;
+}
+```
+
+윗 코딩의 역할을 대신해주는 toggle()을 사용했을때
+
+```javascript
+const title = document.querySelector("#title");
+
+const CLICKED_CLASS = "clicked";
+
+function handleClick() {
+  title.classList.toggle(CLICKED_CLASS);
+}
+function init() {
+  title.addEventListener("click", handleClick);
+}
+
+init();
+```
+
+```css
+.btn {
+  cursor: pointer;
+}
+
+.clicked {
+  color: blue;
+}
+```
