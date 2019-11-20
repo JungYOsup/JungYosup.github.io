@@ -92,6 +92,15 @@ Nomad Coders를 기반으로 하고 있다.
 >
 > 5.이와같이 객체는 데이터를 의미하는 property 와 메서드로 구성된 집합이다.
 
-#### 2.1 Organizing Data with Object
+#### 2.1.1 More Function Fun
 
-##### 2.1에서의 핵심
+##### 2.1.1에서의 핵심
+
+> 1.javascript에서는 문자열을 표현할때 "" 와 '' 를 사용한다.
+>
+> 2.하지만 지금은 백틱(`)을 사용한다.
+> function sayHello(name, age){
+> console.log("Hello"+name+"you are'+age+"years old");
+> }
+>
+> "Hello"+name+"you are'+age+"years old" == `Hello $(name) you are ${age} years old`
