@@ -104,3 +104,5 @@ Nomad Coders를 기반으로 하고 있다.
 > }
 >
 > "Hello"+name+"you are'+age+"years old" == `Hello $(name) you are ${age} years old`
+>
+> 3.백틱을 쓸경우 띄어씌기 Enter까지 다 반영한다.
