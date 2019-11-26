@@ -1,5 +1,5 @@
 ---
-title: "2. Javascript로 Chrome 만들기"
+title: "Javascript로 Chrome 만들기"
 excerpt: "javascript 프로젝트 첫번째"
 categories:
   - javascript
