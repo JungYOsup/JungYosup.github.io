@@ -247,3 +247,160 @@ init();
   color: blue;
 }
 ```
+
+#### 3.1 Making a JS Clock part One
+
+##### 3.1에서의 핵심
+
+> 1.[querySelector vs getElementByClass or Id 비교](https://stackoverflow.com/questions/14377590/queryselector-and-queryselectorall-vs-getelementsbyclassname-and-getelementbyid)
+>
+> 2.class 명은 아무렇게나 하지 않고 , CSS , javascript에서도 동일하게 쓸수 있게 적어주는게 좋다.
+
+#### 3.2 Making a JS Clock part Two
+
+##### 3.2에서의 핵심
+
+> 1.setInterval(getTime(), 1000) vs setInterval(getTime,1000) 의 차이점
+> 앞에서도 설명했듯이 전자의 경우 함수 먼저 시작해버린다, 후자의 경우 1초후에 함수를 실행한다.
+>
+> 2.조건문을 쓰지 않고 삼항연산자를 써서 시간,분,초가 10 이하일때 0을 붙이는 방법을 사용해봤다.
+> 조건문을 썼을때는 초기화 했던 값이 변화기 때문에 let으로 바꿔줘서 햇는데, 삼항연산자를 쓰니 초기화 햇던 값이 변하는것은
+> 아니므로 const를 써도 무방했다.
+>
+> 3.조건문보다 삼항연산자를 썻을때 더 깔끔한 코드의 형태를 볼수 있었다.
+
+(1). 조건문을 씀
+
+```javascript
+const clockContainer = document.querySelector(".js-clock"),
+  clockTitle = clockContainer.querySelector("h1");
+
+function getTime() {
+  const date = new Date();
+  let min = date.getMinutes();
+  let hour = date.getHours();
+  let seconds = date.getSeconds();
+
+  if (hour < 10) {
+  }
+
+  if (min < 10) {
+    min = `0${min}`;
+  }
+
+  if (seconds < 10) {
+    seconds = `0${seconds}`;
+  }
+
+  clockTitle.innerHTML = `${hour}:${min}:${seconds}`;
+}
+
+function init() {
+  setInterval(getTime, 1000);
+}
+
+init();
+```
+
+(2). 삼항연산자를 씀
+
+```javascript
+const clockContainer = document.querySelector(".js-clock"),
+  clockTitle = clockContainer.querySelector("h1");
+
+function getTime() {
+  const date = new Date();
+  const min = date.getMinutes();
+  const hour = date.getHours();
+  const seconds = date.getSeconds();
+
+  clockTitle.innerHTML = `${hour < 10 ? `0${hour}` : hour}:${
+    min < 10 ? `0${min}` : min
+  }:${seconds > 9 ? seconds : `0${seconds}`}`;
+}
+
+function init() {
+  setInterval(getTime, 1000);
+}
+
+init();
+```
+
+### 3.3 Saving the User Name part One
+
+#### 3.3에서의 핵심
+
+> 1.greeting.js 에서 볼수 있듯이 String값도 객체로 받아서 사용한것을 볼수 있다
+> 예를들어 "currentUser"나 "showing" 같은..? 그 이유가 뭘까?
+>
+> 2.localStorage는 나의 웹에 지역저장소로 key와 value값으로 값을 넣을수 있는 곳이다.
+>
+> 3.index.html을 보면 클래스명을 2개 지정해놨는데 하나는 자바스크립트에서 사용하기 위해 js-form 또 다른 하나는 CSS를 사용하기위해
+> form을 지정해놓은것을 볼수 잇다. CSS에서 js-form을 가져와도 되지만 굳이 클래스명을 따로 2개를 지정해 놓은 이유가 있을거라고
+> 생각된다.
+
+```javascript
+const form = document.querySelector(".js-form"),
+  input = form.querySelector("input"),
+  greeting = document.querySelector(".js-greetings");
+
+const User_LS = "currentUser",
+  SHOWING_ON = "showing";
+
+function paintGreeting(text) {
+  form.classList.remove(SHOWING_ON);
+  greeting.classList.add(SHOWING_ON);
+  greeting.innerHTML = `Hello ${text}`;
+}
+
+function loadName() {
+  const currentUser = localStorage.getItem(User_LS);
+
+  if (currentUser === null) {
+  } else {
+    paintGreeting(currentUser);
+  }
+}
+
+function init() {}
+
+init();
+```
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css" />
+  </head>
+
+  <body>
+    <div class="js-clock">
+      <!-- class 명은 아무렇게나 하지 않고 , CSS , javascript에서도 동일하게 쓸수 있게 적어주는게 좋다. -->
+      <h1 class="js-title">00:00</h1>
+    </div>
+    <form class="js-form form">
+      <!-- class명은 Css,Javascript에서도 동일하게 쓸수 있도록 적어주는게 좋다고 햇는데
+      여기서 보면 js-form 클래느는 js에서 사용하려고 지정해놓은걸 볼수 있고 form은 css에서 사용하려고 지정했다 -->
+      <input type="text" name="" id="" placeholder="what is your name?" />
+    </form>
+    <h4 class="js-greetings greeting"></h4>
+    <script src="clock.js"></script>
+    <script src="greeting.js"></script>
+  </body>
+</html>
+```
+
+### 3.4 Saving the User Name part Two
+
+#### 3.4에서의 핵심
+
+> 1.locastorage가 어떻게 활용되고 있는지 확인해보자
+>
+> 2.기능에 맞춰서 함수를 여러개로 선언하는 모습을 유심히 보자
+>
+> 3.event.preventDefault(); 발생한 event의 기능을 없애버린다.
