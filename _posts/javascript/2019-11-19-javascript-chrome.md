@@ -262,6 +262,7 @@ init();
 
 > 1.setInterval(getTime(), 1000) vs setInterval(getTime,1000) 의 차이점
 > 앞에서도 설명했듯이 전자의 경우 함수 먼저 시작해버린다, 후자의 경우 1초후에 함수를 실행한다.
+> [괄호를 붙이고 안붙이고의 차이](https://okky.kr/article/408176)
 >
 > 2.조건문을 쓰지 않고 삼항연산자를 써서 시간,분,초가 10 이하일때 0을 붙이는 방법을 사용해봤다.
 > 조건문을 썼을때는 초기화 했던 값이 변화기 때문에 let으로 바꿔줘서 햇는데, 삼항연산자를 쓰니 초기화 햇던 값이 변하는것은
@@ -404,3 +405,63 @@ init();
 > 2.기능에 맞춰서 함수를 여러개로 선언하는 모습을 유심히 보자
 >
 > 3.event.preventDefault(); 발생한 event의 기능을 없애버린다.
+
+### 3.5 Making a To Do List part One
+
+#### 3.5에서의 핵심
+
+### 3.6 Making a To Do List part Two
+
+#### 3.6에서의 핵심
+
+> 1.javascrpt는 local storage에 있는 모든 데이터를 string으로 저장한다.
+> 따라서 localstorage에는 string 값으로 데이터를 저장해놔야한다.
+>
+> 2.그 방법이 Json.Stringify() -> string으로 바꿔줌
+>
+> 3.그리고 javascript에서 다시 데이터를 쓸경우는 String이 아닌 객체형식으로 받아와야하므로 JSON.parse()로 바꿔준다.
+>
+> 4.array.forEach(function(param){
+> }) --> array의 값을 하나씩 파라미터로 받아서 함수를 실행시킨다.
+
+### 3.7 Making a To Do List part Three
+
+#### 3.7에서의 핵심
+
+> 1.버튼에서 어떤것을 클릭했는지 알게 해주는것이 .target이다.
+>
+> 2.함수 fliter에 대해서 알아보자
+>
+> 3.filter() 메서드는 주어진 함수의 테스트를 통과하는(true) 모든 요소를 모아 새로운 배열로 반환합니다.
+> filter 의 뜻대로 조건에 의해 거른다고 보면됨
+
+### 3.8 Image Background
+
+#### 3.8에서의 핵심
+
+> 1.animation 하는 방법을 익히는게 얼마나 중요한지 깨닫게 됨
+>
+> 2.이 과정을 하면서 ClassList.add를 통해서 class 이름을 주어 Css를 적용시키는데, 현직 개발자들도 그런식으로 하는지 궁금하다.
+>
+> 3.(2)번처럼하면서 좀더 HTML이 깔끔해지는것이 느껴지기는 함..
+
+### 3.9 Getting the Weather part One (Geolocation)
+
+#### 3.9에서의 핵심
+
+### 3.10 Getting the Weather part Two (API)
+
+#### 3.10에서의 핵심
+
+> 1.javascript의 API를 가져오는 방식은, 웹시아트로 Request를 보내고 응답을 통해서 데이터를 얻을수 있는데
+> 가져온 데이터를 Refresh 없이 나의 웹사이트에 적용시킬수 있기 때문이다.
+>
+> 2.API를 가져오는 방법이랑 , KEY 그리고 어떻게 활용하는지 배우는 중요한 Part
+>
+> 3.API는 특정 웹사이트로부터 데이터를 얻거나 컴퓨터끼리 소통하기 위해 고안된거임
+>
+> 4.Javascipt는 웹사이트로부터 Request를 보내고 응답을 통해서 데이터를 얻을수 있다.(자바스크립트가 강력한 이유, Refresh없이 데이터를 받음)
+>
+> 5.fetch().then(), then()은 기본적으로 함수를 호출하는거임 ---> fetch를 통해서 데이터를 다 받은다음 then함수가 동작
+>
+> 6.만약 then()을 사용하지 않는 다면 fetch가 정상적으로 작동하지 않을수도 있다. 왜냐하면 fetch()로 받는도중에 다음작업이 들어갈수도 있기때문
