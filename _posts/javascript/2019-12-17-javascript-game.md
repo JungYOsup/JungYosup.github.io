@@ -34,7 +34,21 @@ Nomad Coders를 기반으로 하고 있다.
 
 #### 1.2 Styles part Two
 
-> 1.
+> 1.all: unset
+> 초기 및 부모 스타일속성 모두를 제거함
+> 따라서 버튼의 스타일 즉 css가 작용하는 모든 부분이 제거가 됨 **단 주의할점은 chrome에서만 지원한다는거**
+>
+> 2.text-transform: uppercase;
+> Text를 대문자로 바꿈
+>
+> 3.transform: scale(0.98);
+> button:active 즉 button이 active를 햇을때
+> 요소를 확대 또는 축소할 수 있습니다. 0.98이라는 것은 가로 세로 모두 0.98배 확대한다는거임 즉 0.02배 축소됨, 애니메이션 효과중 하나임 **IE는 버전 10부터 지원합니다.**
+>
+> 4.기본적인 box-shadow의 효과 box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+>
+> 5.input type이 range인것은 거의 오랜만에 써보는데> 각 속성을 보면
+> min="0.1" max="5.0" value="2.5" step="0.1" (=범위는0.1~ 5까지고 , 기본위치는 2.5에 위치하고 0.1씩 올리거나 줄일수 있다.)
 
 ### 2. PaintJs
 
