@@ -54,16 +54,42 @@ Nomad Coders를 기반으로 하고 있다.
 
 #### 2.0 Canvas Events
 
+> 1.addEventListener("mousemove",함수)
+> mousemove : 마우스를 움직일때 발생하는 event
+> mousedown : 마우스를 클릭하고 누를때 발생하는 event
+> mouseup : 마우스를 클릭하고 땟을때 발생하는 event
+> mouseleave : 마우스가 Canvas화면에서 벗어났을때 event
+>
+> 2.event 값 clientX 와 offsetX는 clientX의 경우 브라우저창 >전채에서의 위치를 의미하고 offsetX는 canvas의 X축을 의미한다. >따라서 필요한것은 offsetX와 offsetY
+
 #### 2.1 2D Context
+
+> 1.canvas Mdn을 참조하여서 canvas를 칠해보자
+>
+> 2.canvas를 그리는 방법은 이해가 잘 안될수 있으나, 나중에 사용할것을 대비하여 외워두자
 
 #### 2.2 Recap!
 
+> 1.canvas를 외워두었다면 이제 이해해보자.
+
 #### 2.3 Changing Color
+
+> 1.단순하게 event를 log찍어봐서 속성을 찾아 바꿔주는 방법으로 ctx.backgroundColor의 의 색을 바꿔주엇다.
 
 #### 2.4 Brush Size
 
+> 1.단순하게 event를 log찍어봐서 속성을 찾아 바꿔주는 방법으로 ctx.lineWidth의 크기를 계속 바꿔주엇다.
+
 #### 2.5 Filling Mode
 
+> 1.canvas Mdn을 참조하여서 canvas의 전체를 칠해보자
+>
+> 2.활용 되었던것들 fillStyle,fillRect()
+
 #### 2.6 Saving the Image
+
+> 1.이미지를 저장하는 방법에 대해서 알아보았다
+>
+> 2.a 태그에는 단순히 href의 속성만 사용하는줄 알았는데, 다양한 기능이 있다는것을 알게 되었다.
 
 #### 2.7 Conclusions
