@@ -1,6 +1,6 @@
 ---
 title: "2. VaniilaJS 를 활용한 ChromeApp"
-excerpt: ""
+excerpt: "Chrome app을 클론코딩"
 categories:
   - project
 tags:
