@@ -1,6 +1,6 @@
 ---
-title: "4. React를 활용한 영화 소개 웹"
-excerpt: "영화 소개 웹"
+title: "1. HTML과 CSS 를 활용한 kakaoTalk 클론"
+excerpt: "kakaoTalk 클론코딩함"
 categories:
   - project
 tags:

@@ -1,6 +1,6 @@
 ---
-title: "3. React를 활용한 날씨앱"
-excerpt: "현재날씨에 따른 상황을 나타냄."
+title: "3. VaniilaJS 를 활용한 PaintGame"
+excerpt: "색의 밝기를 내가 원하는대로 조정할수있다."
 categories:
   - project
 tags:

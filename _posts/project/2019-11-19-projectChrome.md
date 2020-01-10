@@ -1,6 +1,6 @@
 ---
-title: "5. React.native를 활용한 애완견 앱"
-excerpt: "애완견 앱"
+title: "2. VaniilaJS 를 활용한 ChromeApp"
+excerpt: ""
 categories:
   - project
 tags:

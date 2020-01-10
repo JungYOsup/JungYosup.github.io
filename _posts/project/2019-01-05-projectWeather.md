@@ -1,6 +1,6 @@
 ---
-title: "1. VaniilaJS 를 활용한 ChromeApp"
-excerpt: ""
+title: "4. React를 활용한 날씨앱"
+excerpt: "현재날씨에 따른 상황을 나타냄."
 categories:
   - project
 tags:
