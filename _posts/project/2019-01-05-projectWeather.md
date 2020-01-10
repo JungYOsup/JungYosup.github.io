@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-[![카카오이미지](/assets/images/weather.png)](https://github.com/JungYOsup/javascript/tree/master/Happy-weather)
+[![카카오이미지](/assets/images/weather.jpg)](https://github.com/JungYOsup/javascript/tree/master/Happy-weather)
