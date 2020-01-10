@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-![카카오이미지](./img/kakao.png)
+![카카오이미지](./img/sun.png)
