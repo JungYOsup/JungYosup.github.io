@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-[![카카오이미지](/assets/images/ha.png)](https://github.com/JungYOsup/JungYosup.github.io.git)
+[![카카오이미지](/assets/images/kakao.png)](https://github.com/JungYOsup/kakao-clone-Training.git)
