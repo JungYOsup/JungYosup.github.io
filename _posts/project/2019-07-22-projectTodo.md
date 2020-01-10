@@ -1,6 +1,6 @@
 ---
-title: "6. React.native를 활용한 애완견 앱"
-excerpt: "애완견 앱"
+title: "4. React를 활용한 Todo"
+excerpt: "현재날씨에 따른 상황을 나타냄."
 categories:
   - project
 tags:
