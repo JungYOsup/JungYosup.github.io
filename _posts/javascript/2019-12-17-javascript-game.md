@@ -1,6 +1,6 @@
 ---
-title: "Javascript로 Chrome 만들기"
-excerpt: "javascript 프로젝트 첫번째"
+title: "Javascript로 게임 만들기"
+excerpt: "javascript 프로젝트 두번째"
 categories:
   - javascript
 tags:
