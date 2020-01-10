@@ -1,5 +1,5 @@
 ---
-title: "5. React를 활용한 영화 소개 웹"
+title: "React를 활용한 영화 소개 웹"
 excerpt: "영화 소개 웹"
 categories:
   - project

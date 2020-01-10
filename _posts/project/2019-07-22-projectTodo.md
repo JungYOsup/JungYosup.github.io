@@ -1,5 +1,5 @@
 ---
-title: "4. React를 활용한 Todo"
+title: "React를 활용한 Todo"
 excerpt: "현재날씨에 따른 상황을 나타냄."
 categories:
   - project

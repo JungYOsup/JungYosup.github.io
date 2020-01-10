@@ -1,5 +1,5 @@
 ---
-title: "2. VaniilaJS 를 활용한 ChromeApp"
+title: "VaniilaJS 를 활용한 ChromeApp"
 excerpt: "Chrome app을 클론코딩"
 categories:
   - project

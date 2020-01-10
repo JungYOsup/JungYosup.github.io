@@ -1,5 +1,5 @@
 ---
-title: "4. React를 활용한 날씨앱"
+title: "React를 활용한 날씨앱"
 excerpt: "현재날씨에 따른 상황을 나타냄."
 categories:
   - project

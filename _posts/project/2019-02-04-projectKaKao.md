@@ -1,5 +1,5 @@
 ---
-title: " 1. HTML과 CSS 를 활용한 kakaoTalk 클론"
+title: " HTML과 CSS 를 활용한 kakaoTalk 클론"
 excerpt: "kakaoTalk 클론코딩함"
 categories:
   - project

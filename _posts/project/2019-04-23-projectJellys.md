@@ -1,5 +1,5 @@
 ---
-title: "6. React를 활용한 애완견 앱"
+title: "React를 활용한 애완견 앱"
 excerpt: "애완견 앱"
 categories:
   - project
