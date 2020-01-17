@@ -13,6 +13,9 @@ main:
     url: /project/
 
   - title: "참고사이트"
+    url: /shopify/
+
+  - title: "참고사이트"
     url: https://devinlife.com
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
