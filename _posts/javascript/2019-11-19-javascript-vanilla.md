@@ -149,9 +149,34 @@ new 연선자와 함께 함수를 호출하면 this 바인딩은 다르게 동�
 
 ## 23. 프로퍼티 키는 자바스크립에서 사용 가능한 유효한 이름이 아닌경우, 반드시 따음표를 사용하여야 한다.
 
-    ex) first_name : 'Yosup' , 'first-name' : 'Yosup'
+    ex) first_name : 'Yosup' , 'first-name' : 'Yosup' (- 는 사용하가능한 유요한 이름이 아니므로 ''를 사용함)
 
-## 24. 프로퍼티 동적생성
+## 24. 프로퍼티 값 읽기
+
+객체의 프로퍼티 값에 접근하는 방법은 마침표(.) 표기법과 대괄호([]) 표기법이 있다.
+
+```javascript
+var person = {
+  "first-name": "ung-mo",
+  "last-name": "lee",
+  gender: "male",
+  1: 10
+};
+
+console.log(person.first - name); // Nan : undefined-undefuned
+console.log(person[first - name]); //ReferenceError : first is not defined (first하나만 인식해버림)
+console.log(person["fist-name"]); // 'ung-mo'
+
+console.log(person.gender); //'male'
+console.log(person[gender]); // ReferenceError : gender is not defined
+console.log(person["gender"]); // 'male'
+
+console.log(person['1']) // 10
+console.log(person[1]) //10
+console.log(person.1) // SyntaxError
+```
+
+## 25. 프로퍼티 동적생성
 
 ```javascript
 var person = {
@@ -171,17 +196,26 @@ for-in문을 사용하면 객체(배열포함)에 포함된 모든 프로퍼티�
 ```javascript
 var person = {
   'first-name' : 'Yosup',
-  'last-name' : 'Jung'
+  'last-name' : 'Jung',
+  gender : 'male'
 }
 
 for(var prop in person){
-  console.log(prop+ ':' person.prop); //== person[prop]
+  console.log(prop+ ':' person[prop]); //person.prop (x)
 
 
 }
 // 결과값
 // 'first-name' : 'Yosup',
 //  'last-name' : 'Jung'
+// gender : male
+
+// person.prop을 쓸경우
+
+// 'first-name' : undefined
+//  'last-name' : undefined
+// gender : undefined
+
 
 ```
 
@@ -189,7 +223,7 @@ for(var prop in person){
 var array = ['one','two'];
 
 for(var index in array){
-  console.log(index+ ':' array.index); //== person[prop]
+  console.log(index+ ':' array[index]); // array.index (x)
 }
 
 // 0 : one
@@ -214,6 +248,8 @@ for (var index in array) {
 > 왜냐하면 객체의 경우 프로퍼티의 순서가 보장될 필요가 없지만, 배열은 순서를 보장해야하기 때문이다.
 >
 > 2.배열 요소만을 순회하지 안다.
+>
+> 3.for-in 문은 마침표(.) 표기법을 사용할시 값이 undefined가 나오므로 대괄호 표기법을 사용해야한다.
 
 ## 26. 이와 같은 for-in문의 단점을 극복하기 위해 ES6에서 for-of문이 추가되었다.
 
@@ -228,6 +264,8 @@ for (const value of array) {
 // one
 // two
 ```
+
+> **즉 for-in문은 객체의 프로퍼티를 순회하기 위해 사용하고 for-of 문은 배열의 요소를 순회하기 위해 사용한다**.
 
 ## 27. 함수표현식 방식으로 정의한 함수는 함수명을 생략할 수 있고 이러한 함수를 익명 함수라고 한다 **함수 표현식에서는 함수명을 략하는 것이 일반적이다.**
 
