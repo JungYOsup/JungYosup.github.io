@@ -1,18 +1,18 @@
 # main links
 main:
- - title: "HTML"
+ - title: "html"
     url: /html/
 
-  - title: "CSS"
+  - title: "css"
     url: /css/
 
-  - title: "Javascript"
+  - title: "javascript"
     url: /javascript/
 
-  - title: "React"
+  - title: "react"
     url: /react/
 
-  - title: "Vue.js"
+  - title: "vue.js"
     url: /Vue/
 
   - title: "알고리즘"
