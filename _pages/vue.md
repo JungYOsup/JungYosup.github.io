@@ -1,7 +1,7 @@
 ---
 title: "Posts by Vue"
 layout: archive
-permalink: /framework/vue
+permalink: /vue/
 author_profile: true
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: "Posts by React"
 layout: archive
-permalink: /framework/react
+permalink: /react/
 author_profile: true
 ---
 
