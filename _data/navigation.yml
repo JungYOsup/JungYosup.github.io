@@ -1,22 +1,26 @@
 # main links
 main:
-  - title: "자바스크립트"
+ - title: "HTML"
+    url: /html/
+
+  - title: "CSS"
+    url: /css/
+
+  - title: "Javascript"
     url: /javascript/
+
+  - title: "React"
+    url: /react/
+
+  - title: "Vue.js"
+    url: /Vue/
 
   - title: "알고리즘"
     url: /algorithm/
 
-  - title: "프레임워크"
-    url: /framework/
-
   - title: "프로젝트"
     url: /project/
 
-  - title: "쇼퍼파이"
-    url: /shopify/
-
-  - title: "참고사이트"
-    url: https://devinlife.com
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"

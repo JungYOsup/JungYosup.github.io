@@ -306,9 +306,10 @@ defaults:
       share: true
       search: true
       related: true
-    # _posts/framework/React
+
+  # _posts/React
   - scope:
-      path: "_posts/framework"
+      path: "_posts/Vue.js"
       type: posts
     values:
       layout: single
@@ -319,22 +320,9 @@ defaults:
       search: true
       related: true
 
-  # _posts/framework/React
+  # _posts/React
   - scope:
-      path: "_posts/framework/Vue.js"
-      type: posts
-    values:
-      layout: single
-      classes: wide
-      author_profile: true
-      comments: true
-      share: true
-      search: true
-      related: true
-
-  # _posts/framework/React
-  - scope:
-      path: "_posts/framework/React"
+      path: "_posts/React"
       type: posts
     values:
       layout: single
@@ -371,9 +359,22 @@ defaults:
       search: true
       related: true
 
-  # _posts/project
+  # _posts/CSS
   - scope:
-      path: "_posts/shopify"
+      path: "_posts/css"
+      type: posts
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      comments: true
+      share: true
+      search: true
+      related: true
+
+    # _posts/HTML
+  - scope:
+      path: "_posts/html"
       type: posts
     values:
       layout: single
