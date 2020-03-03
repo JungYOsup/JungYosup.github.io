@@ -307,9 +307,9 @@ defaults:
       search: true
       related: true
 
-  # _posts/React
+  # _posts/vus.js
   - scope:
-      path: "_posts/Vue.js"
+      path: "_posts/vue.js"
       type: posts
     values:
       layout: single
@@ -320,9 +320,9 @@ defaults:
       search: true
       related: true
 
-  # _posts/React
+  # _posts/react
   - scope:
-      path: "_posts/React"
+      path: "_posts/react"
       type: posts
     values:
       layout: single
