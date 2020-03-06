@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-![젤리이미지](/assets/images/jellys.png)
+![젤리이미지](/assets/images/project_img/jellys.png)

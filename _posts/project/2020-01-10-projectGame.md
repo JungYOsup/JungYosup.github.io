@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-[![게임이미지](/assets/images/game.png)](https://github.com/JungYOsup/customize_paintjs.git)
+[![게임이미지](/assets/images/project_img/game.png)](https://github.com/JungYOsup/customize_paintjs.git)
