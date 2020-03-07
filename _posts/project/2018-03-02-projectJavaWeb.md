@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-[![면접학교이미지](/assets/images/interviewschool.png)](https://github.com/JungYOsup/inSchool_TeamProject5)
+[![면접학교이미지](/assets/images/project_img/interviewschool.png)](https://github.com/JungYOsup/inSchool_TeamProject5)
