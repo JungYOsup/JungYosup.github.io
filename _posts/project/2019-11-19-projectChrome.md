@@ -10,4 +10,4 @@ toc: true
 toc_sticky: true
 ---
 
-[![크롬이미지](/assets/images/chrome.png)](https://github.com/JungYOsup/customize_chrome.git)
+[![크롬이미지](/assets/images/project_img/chrome.png)](https://github.com/JungYOsup/customize_chrome.git)
