@@ -4,70 +4,59 @@
 }
 
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Noto Sans KR", sans-serif;
   letter-spacing: -0.02em;
   background: #e5e5e5;
 }
 
-.TabNav {
-  position: relative;
-  width: 540px;
-  height: 54px;
-  background: #ffffff;
-}
-.TabDiv {
-  position: absolute;
-  width: 446px;
-  height: 52px;
-  left: 0px;
-  top: 0px;
-  background: #ffffff;
-}
-.Summary {
-  position: absolute;
-  width: 115px;
-  height: 52px;
-  left: 0px;
-  top: 0px;
-}
-.Emails {
-  position: absolute;
-  width: 93px;
-  height: 52px;
-  left: 131px;
-  top: 0px;
-  border-bottom: 1px solid #0174df;
+h1 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #1f2d3d;
+  line-height: 1.25;
 }
 
-.Emails a {
-  color: #0174df;
+strong {
+  font-size: 14px;
+  font-weight: 400;
+  color: #afb3b9;
+  line-height: 1.4285714286;
 }
 
-.Files {
-  position: absolute;
-  width: 77px;
-  height: 52px;
-  left: 240px;
-  top: 0px;
-}
-.Mentions {
-  position: absolute;
-  width: 113px;
-  height: 52px;
-  left: 333px;
-  top: 0px;
+p {
+  font-size: 16px;
+  color: #79818b;
+  line-height: 1.5;
 }
 
-li {
+.card {
+  width: 531px;
+  height: 120px;
+  background-color: #ffffff;
+  margin: 0 auto;
+}
+
+.card-content {
+  padding: 20px;
+}
+.card-user {
   float: left;
-  text-align: center;
-  line-height: 50px;
-  list-style-type: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  margin: 20px 20px 56px 20px;
 }
 
-a {
-  font-size: 18px;
-  line-height: 20px;
-  color: #8492a6;
-  text-decoration: none;
+.card::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+.card-title {
+  font-size: 16px;
+  margin-bottom: 4px;
+} /* ▼ WHERE YOUR CODE BEGINS */
+
+.card-role {
+  margin-bottom: 12px;
 }
