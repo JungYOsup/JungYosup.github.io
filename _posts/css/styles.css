@@ -1,33 +1,73 @@
 * {
   box-sizing: border-box;
+  margin: 0;
 }
 
-.parent {
-  width: 200px;
-  margin: 0 auto;
-  background-color: gray;
+body {
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -0.02em;
+  background: #e5e5e5;
 }
 
-.child {
-  width: 200px;
-  height: 200px;
-  font-size: 5px;
-  font-weight: bold;
+.TabNav {
+  position: relative;
+  width: 540px;
+  height: 54px;
+  background: #ffffff;
+}
+.TabDiv {
+  position: absolute;
+  width: 446px;
+  height: 52px;
+  left: 0px;
+  top: 0px;
+  background: #ffffff;
+}
+.Summary {
+  position: absolute;
+  width: 115px;
+  height: 52px;
+  left: 0px;
+  top: 0px;
+}
+.Emails {
+  position: absolute;
+  width: 93px;
+  height: 52px;
+  left: 131px;
+  top: 0px;
+  border-bottom: 1px solid #0174df;
+}
+
+.Emails a {
+  color: #0174df;
+}
+
+.Files {
+  position: absolute;
+  width: 77px;
+  height: 52px;
+  left: 240px;
+  top: 0px;
+}
+.Mentions {
+  position: absolute;
+  width: 113px;
+  height: 52px;
+  left: 333px;
+  top: 0px;
+}
+
+li {
+  float: left;
   text-align: center;
-  color: white;
+  line-height: 50px;
+  list-style-type: none;
 }
 
-.red {
-  background-color: red;
-  float: left;
-}
-
-.blue {
-  background-color: blue;
-  float: left;
-}
-
-.yellow {
-  background-color: yellow;
-  float: left;
+a {
+  font-size: 18px;
+  line-height: 20px;
+  color: #8492a6;
+  text-decoration: none;
 }
