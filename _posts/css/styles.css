@@ -30,14 +30,15 @@ p {
 }
 
 .card {
-  width: 531px;
+  max-width: 540px;
+  min-width: 500px;
   height: 120px;
   background-color: #ffffff;
   margin: 0 auto;
 }
 
 .card-content {
-  padding: 20px;
+  padding: 20px 20px;
 }
 .card-user {
   float: left;
