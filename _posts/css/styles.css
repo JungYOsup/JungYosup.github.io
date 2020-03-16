@@ -3,7 +3,7 @@
 }
 
 .parent {
-  width: 400px;
+  width: 200px;
   margin: 0 auto;
   background-color: gray;
 }
@@ -30,13 +30,4 @@
 .yellow {
   background-color: yellow;
   float: left;
-}
-.other {
-  background-color: black;
-  color: white;
-}
-.parent::after {
-  content: "";
-  display: block;
-  clear: left;
 }
