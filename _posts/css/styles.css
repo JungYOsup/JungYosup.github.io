@@ -3,7 +3,7 @@
 }
 
 .parent {
-  width: 400px;
+  width: 200px;
   margin: 0 auto;
   background-color: gray;
 }
@@ -19,16 +19,8 @@
 
 .red {
   background-color: red;
-  float: left;
-}
-
-.yellow {
-  background-color: yellow;
-  float: left;
 }
 
 .blue {
   background-color: blue;
-  float: left;
-}
 }
