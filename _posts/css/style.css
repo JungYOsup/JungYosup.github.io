@@ -4,53 +4,15 @@
 }
 
 .parent {
-  display: flex;
-  flex-direction: row;
   width: 400px;
-  flex-wrap: wrap;
   height: 900px;
-  background-color: gray;
 }
 
 .child {
+  background-color: blue;
   width: 200px;
   height: 200px;
-}
-
-.blue {
-  background-color: blue;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.red {
-  background-color: red;
-}
-
-html {
-  font-size: 2px;
-}
-
-.parent {
-  font-size: 4px;
-}
-
-div {
-  font-size: 6em;
-  /* 24px */
-}
-a {
-  line-height: 10;
-  /*  */
-}
-
-p {
-  font-size: 5rem;
-  /* 10px */
-  line-height: 20rem;
-  /* 40px */
-
-  letter-spacing: 0.01em;
+  background-image: url("/assets/images/yosup.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
