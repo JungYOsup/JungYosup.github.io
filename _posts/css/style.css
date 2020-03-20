@@ -8,11 +8,6 @@
   height: 900px;
 }
 
-.child {
-  background-color: blue;
-  width: 200px;
-  height: 200px;
-  background-image: url("/assets/images/yosup.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
+.child .child2 {
+  background-color: red;
 }
