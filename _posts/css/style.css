@@ -8,6 +8,6 @@
   height: 900px;
 }
 
-.child .child2 {
-  background-color: red;
+.child2 ~ .child5 {
+  color: red;
 }
