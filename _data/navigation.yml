@@ -6,14 +6,17 @@ main:
   - title: "css"
     url: /css/
 
+  - title: "html+css"
+    url: /htmlandcss/
+
   - title: "javascript"
     url: /javascript/
 
   - title: "react"
     url: /react/
 
-  - title: "html+css"
-    url: /htmlandcss/
+  - title: "react"
+    url: /vue/
 
   - title: "알고리즘"
     url: /algorithm/

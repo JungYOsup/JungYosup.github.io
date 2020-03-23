@@ -1,7 +1,7 @@
 ---
-title: "Posts by html"
+title: "Posts by htmlandcss"
 layout: archive
-permalink: /html/
+permalink: /htmlandcss/
 author_profile: true
 ---
 
