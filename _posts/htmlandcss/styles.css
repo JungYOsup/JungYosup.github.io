@@ -7,10 +7,10 @@
   height: 700px;
   margin: 100px auto;
   background-color: gray;
-  position: relative;
 }
 
 .box2 {
-  position: absolute;
-  background-color: red;
+  width: 100px;
+  margin-left: 100px;
+  background-color: blue;
 }
