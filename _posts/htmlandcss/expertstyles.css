@@ -1,0 +1,110 @@
+body,
+h1,
+ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+ul {
+  list-style-type: none;
+}
+
+body {
+  background-image: url(/assets/images/practice/bg.png);
+  background-color: #0e0e0e;
+  color: white;
+}
+
+.wrapper {
+  max-width: 700px;
+  /* width 는 고정값 
+  max-width는 1200보다 더 커지지 못하게하고 그 화면의 모습을 유지함.?  */
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding: 50px 0;
+  margin: 0 -40px;
+}
+
+.timeline::before {
+  content: " ";
+  background-color: dodgerblue;
+  position: absolute;
+  width: 4px;
+  bottom: 0;
+  left: 50%;
+  top: 0;
+  margin: 100px 0 -100px;
+  /* top bottom 등에 px을 붙이는거와 단위가 없을떄의 차이가 뭐지? */
+  transform: translate(-50%);
+  /* 이게뭐지..?? */
+}
+.timeline-item {
+  width: 50%;
+  /* width의 50% 변화없이 가운데를 비울수 있다. */
+  padding: 0 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: " ";
+  background-color: #0e0e0e;
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 5px solid dodgerblue;
+  right: 0;
+  margin: 50px -19px;
+}
+
+.timeline-item::after {
+  content: " ";
+  background-color: dodgerblue;
+  position: absolute;
+  right: 0;
+  width: 20px;
+  height: 5px;
+  top: 65px;
+  margin: 0px 20px;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: auto;
+  margin-top: -100px;
+  margin-bottom: -100px;
+
+  /* 지그제그 모양만들기 위함 */
+}
+
+.timeline-item:nth-child(even)::before,
+.timeline-item:nth-child(even)::after {
+  left: 0;
+
+  /* 지그제그 모양만들기 위함 */
+}
+
+.tour-cover {
+  width: 100%;
+}
+
+@media (max-width: 720px) {
+  .timeline-item:nth-child(even),
+  .timeline-item {
+    width: auto;
+    margin: 0 0 40px 50px;
+  }
+
+  .timeline::before {
+    left: 48px;
+    transform: none;
+  }
+  .timeline-item::after,
+  .timeline::before {
+    left: 0;
+  }
+}
