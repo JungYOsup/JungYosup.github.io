@@ -4,7 +4,7 @@
 }
 
 body {
-  background-image: url(/assets/images/practice/bg.png);
+  background-image: url(/assets/images/practice/tour/bg.png);
   color: white;
 }
 
@@ -14,7 +14,7 @@ body {
 
 .upperbg {
   position: relative;
-  background-image: url(/assets/images/practice/cover.png);
+  background-image: url(/assets/images/practice/tour/cover.png);
   height: 200px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -25,18 +25,18 @@ body {
   position: absolute;
   /* position : absolute가 되었기 때문에 이상있는 block으로 형성된다.
   width를 주지 않으면 글자의 크기만큼 차지한다. */
-  left: 40%;
+  left: 50%;
   /* left 50%가 아닌 40%를 했는데 왜 가운데에 위치하지.?? */
-  top: 30%;
-  font-size: 45px;
+  top: 50%;
+  /* font-size: 45px;
   color: white;
   border-top: 7px solid white;
-  border-bottom: 7px solid white;
+  border-bottom: 7px solid white; */
 }
 
 .box {
   position: relative;
-  width: 550px;
+  max-width: 600px;
   margin: 10px auto;
   background-color: inherit;
 }
@@ -52,14 +52,15 @@ body {
 
 .boxitem {
   position: relative;
-  width: 47%;
+  width: 50%;
+  margin: 0 -15px;
   height: 300px;
   background-color: black;
 }
 .boxitem::before {
   width: 15px;
   height: 15px;
-  background-image: url(/assets/images/practice/cover.png);
+  background-image: url(/assets/images/practice/tour/cover.png);
   border: 2px solid dodgerblue;
   position: absolute;
   content: " ";
@@ -88,4 +89,19 @@ body {
 
 .schedule p {
   font-size: 5px;
+}
+
+@media screen and (max-width: 500px) {
+  .boxitem:nth-child(even) {
+    margin-top: 0px;
+    margin-left: 0;
+    margin: 0 -15px;
+  }
+  .boxitem:nth-child(3n) {
+    margin-top: 0px;
+  }
+
+  .schedule {
+    margin: 15px 30px;
+  }
 }
