@@ -11,8 +11,8 @@ body {
 }
 
 .wrapper {
-  width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px;
+  margin: 30px auto;
 }
 
 .lecture {
@@ -66,10 +66,6 @@ body {
   clear: both;
 }
 
-.intro .lecture .curriculum {
-  width: 100%;
-  background-color: red;
-}
 .wrapper::after {
   content: " ";
   display: block;
@@ -108,18 +104,101 @@ body {
   font-weight: 400;
   font-size: 15px;
   color: white;
+  padding-left: 30px;
+  padding-top: 10px;
 }
 
 .curriculum .innerbox {
+  position: relative;
   background-color: black;
   margin: 15px 15px;
   height: 85px;
   border-radius: 5px;
 }
 
+.curriculum .innerbox table {
+  margin-left: 10px;
+}
+
+.innerbox table a {
+  text-decoration: none;
+  color: gray;
+}
+.innerbox table a:hover {
+  text-decoration: underline;
+}
+
+.innerbox table td:last-child {
+  position: absolute;
+  right: 15px;
+}
+
 .wrapper .payment {
   width: 300px;
-  height: 626px;
+  height: 939px;
   float: left;
   background-color: black;
+  margin: 0 auto;
+}
+
+.wrapper video {
+  width: 300px;
+  height: 250px;
+}
+
+.wrapper .payment .cost {
+  text-align: center;
+  margin: 30px;
+}
+
+.payment .cost strong:first-child {
+  font-size: 40px;
+  color: orangered;
+}
+
+.payment .information {
+  width: 250px;
+  margin: 0 auto;
+}
+
+.payment button {
+  margin: 0 auto;
+  display: block;
+  width: 220px;
+  height: 35px;
+  margin-top: 10px;
+  border: 0;
+  font-weight: 900;
+  color: white;
+}
+
+.payment button:nth-child(odd) {
+  background-color: orangered;
+}
+.payment button:nth-child(even) {
+  background-color: gray;
+}
+
+.payment .detail {
+  margin: 0 auto;
+  padding-top: 30px;
+}
+.payment .detail ul {
+  padding: 0;
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+@media screen and (max-width: 1300px) {
+  .wrapper .payment {
+    width: 900px;
+    height: 939px;
+    float: left;
+    background-color: black;
+    margin: 0 auto;
+  }
+  .wrapper video {
+    width: 900px;
+    height: 400px;
+  }
 }
