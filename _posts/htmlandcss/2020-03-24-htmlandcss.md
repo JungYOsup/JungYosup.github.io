@@ -455,8 +455,9 @@ body {
   }
   ```
 
-- 4.레이아웃을 먼저 잡는게 중요하며, 레이아웃(뼈대)만 따로하는 테그를 만들어 사용하면 나중에 재활용할수 있다.
-  (그리고 그 레이아웃은 뼈대용도로만 사용해야한다.)
+- 4.레이아웃을 먼저 잡는게 중요하며, 레이아웃(뼈대)만 따로하는 테그를 만들어 사용하면 나중에 재활용할수 있다. (그리고 그 레이아웃은 뼈대용도로만 사용해야한다.)
+
+  마찬 가지로 공통된 스타일은 별도의 클래스로 만들고 재사용한다. (=== CSS 방법론)
 
   ```html
   <div class="l_wrapper">
@@ -486,6 +487,29 @@ body {
     border: 10px solid red;
     background-color: green;
     overflow: hidden;
+  }
+
+  /* -----Commons : 공통적으로 사용할수 있는 것들-----*/
+
+  .clearfix:after {
+    content: " ";
+    display: table;
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 0.5em 1em;
+    display: inline-block;
+  }
+
+  .button_block {
+    display: block;
+    text-align: center;
   }
   ```
 
@@ -594,8 +618,7 @@ body {
   </div>
   ```
 
-* 9.버튼끼리의 간격을 어떻게 주는게 좋을까?
-  버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 클래스를 만들어서 가지고와서 쓰자
+* 9.자주 사용하는 속성은 utility class로 만든다.(=== CSS 방법론)
 
   ```html
   <a href="#" class="button button_block mb_5">장바구니 담기</a>
@@ -619,3 +642,7 @@ body {
     margin-bottom: 20px;
   }
   ```
+
+  - **10. CSS 방법론(BEM, OOCSS, SMACSS)**
+
+    ![**CSS 방법론**](https://gomdoreepooh.github.io/notes/smacss-bem-oocss)
