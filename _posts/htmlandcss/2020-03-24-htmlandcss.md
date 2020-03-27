@@ -641,4 +641,4 @@ body {
 
 - **10. CSS 방법론(BEM, OOCSS, SMACSS)**
 
-  ![**CSS 방법론**](https://gomdoreepooh.github.io/notes/smacss-bem-oocss)
+  [**CSS 방법론**](https://gomdoreepooh.github.io/notes/smacss-bem-oocss)
