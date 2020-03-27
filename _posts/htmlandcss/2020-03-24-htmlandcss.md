@@ -567,13 +567,13 @@ body {
   만약 부모의 높이가 없을경우 height에 %를 사용하는것은 무의하다. 따라서 높이를 정할때 사용할수 있는 또다른 방법이 **padding-top**이다.
   (**padding-top에 사용하는 %는 자기자신의 width에 비례한 높이를 나타낸다.**)
 
-```css
-.video {
-  position: relative;
-  background-color: dodgerblue;
-  padding-top: 56.25%;
-}
-```
+  ```css
+  .video {
+    position: relative;
+    background-color: dodgerblue;
+    padding-top: 56.25%;
+  }
+  ```
 
 - 8.class 이름을 체계적으로 정하기
 
@@ -588,14 +588,14 @@ body {
 
   - 2.어떠한 담당요소가 있을때 : layout의 역할을 하는 wrapper이다 ==> l_wrapper , l_sidebar 와 같은 **언더바** 를 사용하였다.
 
-    ```html
-    <div class="l_wrapper">
-      <div class="l_sidebar"></div>
-    </div>
-    ```
+  ```html
+  <div class="l_wrapper">
+    <div class="l_sidebar"></div>
+  </div>
+  ```
 
-* 9. 버튼끼리의 간격을 어떻게 주는게 좋을까?
-     버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 클래스를 만들어서 가지고와서 쓰자
+* 9.버튼끼리의 간격을 어떻게 주는게 좋을까?
+  버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 클래스를 만들어서 가지고와서 쓰자
 
   ```html
   <a href="#" class="button button_block mb_5">장바구니 담기</a>
