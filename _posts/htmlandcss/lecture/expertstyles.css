@@ -1,0 +1,109 @@
+body {
+  background-image: url(/assets/images/practice/lecture/bg.png);
+  color: #999;
+}
+
+/* l_wrapper , l_sidebar 처럼 class이름에 layout_sidebar의 약어인 l_sidebar라고 나타냈다.
+그 이유는 이 부분은 레이아웃만 담당이라는것을 명시하기 위함이라고 한다. 
+배경색이라던가 이런것 역시 담당이 아닌 오로지 레이아웃 즉 뼈대만 담당하는 용도라는 것을 명시하기 위함
+또한 이렇게 뼈대들은 똑같은 뼈대들이 있는 화면이 있을때 재활용해서 사용 가능하며, 따로 css를 만들어서 import해서 사용해도 
+좋을것 같다*/
+
+/* ----------------------------------------------Layours :뼈대---------------------------------------------- */
+
+.l_wrapper {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.l_sidebar {
+  /* width: 260px; */
+  float: right;
+  margin-left: 20px;
+  width: 300px;
+}
+
+.l_main {
+  border: 10px solid red;
+  background-color: green;
+  overflow: hidden;
+  /* float: right; */
+  /* width: 680px;  */
+  /* overflow: hidden ? 나였으면 main에 일정크기를 먼저 주고 sidebar에도 일정크기를 준다음 
+  clear를 이용했을것 같은데... 뭐가 더 나은방법일까? 
+  그런데 부모요소가 아닌 그냥 얘한테 overflow : hidden을 주었네, 원래 overflow :hidden의 이미가
+  넘어버리면 숨긴다는 얘긴데... 여기서는 어떠한 역할을 하는지 모르곘다..*/
+}
+
+/* .l_wrapper::after {
+  display: block;
+  content: " ";
+  clear: both;
+} */
+
+/* wrapper에 주면 되지 굳이 contents 클래스를 만들었나 싶었는데, 앞서 말했듯이 l_wrapper는 레이아웃의 담당이고 나중에 다른곳에 
+l_wrapper라는 클래스만 적용해서 다시 재활용해서 사용할수도 있으므로 contents라는 클래스를 만들어 거기다가 padding을 주었다.
+l_wrapper에 padding을 주면 나중에 다론곳에 사용했을때도 padding이 적용되니까*/
+
+/* -------------------------------------------------Components------------------------------------------------- */
+
+.contents {
+  padding: 40px 0;
+}
+
+.checkout {
+  background-color: #666;
+}
+
+.checkout-section {
+  margin: 20px;
+  background-color: #ddd;
+
+  /* margin 상쇄 효과 부분 */
+
+  /* 나는 같이 붙어있는 형제한테 margin 20px씩 주면 그 형제의 간격이 40px이 차이날줄 알았는데 20px 차이가 나더라
+  블록의 top 및 bottom 마진은 때로는 (결합되는 마진 중 크기가) 가장 큰 한 마진으로 결합(combine, 상쇄(collapsed))됩니다, 마진 상쇄(margin collapsing)로 알려진 행동
+  -MDN-*/
+
+  /* 부모박스와 마지막 자식박스의 하단 마진이 겹칠때는 부모 박스의 바깥으로만 랜더링이 되므로 하단의 margin이 0인건처럼 보이게 된다.
+  이 문제의 해결방법은 부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 
+  시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 overflow:hidden 또는 가상요소를 만들어주어 사용한다.
+  그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.*/
+}
+
+.video {
+  position: relative;
+  background-color: dodgerblue;
+  padding-top: 56.25%;
+}
+
+/* 나중에 비디오가 핸드폰화면에서도 비율을 유지하기 위해서는 px단위 처럼 정해진 값을 주면 안된다.
+그래서 사용 한게 % 인데, 그렇다고 해서 height 에 % 를 주면 안됌 
+heigh에서 %는 부모의 높이에 따른 비율인데 지금 부모의 높이가 없으므로 안됨  따라서 padding-top를 사용해서 높이를 만들어줌 
+padding-top의 %는 자기 자신의 너비에(현재 자기 자신의 너비가 명시되어 있지 않으므로 부모의 너비를 따름 즉 300px) 따른 높이의 비율을 정해줌 , 따라서 paddig-top : 100%는 정사각형이 나오게 됨 
+하지만 우리 비디오가 16:9 비율이기 때문에 56.25%를 주면 16:9비율이 만들어져 화면이 꽉 차게 들어간다.
+그리고 나중에 우리가 핸드폰 화면에서도 그 비율이 유지가 된다.
+
+padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주었기 때문에 높이와 너비가 꽉차지만 화면이 16:9 비율이므로 화면으로 꽉차지는 않는다. 
+
+*/
+
+.video-iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  /* left: 0;  top: 0;  bottom: 0; right: 0; 가  width : 100% 와 hegiht 100% 인줄알았는데 그게 아닌듯.. */
+}
+
+/* ----------------------------------Commons : 공통적으로 사용할수 있는 것들-------------------------------------*/
+
+/* 마진 상쇄가 자주 발생하므로 이것을 통해 해결 */
+.clearfix:after {
+  content: " ";
+  display: table;
+  /* 마진 상쇄의 해결방법 : 가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
+  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. */
+}

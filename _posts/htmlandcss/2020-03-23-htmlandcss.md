@@ -381,7 +381,7 @@ body {
 }
 ```
 
-- ### 코드 비교
+- ### 코드 비교 와 꿀 팁~
 
   - **HTML 비교**
 
@@ -404,6 +404,8 @@ body {
 
   3. 지그제그 모양을 만들어 주기위해 나는 두곳에 짝수 홀수에 margin-top을 주었는데, 그렇게 할필요 없이 한곳에 margin-top과 margin-bottom을 주는것만으로도 지그제그 모양이 만들어졌다.
 
+  - Yosup's Coding
+
   ```css
   .boxitem:nth-child(even) {
     margin-top: -50px;
@@ -413,6 +415,8 @@ body {
     margin-top: -50px;
   }
   ```
+
+  - expert Coding
 
   ```css
   .timeline-item:nth-child(even) {
