@@ -1,6 +1,8 @@
-body {
+body,
+p {
   background-image: url(/assets/images/practice/lecture/bg.png);
   color: #999;
+  margin: 0;
 }
 
 /* l_wrapper , l_sidebar 처럼 class이름에 layout_sidebar의 약어인 l_sidebar라고 나타냈다.
@@ -9,7 +11,7 @@ body {
 또한 이렇게 뼈대들은 똑같은 뼈대들이 있는 화면이 있을때 재활용해서 사용 가능하며, 따로 css를 만들어서 import해서 사용해도 
 좋을것 같다*/
 
-/* ----------------------------------------------Layours :뼈대---------------------------------------------- */
+/* ---------------Layours :뼈대---------------------- */
 
 .l_wrapper {
   width: 960px;
@@ -45,7 +47,7 @@ body {
 l_wrapper라는 클래스만 적용해서 다시 재활용해서 사용할수도 있으므로 contents라는 클래스를 만들어 거기다가 padding을 주었다.
 l_wrapper에 padding을 주면 나중에 다론곳에 사용했을때도 padding이 적용되니까*/
 
-/* -------------------------------------------------Components------------------------------------------------- */
+/* ------------Components---------------- */
 
 .contents {
   padding: 40px 0;
@@ -57,7 +59,7 @@ l_wrapper에 padding을 주면 나중에 다론곳에 사용했을때도 padding
 
 .checkout-section {
   margin: 20px;
-  background-color: #ddd;
+  background-color: rgba(255, 255, 255, 0.05);
 
   /* margin 상쇄 효과 부분 */
 
@@ -98,7 +100,33 @@ padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주�
   /* left: 0;  top: 0;  bottom: 0; right: 0; 가  width : 100% 와 hegiht 100% 인줄알았는데 그게 아닌듯.. */
 }
 
-/* ----------------------------------Commons : 공통적으로 사용할수 있는 것들-------------------------------------*/
+.price {
+  font-weight: bold;
+  color: orangered;
+  font-size: 40px;
+}
+
+.price-discount {
+  position: relative;
+  font-weight: normal;
+  color: #333;
+  font-size: 0.5em;
+}
+
+.price-discount::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.6em;
+  opacity: 0.5;
+  height: 2px;
+  background-color: white;
+}
+
+/* through-line을 직접 만들었는데,  별로 좋은 방법은 아니라고 함*/
+
+/* -----Commons : 공통적으로 사용할수 있는 것들-----*/
 
 /* 마진 상쇄가 자주 발생하므로 이것을 통해 해결 */
 .clearfix:after {
@@ -106,4 +134,49 @@ padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주�
   display: table;
   /* 마진 상쇄의 해결방법 : 가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
   diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.button {
+  background-color: #333;
+  color: white;
+  padding: 0.5em 1em;
+  display: inline-block;
+  /* a 태그는 inline 요소이므로 padding을 주면 안된다고 했다.
+  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈  
+  
+  보통 버튼은 inline-block으로 많이 해줌*/
+}
+
+.button_block {
+  display: block;
+  text-align: center;
+}
+
+.button_important {
+  background-color: orangered;
+}
+
+/* 버튼끼리의 간격을 어떻게 주는게 좋을까?
+버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 다양한 클래스를 만들어 주자*/
+
+/* util */
+
+.mb_5 {
+  margin-bottom: 5px;
+}
+.mb_10 {
+  margin-bottom: 10px;
+}
+
+.mb_15 {
+  margin-bottom: 15px;
+}
+
+.mb_20 {
+  margin-bottom: 20px;
 }

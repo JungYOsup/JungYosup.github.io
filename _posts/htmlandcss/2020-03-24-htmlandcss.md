@@ -434,49 +434,148 @@ body {
 
 * 1.아직도 반응형 작성방법에 대한 이해가 잘 안됨.. 좀 더 효율적인 코딩이 쉬운 반응형 작업을 하는데 도움이 될것 같다는 결론을 얻음
 
-  ```html
-
-  ```
-
-  ```css
-  ```
-
 - 2.**CSS 마진 상쇄(필수로 외워두자)**
-  ![CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
+  [CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
 
 * 3.**CSS 마진 상쇄 해결방법**
+
+  ```css
+  .clearfix:after {
+    content: " ";
+    display: table;
+
+    /* 마진 상쇄의 해결방법 : 
+    
+    가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. 
+  
+    또 다른 해결방법(but 잘 쓰지 않음) : 
+  
+    부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 overflow:hidden 또는 가상요소를 만들어주어 사용한다. 그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
+    */
+  }
+  ```
 
 - 4.레이아웃을 먼저 잡는게 중요하며, 레이아웃(뼈대)만 따로하는 테그를 만들어 사용하면 나중에 재활용할수 있다.
   (그리고 그 레이아웃은 뼈대용도로만 사용해야한다.)
 
   ```html
-
+  <div class="l_wrapper">
+    <div class="l_sidebar"></div>
+  </div>
+  <div class="l_main">
+    Main
+  </div>
   ```
 
   ```css
+  /* ---------------Layours :뼈대---------------------- */
+
+  .l_wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
+
+  .l_sidebar {
+    /* width: 260px; */
+    float: right;
+    margin-left: 20px;
+    width: 300px;
+  }
+
+  .l_main {
+    border: 10px solid red;
+    background-color: green;
+    overflow: hidden;
+  }
   ```
 
-* 5.반응형으로 사용할 형태들은 언제든지 위치에 따라 모양이 바뀌어야하므로 px 보다는 %로 잡는게 좋다.
-
-  ```html
-
-  ```
+* 5.css를 작성할때 공통으로 사용되는 요소 , 뼈대로 사용되는 요소, 구성요소 등 따로 분리해서 작성한다.
 
   ```css
+  /* ---------------Layours :뼈대---------------------- */
+  .l_wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
+  .l_sidebar {
+    width: 260px;
+    float: right;
+    margin-left: 20px;
+    width: 300px;
+  }
+
+  .l_main {
+  border: 10px solid red;
+  background-color: green;
+  overflow: hidden;
+
+  /* ----------------util------------*/
+  .mb_5 {
+  margin-bottom: 5px;
+  }
+  .mb_10 {
+  margin-bottom: 10px;
+  }
+  .mb_15 {
+  margin-bottom: 15px;
+  }
+
+  .mb_20 {
+  margin-bottom: 20px;
+  }
+
+  /* -----Commons : 공통적으로 사용할수 있는 것들-----*/
+
+  .clearfix:after {
+  content: " ";
+  display: table;
+
+  }
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .button {
+   background-color: #333;
+    color: white;
+    padding: 0.5em 1em;
+    display: inline-block;
+
+  }
+
+  .button_block {
+    display: block;
+    text-align: center;
+  }
+
+  /* ------------Components---------------- */
+
+  .contents {
+   padding: 40px 0;
+  }
+
+  .checkout {
+   background-color: #666;
+  }
+
   ```
 
-- 6.높이를 정할때 height를 쓰는데, 반응형일때는 px보다는 %가 좋으니 %를 사용하려고 했으나, % 는 부모의 높이에 따른 비율이므로
+- 6.반응형으로 사용할 형태들은 언제든지 위치에 따라 모양이 바뀌어야하므로 px 보다는 %로 잡는게 좋다.
+
+* 7.높이를 정할때 height를 쓰는데, 반응형일때는 px보다는 %가 좋으니 %를 사용하려고 했으나, % 는 부모의 높이에 따른 비율이므로
   만약 부모의 높이가 없을경우 height에 %를 사용하는것은 무의하다. 따라서 높이를 정할때 사용할수 있는 또다른 방법이 **padding-top**이다.
   (**padding-top에 사용하는 %는 자기자신의 width에 비례한 높이를 나타낸다.**)
 
-  ```html
+```css
+.video {
+  position: relative;
+  background-color: dodgerblue;
+  padding-top: 56.25%;
+}
+```
 
-  ```
-
-  ```css
-  ```
-
-* 7.class 이름을 체계적으로 정하기
+- 8.class 이름을 체계적으로 정하기
 
   - 1.서로 직접적인 관련있는 하위요소일때 : price의 하위요소인 discount 다 ==> price-discount 처럼 "-" 를 사용하였다.
 
@@ -494,3 +593,29 @@ body {
       <div class="l_sidebar"></div>
     </div>
     ```
+
+* 9. 버튼끼리의 간격을 어떻게 주는게 좋을까?
+     버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 클래스를 만들어서 가지고와서 쓰자
+
+  ```html
+  <a href="#" class="button button_block mb_5">장바구니 담기</a>
+  ```
+
+  ```css
+  /* util */
+
+  .mb_5 {
+    margin-bottom: 5px;
+  }
+  .mb_10 {
+    margin-bottom: 10px;
+  }
+
+  .mb_15 {
+    margin-bottom: 15px;
+  }
+
+  .mb_20 {
+    margin-bottom: 20px;
+  }
+  ```
