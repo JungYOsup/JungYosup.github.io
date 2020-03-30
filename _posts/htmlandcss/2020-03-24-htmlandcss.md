@@ -447,11 +447,16 @@ body {
 
     /* 마진 상쇄의 해결방법 : 
     
-    가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. 
+    가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로  
+    diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. 
   
     또 다른 해결방법(but 잘 쓰지 않음) : 
   
-    부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 overflow:hidden 또는 가상요소를 만들어주어 사용한다. 그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
+    부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 
+    시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 
+    overflow:hidden 또는 가상요소를 만들어주어 사용한다. 
+    그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 
+    의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
     */
   }
   ```
@@ -643,3 +648,145 @@ body {
 - **10. CSS 방법론(BEM, OOCSS, SMACSS)**
 
   [**CSS 방법론**](https://gomdoreepooh.github.io/notes/smacss-bem-oocss)
+
+* **11.float를 주는 테그가 위에 자리 잡아야 한다. 그 이유는???? 나중에 미디어쿼리시 발생하는 모습도 예상했기에 right를 해줌??**
+
+  ```html
+  <div class="course-creator">
+    <img
+      src="/assets/images/practice/lecture/logo.png"
+      alt=""
+      class="course-creator-logo"
+    />
+    <div class="course-creator-contents">
+      <strong>Creator</strong>
+      Joseph
+    </div>
+  </div>
+
+  <div class="course-title">
+    <h1>The Web Developer BootCamp</h1>
+    <p>
+      Complte Data Science Training : Mathematics, Statistics, Python, Advanced
+      Statisctics in Python, Machine & Depp Lerning
+    </p>
+  </div>
+  ```
+
+  ```css
+  .course-creator {
+    float: right;
+    margin-left: 10px;
+    width: 100px;
+    text-align: right;
+  }
+  ```
+
+- **12.텍스트가 흰색이라 잘 안보이는 경우가 있는데,배경을 줄때 어떤 이미지를 주더라도 텍스트가 잘 보이게끔 하기 위해 배경안에 또 다른 레이아웃을 넣어주고 특정 지역을 어둡게 하여 텍스트 있는 쪽은 잘 보이게끔 하기도 한다.**
+
+  ```css
+  .course-cover {
+    background-image: url(/assets/images/practice/lecture/cover.png);
+    padding: 30px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  .course-cover::after {
+    content: " ";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+    background: -moz-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+    background: -webkit-linear-gradient(
+      top,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.65) 100%
+    );
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+
+    <!-- bacground 부분은 그라데이션을 주기위해 외부에서 가져온거임 -->
+  }
+
+  ```
+
+* **13.max-width를 했는데 float 된곳은 줄어들지 않는다..??? 그 이유는 뜨기때문일까?**
+
+* **14.보통 버튼은 inline-block으로 많이 해줌**
+
+  ```css
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 0.5em 1em;
+    display: inline-block;
+    /* a 태그는 inline 요소이므로 padding을 주면 안된다고 했다.
+  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈  
+  
+  보통 버튼은 inline-block으로 많이 해줌*/
+  }
+  ```
+
+- **15.각 기기별 미디어쿼리 적용사이즈**
+
+```css
+/*
+  ##Device  =  Desktops
+  ##Screen  =  1281px  to  higher  resolution  desktops
+*/
+@media (min-width: 1281px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Laptops,Desktops
+  ##Screen  =  B/w  1025px  to  1280px
+*/
+@media (min-width: 1025px) and (max-width: 1280px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Tablets,Ipads  (portrait)
+  ##Screen  =  B/w  768px  to  1024px  
+*/
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Tablets,Ipads  (landscape)
+  ##Screen  =  B/w  768px  to  1024px  
+*/
+@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+  /* CSS */
+}
+
+/* 
+  ##Device = Low Resolution Tablets,Mobiles  (Landscape)  
+  ##Screen  =  B/w  481px  to  767px  
+*/
+@media (min-width: 481px) and (max-width: 767px) {
+  /* CSS */
+}
+
+/*
+  ##Device  =  Most  of  the  Smartphones  Mobiles  (Portrait)
+  ##Screen  =  B/w  320px  to  479px  
+*/
+@media (min-width: 320px) and (max-width: 480px) {
+  /* CSS */
+}
+```

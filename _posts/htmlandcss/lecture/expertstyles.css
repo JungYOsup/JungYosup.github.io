@@ -5,6 +5,18 @@ p {
   margin: 0;
 }
 
+h1,
+h2,
+h3,
+ul {
+  padding: 0;
+
+  margin: 0;
+}
+li {
+  list-style-type: none;
+}
+
 /* l_wrapper , l_sidebar 처럼 class이름에 layout_sidebar의 약어인 l_sidebar라고 나타냈다.
 그 이유는 이 부분은 레이아웃만 담당이라는것을 명시하기 위함이라고 한다. 
 배경색이라던가 이런것 역시 담당이 아닌 오로지 레이아웃 즉 뼈대만 담당하는 용도라는 것을 명시하기 위함
@@ -14,8 +26,10 @@ p {
 /* ---------------Layours :뼈대---------------------- */
 
 .l_wrapper {
-  width: 960px;
+  max-width: 960px;
+  /* max-widh를 했는데 float 된곳은 줄어들지 않는다..??? 그 이유는 뜨기때문일까? */
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 .l_sidebar {
@@ -23,11 +37,10 @@ p {
   float: right;
   margin-left: 20px;
   width: 300px;
+  margin-left: 0;
 }
 
 .l_main {
-  border: 10px solid red;
-  background-color: green;
   overflow: hidden;
   /* float: right; */
   /* width: 680px;  */
@@ -126,10 +139,155 @@ padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주�
 
 /* through-line을 직접 만들었는데,  별로 좋은 방법은 아니라고 함*/
 
+.course-cover {
+  background-image: url(/assets/images/practice/lecture/cover.png);
+  padding: 30px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.course-cover::after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.5;
+  background: -moz-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  background: -webkit-linear-gradient(
+    top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.65) 100%
+  );
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
+}
+
+.course-creator,
+.course-title {
+  position: relative;
+  z-index: 10;
+  /* z-index를 주기 위해서는 position을 주어야한다. */
+}
+
+/* 텍스트가 흰색이라 잘 안보이는 경우가 있는데,배경을 줄때 어떤 이미지를 주더라도 텍스트가 잘 보이게끔 하기 위해 배경안에 또 다른 레이아웃을 넣어주고 특정 지역을 어둡게 하여 텍스트 있는 쪽은 잘 보이게끔 하기도 한다.*/
+
+.course-section {
+  margin: 20px 0px;
+}
+
+.course-creator {
+  float: right;
+  margin-left: 10px;
+  width: 100px;
+  text-align: right;
+}
+
+/* 전문가가 float는 주는 테그가 위에 자리 잡아야한다고 한다.
+그 이유를 아직 모르겠다.*/
+
+.course-creator img {
+  border-radius: 50%;
+  width: 50px;
+}
+
+.course-creator-contents {
+  padding: 5px;
+}
+.course-creator-contents strong {
+  display: block;
+}
+
+.course-title {
+  overflow: hidden;
+}
+/* overfolw : hidden을 주는 이유를 잘 모르겠다..
+그리고 그것을 주었을때 왜 그 모양이 나오는지도*/
+.course-title h1 {
+  color: white;
+  font-size: 50px;
+  line-height: 1.4;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+/* line-height 에 대해서 찾아보자 */
+
+.course-title p {
+  margin-bottom: 20px;
+}
+
+.course-section {
+  margin: 20px 0;
+}
+.course-section h2 {
+  font-size: 30px;
+  color: white;
+  border-bottom: 2px solid;
+}
+.course-section-contents {
+}
+
+.curriculum {
+  background-color: #333;
+}
+
+.curriculum-item {
+  background-color: #666;
+  margin-bottom: 10px;
+}
+.curriculum-item:last-child {
+  margin-bottom: 0;
+}
+/* margin 중복현상때문에 사라지긴 하지만 명시해주는것이 좋다. */
+
+.curriculum-item h3 {
+  padding: 10px 20px;
+  /* marging을 줄경우 상단에 마진 겹침현상이 발생한다. */
+}
+
+.curriculum-item-list {
+  background-color: #111;
+  padding: 20px 0;
+  margin: 5px;
+}
+
+.curriculum-link {
+  background-color: rgba(255, 255, 255, 0.05);
+  display: block;
+  margin: 5px 20px;
+  padding: 10px;
+}
+
+.curriculum-link span {
+  float: right;
+  font-size: 10px;
+}
+/* CSS방법론에 따르면 CSS선택자로 아이디와 태그를 사용하지 말것을 권장한다고함  */
+
+.curriculum-link::before {
+  content: "▶";
+  font-size: 10px;
+}
+
+.curriculum-link:hover {
+  color: white;
+}
 /* -----Commons : 공통적으로 사용할수 있는 것들-----*/
 
 /* 마진 상쇄가 자주 발생하므로 이것을 통해 해결 */
-.clearfix:after {
+.clearfix:after,
+.clearfix::before {
   content: " ";
   display: table;
   /* 마진 상쇄의 해결방법 : 가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
@@ -179,4 +337,39 @@ a {
 
 .mb_20 {
   margin-bottom: 20px;
+}
+
+/* Typograph */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+  /* 부모의 font-size를 받아옴 
+  일반적인 폰트사이즈는 16px */
+}
+
+/* mediaqueries */
+
+@media screen and (max-width: 768px) {
+  .l_sidebar {
+    width: auto;
+    float: none;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .course-cover {
+    text-align: center;
+  }
+  .course-creator {
+    float: none;
+    margin: 0;
+    width: auto;
+    text-align: center;
+  }
 }
