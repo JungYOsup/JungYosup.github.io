@@ -1142,7 +1142,7 @@ img {
 
 - **6.4번 5번처럼 하면 클래스가 길어질텐데??? 마크업이 복잡해지는것보다 클래스가 길어지는게 낫다.**
 
-* **7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, expert는 각 부분부분을 wrapper클래스로 묶어서 css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다.** 진짜 이렇게 헀는데 영상 다시봐부자
+* **7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, expert는 각 부분부분을 wrapper클래스로 묶어서 css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다. 이렇게 할경우의 장점은???** 진짜 이렇게 헀는데 영상 다시봐부자
 
   - yosup's code
 
@@ -1183,3 +1183,71 @@ img {
     margin: 0 auto;
   }
   ```
+
+- **8.float로 만든 Grid의 한계**
+
+* **1)float를 이용해 내가 원하는 한줄을 만들기가 생각보다 까다롭다**
+
+![](/assets/images/practice/grid/problem02.PNG)
+
+> float도 이용해야하고
+> 그로인해 발생하는 문제를 해결하기위해 clear도 해줘야하고
+> negarive margin도 해줘야하고
+
+- **2)콘텐츠의 양이 달라질때, px값으로 높이를 정한것이 아니기 때문에 높이가 고정되어 있지 않는다.**
+
+![](/assets/images/practice/grid/problem01.PNG)
+
+- 제목의 문제를 해결하기위해 양을 늘더라도 다 보이는게 아니라 ... 으로 보이게끔 만들었다.
+
+```css
+.item-contents h2 {
+  white-space: nowrap;
+  /* 줄바꿈 X*/
+  overflow: hidden;
+  /* 화면을 빠져나와버린 h2내용을 숨김 */
+  text-overflow: ellipsis;
+  /* 숨겨진 내용을 ... 으로 만듬 but 이 속성은 한줄일경우에만 가능하다. 여러줄 불가능*/
+}
+```
+
+- 안의 내용 역시 양이 늘경우 틀을 빠져나오는 경우가 발생한다. 이걸 해결하기 위해 5줄만 보이게끔 하고, 나머지는 ... 으로 나타나개 했다.
+  즉 높이를 같게 함으로써 이러한 문제를 해결
+
+```css
+.item-contetns p {
+  line-height: 1.6;
+  /* 줄과 줄간격을 조절함, 1이라 하면 줄간격이 콘텐츠 높이만큼 됨 */
+  height: 8em;
+
+  overflow: hidden;
+}
+```
+
+- **9.font-size는 일반적으로 html에 적용하는데, px이라는 고정값을 주는것은 별로 좋지 못하다. 그 이유는 만약 눈이 침침한 사람이 사용자 지정으로 폰트사이즈의 크기를 정할수 있는데, px로 할경우 고정된 값으로 밖에 볼수 없기 때문이다. 따라서 font-size는 %로 지정을 많이 해놓는다. 하지만 font-size: 100%는 16px인데 너무 크기 때문에 일반적으로 font-size :62.5%(==10px)로 해놓는다.**
+
+* **10.(9번)처럼 할경우 생기는 문제는 바로 휴대폰에서 발생한다.**
+
+```css
+html {
+  font-size: 62.5%;
+  /* 62.5% == 10px */
+}
+
+body {
+  font-size: 2rem;
+  /* 20px */
+}
+```
+
+이라고 할경우 font-size가 %이기 때문에 이 말인즉슨 화면이 줄어들면 font-size도 점점 작아질수 밖에 없다는것이다.
+그럴경우 발생할수 있는 문제는 휴대폰에서 화면에서는 font-size가 많이 작아질수 밖에 없다는 것이다.
+이를 해결하기위해 핸드폰사이즈 미디어쿼리에 font-size의 %를 늘리는 방법이 있다.
+
+```css
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 80%;
+  }
+}
+```
