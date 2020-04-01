@@ -1,5 +1,5 @@
 ---
-title: "2.HTML과CSS를 이용한 연습 세번째"
+title: "3.HTML과CSS를 이용한 연습 세번째"
 excerpt: " 'Grid 형태 사이트' 전문가와 코린이의 코딩 비교 "
 categories:
   - htmlandcss
