@@ -12,7 +12,7 @@ toc_sticky: true
 
 ## Grid 형태 사이트
 
-![grid site](/assets/images/practice/grid/grid.PNG);
+![](/assets/images/practice/grid/grid.PNG);
 
 - Yosup's Coding
 
