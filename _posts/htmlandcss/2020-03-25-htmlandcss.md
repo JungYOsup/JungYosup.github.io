@@ -26,10 +26,15 @@ toc_sticky: true
   <body>
     <header>
       <div class="l_wrapper">
-        <nav>
-          <h1 class="rd-only clearfix">Menu</h1>
+        <nav class="l_nav clearfix">
+          <h1 class="rd-only">menu</h1>
           <div class="logo">
-            <ul class="menu">
+            <a href="index.html">
+              <img src="/assets/images/practice/grid/header-logo.png" alt="" />
+            </a>
+          </div>
+          <div class="menu">
+            <ul class="list">
               <li>course</li>
               <li>course</li>
               <li>course</li>
@@ -37,12 +42,6 @@ toc_sticky: true
               <li>course</li>
             </ul>
           </div>
-          <h1>
-            <img
-              src="/assets/images/practice/grid/header-logo.png"
-              alt="로고"
-            />
-          </h1>
         </nav>
       </div>
     </header>
@@ -324,20 +323,28 @@ why? 나는 한줄에 5개를 맞추기 위해 20%를 줬다. 하지만 서로�
   font-weight: 400;
 }
 
-/* .logo {
-  width: 100%;
-  position: relative;
+.l_nav {
+  padding: 0px 10px 0px 0px;
+}
+
+.logo {
+  float: left;
+  width: 20%;
 }
 
 .menu {
-  margin-top: 15px;
+  float: left;
   width: 80%;
-  float: right;
+}
+
+.menu .list {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding-top: 15px;
+  font-weight: 400;
   text-transform: capitalize;
-} */
+}
 
 /* -----common----- */
 
@@ -369,6 +376,12 @@ why? 나는 한줄에 5개를 맞추기 위해 20%를 줬다. 하지만 서로�
 }
 .wd_20 > li {
   width: 20%;
+}
+
+@media screen and (max-width: 990px) {
+  .l_row > li {
+    width: 50%;
+  }
 }
 ```
 
