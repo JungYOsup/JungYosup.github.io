@@ -1142,5 +1142,44 @@ img {
 
 - **6.4번 5번처럼 하면 클래스가 길어질텐데??? 마크업이 복잡해지는것보다 클래스가 길어지는게 낫다.**
 
-* 7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, expert는 각 부분부분을 wrapper클래스로 묶어서
-  css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다.
+* **7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, expert는 각 부분부분을 wrapper클래스로 묶어서 css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다.** 진짜 이렇게 헀는데 영상 다시봐부자
+
+  - yosup's code
+
+  ```css
+  body {
+    background-image: url(/assets/images/practice/grid/bg.png);
+    max-width: 1280px;
+    margin: 0 auto;
+    color: white;
+  }
+  ```
+
+  - expert's code
+
+  ```html
+  <div class="header">
+    <div class="l_wrapper">
+      Header
+    </div>
+  </div>
+
+  <div class="contents">
+    <div class="l_wrapper">
+      Contents
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="l_wrapper">
+      Footer
+    </div>
+  </div>
+  ```
+
+  ```css
+  .l_wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  ```
