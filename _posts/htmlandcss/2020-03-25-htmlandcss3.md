@@ -14,27 +14,371 @@ toc_sticky: true
 
 ![](/assets/images/practice/grid/grid.PNG);
 
-- ### 꿀 팁~
+### 코드 비교
 
-* **1.이미지는 max-width : 100%로 잡는게 일반적이다.**
-  width 100%로 잡을경우 예를들어 부모가 너비가 100px인데
-  너비가 50px짜리인 이미지가 들어온다 하자 그러면
-  그 이미지는 width : 100%에 의해 100px짜리가 되려고 너비가 커지기 때문에 깨지고 만다.
+- **HTML 구성(1)**
 
-따라서 max-width : 100%로 잡을경우 큰 이미지 즉
-부모의 너비가 100px인데 이미지가 300px짜리의 경우
-100px짜리가 되고 50px짜리는 50px을 그대로 유지하게 된다.
+  - Expert code
 
-그 이유는 max-width:100% 면 자기가 가진너비보다 작아질순 있으나 더 커질수 없기 때문이다.
+  ```html
+  <div class="header">
+    <div class="l_wrapper">
+      Header
+    </div>
+  </div>
+  <div class="contents">
+    <div class="l_wrapper">Contents</div>
+  </div>
 
-따라서 이미지를 받을때 큰 이미지를 준비하는게 편하다.
-부모의 100px을 채우고 싶은데 작은 이미지를 사용하고 max-width를 사용하면 채우지 못하기 때문이다.
+  <div class="footer">
+    <div class="l_wrapper">
+      Footer
+    </div>
+  </div>
+  ```
 
-```css
-img {
-  max-width: 100%;
-}
-```
+  ```css
+  .l_wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  ```
+
+  - Yosup code : html 코드에는 별 차이가 없으나, 나는 화면의 중앙을 맞추기 위해 body에다가 margin : 0 auto를 주었다.
+    하지만 body에다가 이것을 줄경우 이 화면에서 사용되는 모든 페이지는 중앙으로 맞춰져 버릴것이기 때문에 body에다가 margin을 주는
+    방법은 좋지 못한것 같다. 또한 body에다가 width를 주는것 역시 마찬가지일것 같다.
+
+  ```html
+  <body>
+    <header><div class="l_wrapper"></header>
+    <main><div class="l_wrapper"></main>
+    <footer><div class="l_wrapper"></footer>
+  </body>
+  ```
+
+  ```css
+  body {
+    background-image: url(/assets/images/practice/grid/bg.png);
+    max-width: 1280px;
+    margin: 0 auto;
+    color: white;
+  }
+  ```
+
+* **HTML 구성(2)**
+
+  - Expert code : 범용적인 애들 , 즉 활용도가 높은 테그들은 그 용도 파악하기 쉽게 접두어를 붙인다. 또한 이런애들은 뼈대의 역할을 할뿐이어서 디자인 서식을 준다거나 하지 않는다. 따라서 새로운 class명이 item인 테그를 만들어 그 테그에다가 디자인 서식을 준다.
+
+  ```html
+  <ul class="l_row clearfix">
+    <li
+      class="l_col l_col_4_12 l_col_tablet_6_12 l_col_mobile_12_12 l_col_ld_2_12 "
+    >
+      <div class="item"></div>
+    </li>
+  </ul>
+  ```
+
+- Yosup code : 마찬가지로 뼈대의 역할과 디자인서식을 줄 역할을 따로 분리하여 HTML을 구성함
+
+  ```html
+  <ul class="l_row clearfix wd_20">
+    <li class="l_col"><div class="item"></div></li>
+  </ul>
+  ```
+
+* **Font-size의 중요성**
+
+  - 화면을 줄일때 왜 font가 밑으로 내려가는 것일까? 바로 px인 고정단위로 font-size를 지정했기 때문이다.
+
+  * 그렇다면 화면을 줄일때 font-size도 같이 줄어들면 안되나??
+
+  - 해결방법 : font-size를 % 로 주면된다. 그렇다고 모든 요소요소마다 font-size를 %로 주면 부모에 따른 %가 적용되므로 그 기준이 명확하지 않으므로 body에 font-size를 %로 주고 자식들은 rem 단위 요소를 사용하여 이 문제를 해결한다.(font-size는 일반적으로 html에 적용하는데, px이라는 고정값을 주는것은 별로 좋지 못하다. 그 이유는 작은 화면일때도 그 폰트사이즈가 유지되기 때문이다.)
+
+  * Expert code : html에 font-size % 로 주고 그 하위 요소에 rem을 주었다. 하지만 %이기 때문에 화면이 줄어들면 font-size도 같이 줄어들어 버리게 되어 작은 화면에서는 font-size를 확인 할 수 없게 되어버린다. 그렇기에 작은 화면일때 미디어 쿼리를 써서 font-size를 크게 해줬다.
+
+  ```css
+  html {
+    font-size: 62.5%;
+    /* 62.5% == 10px */
+  }
+  body {
+    font-size: 2rem;
+    /* 20px */
+  }
+  ```
+
+  ```css
+  @media screen and (max-width: 480px) {
+    html {
+      font-size: 80%;
+    }
+  }
+  ```
+
+  - Yosup code : font-size를 px로 주었기 때문에 화면이 작아져도 font-size가 줄지 않음..
+
+  ```css
+  .contents .contents-title {
+    font-weight: 900;
+    font-size: 20px;
+    padding-bottom: 10px;
+  }
+
+  .contents .content {
+    color: gray;
+    padding-bottom: 20px;
+    font-size: 15px;
+  }
+  ```
+
+- **이미지의 중요성**
+
+  - 이미지의 경우 inline-block이기 때문에 생기는 하단의 공간이 있다.
+
+  * 해결방법 : display: block이나 vertical-align : top을 사용한다
+
+  - Expert code : 이미지의 하단공간을 방지하기 위해 vertical-align: top;을 사용했고, 이미지는 width를 잡을때 max-width 를 사용한다고 한다. 그 이유는이미지는 max-width : 100%로 잡는게 일반적이다.
+
+  * 이미지에 max-width를 쓰는 이유 : width 100%로 잡을경우 예를들어 부모가 너비가 100px인데 너비가 50px짜리인 이미지가 들어온다 하자 그러면 그 이미지는 width : 100%에 의해 100px짜리가 되려고 너비가 커지기 때문에 깨지고 만다. 따라서 max-width : 100%로 잡을경우 큰 이미지 즉 부모의 너비가 100px인데 이미지가 300px짜리의 경우 100px짜리가 되고 50px짜리는 50px을 그대로 유지하게 된다.그 이유는 max-width:100% 면 자기가 가진너비보다 작아질순 있으나 더 커질수 없기 때문이다.따라서 이미지를 받을때 큰 이미지를 준비하는게 편하다. 난 부모의 100px을 채우고 싶은데 작은 이미지를 사용하고 max-width를 사용하면 채우지 못하기 때문이다.
+
+  ```css
+  img {
+    max-width: 100%;
+    vertical-align: top;
+  }
+  ```
+
+  - Yosup code : 이미지에 width를 썻다는 문제점과 전체 이미지가 하단공간이 발생하는 문제가 발생할텐데 특정 이미지만 선택자로 사용했다는 문제점이 발견되었다.
+
+  ```css
+  .item img {
+    width: 100%;
+    display: block;
+  }
+  ```
+
+* **Float로 Grid를 만들때(1) : 클래스가 길어지는걸 두려워 하지 마라**
+
+  - Expert code : 전문가는 다양한 선택자를 사용하여 언제라도 쉽게 Grid가 5단 3단 1단 등 으로 변할수 있게 만들었다.
+
+  ```html
+  <ul class="l_row clearfix">
+    <li class="l_col l_col_4_12">
+      <div class="item"></div>
+    </li>
+  </ul>
+  ```
+
+  ```css
+  .l_wrapper {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .l_row {
+    margin: 0 -10px;
+  }
+
+  .l_col {
+    float: left;
+    width: 20%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+  .l_col_12_12 {
+    width: 100%;
+  }
+  .l_col_11_12 {
+    width: 91.66666667%;
+  }
+  .l_col_10_12 {
+    width: 83.33333333%;
+  }
+  .l_col_9_12 {
+    width: 75%;
+  }
+  .l_col_8_12 {
+    width: 66.66666667%;
+  }
+  .l_col_7_12 {
+    width: 58.33333333%;
+  }
+  .l_col_6_12 {
+    width: 50%;
+  }
+  .l_col_5_12 {
+    width: 41.66666667%;
+  }
+  .l_col_4_12 {
+    width: 33.33333333%;
+  }
+  .l_col_3_12 {
+    width: 25%;
+  }
+  .l_col_2_12 {
+    width: 16.66666667%;
+  }
+  .l_col_1_12 {
+    width: 8.33333333%;
+  }
+
+  .l_col_3_15 {
+    width: 20%;
+  }
+  ```
+
+  - Yosup code : 나도 강의를 보기전에 이런방식으로 하는게 좋을것 같다라고 생각했지만 클래스가 늘어난다는 두려움에 하위요소를 사용했다. 또다른 특징은 어차피 wd_20이 적용될거라 생각하여 .l_col에 width를 지정하지 않았는데, 이럴경우 어떠한 문제가 발생하지 않을까 생각한다. 그리고 자식요소를 많이 사용했다는것이다. CSS 방법론에 의하면 하위요소를 많이 사용하는것은 좋지 못하다고 했다.
+
+  ```html
+  <ul class="l_row clearfix wd_20">
+    <li class="l_col"><div class="item"></div></li>
+  </ul>
+  ```
+
+  ```css
+  .l_col {
+    float: left;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .wd_50 > li {
+    width: 50%;
+  }
+  .wd_33 > li {
+    width: 33.33333%;
+  }
+  .wd_25 > li {
+    width: 25%;
+  }
+  .wd_20 > li {
+    width: 20%;
+  }
+  ```
+
+* **Float로 Grid를 만들때(2) : 클래스가 길어지는걸 두려워 하지 마라**
+
+  - Expert code : 다양한 선택자를 이용하여서 언제라도 쉽게 Grid가 5단 3단 1단 등 으로 변할수 있게 만들었다면, 반응형 웹으로 바뀔때도 다음과 같이 코딩을 해야한다.
+
+  ```html
+
+  <ul class="l_row clearfix wd_20">
+    <li class="class="l_col l_col_4_12 l_col_tablet_6_12 l_col_mobile_12_12 l_col_ld_2_12"><div class="item"></div></li>
+  </ul>
+
+  ```
+
+  ```css
+  /* tablet */
+  @media screen and (max-width: 760px) {
+    .l_col_tablet_12_12 {
+      width: 100%;
+    }
+    .l_col_tablet_11_12 {
+      width: 91.66666667%;
+    }
+    .l_col_tablet_10_12 {
+      width: 83.33333333%;
+    }
+    .l_col_tablet_9_12 {
+      width: 75%;
+    }
+    .l_col_tablet_8_12 {
+      width: 66.66666667%;
+    }
+    .l_col_tablet_7_12 {
+      width: 58.33333333%;
+    }
+    .l_col_tablet_6_12 {
+      width: 50%;
+    }
+    .l_col_tablet_5_12 {
+      width: 41.66666667%;
+    }
+    .l_col_tablet_4_12 {
+      width: 33.33333333%;
+    }
+    .l_col_tablet_3_12 {
+      width: 25%;
+    }
+    .l_col_tablet_2_12 {
+      width: 16.66666667%;
+    }
+    .l_col_tablet_1_12 {
+      width: 8.33333333%;
+    }
+  }
+
+  /* mobile*/
+
+  @media screen and (max-width: 480px) {
+    .l_col_mobile_12_12 {
+      width: 100%;
+    }
+    .l_col_mobile_11_12 {
+      width: 91.66666667%;
+    }
+    .l_col_mobile_10_12 {
+      width: 83.33333333%;
+    }
+    .l_col_mobile_9_12 {
+      width: 75%;
+    }
+    .l_col_mobile_8_12 {
+      width: 66.66666667%;
+    }
+    .l_col_mobile_7_12 {
+      width: 58.33333333%;
+    }
+    .l_col_mobile_6_12 {
+      width: 50%;
+    }
+    .l_col_mobile_5_12 {
+      width: 41.66666667%;
+    }
+    .l_col_mobile_4_12 {
+      width: 33.33333333%;
+    }
+    .l_col_mobile_3_12 {
+      width: 25%;
+    }
+    .l_col_mobile_2_12 {
+      width: 16.66666667%;
+    }
+    .l_col_mobile_1_12 {
+      width: 8.33333333%;
+    }
+  }
+  ```
+
+* Yosup code : l_col의 class가 복잡해지는걸 두려워해 하위 요소 전체 width 에 영향을 줌, 하지만 이렇게 width를 줄경우 전체에 영향을 미치기 때문에 5단 3단이 섞인 grid를 만들기가 어렵다
+
+  ```html
+  <ul class="l_row clearfix wd_20">
+    <li class="l_col"><div class="item"></div></li>
+  </ul>
+  ```
+
+  ```css
+  @media screen and (max-width: 990px) {
+    .l_row > li {
+      width: 50%;
+    }
+  }
+  ```
+
+### 꿀 팁~
+
+- **1.이미지는 max-width : 100%로 잡는게 일반적이다.**
+  width 100%로 잡을경우 예를들어 부모가 너비가 100px인데 너비가 50px짜리인 이미지가 들어온다 하자 그러면 그 이미지는 width : 100%에 의해 100px짜리가 되려고 너비가 커지기 때문에 깨지고 만다. 따라서 max-width : 100%로 잡을경우 큰 이미지 즉 부모의 너비가 100px인데 이미지가 300px짜리의 경우 100px짜리가 되고 50px짜리는 50px을 그대로 유지하게 된다. 그 이유는 max-width:100% 면 자기가 가진너비보다 작아질순 있으나 더 커질수 없기 때문이다. 따라서 이미지를 받을때 큰 이미지를 준비하는게 편하다. 부모의 100px을 채우고 싶은데 작은 이미지를 사용하고 max-width를 사용하면 채우지 못하기 때문이다.
+
+  ```css
+  img {
+    max-width: 100%;
+  }
+  ```
 
 - **2.float 기반으로 grid를 잡는 방식은 옛날 방식이고 요즘에는 flex와 grid를 사용한다.** 또한 float의 목적과도 어긋나는 방식이다.
 
@@ -325,7 +669,7 @@ img {
 
 * **6.4번 5번처럼 하면 클래스가 길어질텐데??? 마크업이 복잡해지는것보다 클래스가 길어지는게 낫다.**
 
-- **7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, expert는 각 부분부분을 wrapper클래스로 묶어서 css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다. 이렇게 할경우의 장점은???** 진짜 이렇게 헀는데 영상 다시봐부자
+- **7.나는 body에게 margin : 0 auto 를 주어 가운데 정렬을 했는데, 전문가는 각 부분부분을 wrapper클래스로 묶어서 css로 .wrapper 에 margin : 0 auto를 주어 가운데 정렬을 했다. 이렇게 할경우의 장점은???** 진짜 이렇게 헀는데 영상 다시봐부자
 
 * yosup's code
 
