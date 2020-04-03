@@ -14,954 +14,651 @@ toc_sticky: true
 
 ![](/assets/images/practice/lecture/practice2.PNG)
 
-- Yosup's Coding
+### 코드 비교
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="wrapper">
-      <div class="lecture">
-        <header class="intro">
-          <div class="intro_title">
-            <h1>THE WEB DEVELOPER BOOTCAMP</h1>
-            <strong>
-              Complete Data Science Training : Mathematics, Statistics,Python,
-              Advanced Statistics in Python, Machine & Deep Learning
-            </strong>
-          </div>
+- **HTML 구성(1)**
 
-          <div class="intro_img">
-            <img
-              src="/assets/images/practice/lecture/logo.png"
-              alt="lecture logo"
-            />
-            <strong>Creator Joseph</strong>
-          </div>
+  - EXPERT Code : 클래스명을 작성할때, 여러 페이지에 걸쳐 작성될 테그들, 즉 활용도가 높은 테그들은 그 용도 파악하기 쉽게 접두어를 붙인다. 또한 이런애들은 뼈대의 역할을 할뿐이어서 디자인 서식을 준다거나 하지 않는다.
 
-          <img
-            src="/assets/images/practice/lecture/star-sprite.png"
-            alt="five start"
-            aria-label="lecture 
-            evaluation"
-          />
-        </header>
+  ```html
+  <div class="l_wrapper ">
+    <div class="l_sidebar">Side</div>
+    <div class="l_main">Main</div>
+  </div>
+  ```
 
-        <main class="curriculum">
-          <h1>Curriculum</h1>
-          <section>
-            <h1 class="rd-only">Lecture Order</h1>
-            <ul>
-              <li>
-                <div class="box">
-                  <h2>Introduction to this Course</h2>
-                  <div class="innerbox">
-                    <table>
-                      <tr class="rd-only">
-                        <th>arrow img</th>
-                        <th>title</th>
-                        <th>date</th>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">A Note On Asking For Help</a></td>
-                        <td>20.12</td>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">Adiitional FREE Content</a></td>
-                        <td>20.12</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="box">
-                  <h2>Introduction to Front End Development</h2>
-                  <div class="innerbox">
-                    <table>
-                      <tr class="rd-only">
-                        <th>arrow img</th>
-                        <th>title</th>
-                        <th>date</th>
-                      </tr>
-                      <tr>
-                        <td aria-label="arrow">▶</td>
-                        <td><a href="#">Unit Objectives</a></td>
-                        <td>20.12</td>
-                      </tr>
-                      <tr>
-                        <td aria-label="arrow">▶</td>
-                        <td>
-                          <a href="#">
-                            Note about Setting Up Front-end Developer Enviroment
-                          </a>
-                        </td>
-                        <td>20.12</td>
-                      </tr>
-                      <tr>
-                        <td aria-label="arrow">▶</td>
-                        <td>
-                          <a href="#">Additional FREE Content </a>
-                        </td>
-                        <td>20.12</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="box">
-                  <h2>Introduction to this Course</h2>
-                  <div class="innerbox">
-                    <table>
-                      <tr class="rd-only">
-                        <th>arrow img</th>
-                        <th>title</th>
-                        <th>date</th>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">A Note On Asking For Help</a></td>
-                        <td>20.12</td>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">Adiitional FREE Content</a></td>
-                        <td>20.12</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="box">
-                  <h2>Introduction to this Course</h2>
-                  <div class="innerbox">
-                    <table>
-                      <tr class="rd-only">
-                        <th>arrow img</th>
-                        <th>title</th>
-                        <th>date</th>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">A Note On Asking For Help</a></td>
-                        <td>20.12</td>
-                      </tr>
-                      <tr>
-                        <td>▶</td>
-                        <td><a href="#">Adiitional FREE Content</a></td>
-                        <td>20.12</td>
-                      </tr>
-                    </table>
-                  </div>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </main>
+  - Yosup Code : 그냥 위치에 따라 클래스명을 작성함
+
+  ```html
+  <div class="wrapper">
+    <div class="lecture"></div>
+    <aside class="payment" lang="ko"></aside>
+  </div>
+  ```
+
+* **HTML 구성(2)**
+
+  - EXPERT Code : 위에서 말한것처럼 l_wrapper를 우리가 뼈대로 이미 정했기 때문에 l_wrapper에 padding을 주변 다른곳에서 재활용할때에도 상하단에 padding이 적용되기 때문에 그걸 다른요소(contents)로 감싸서 그 테그에다가 padding을 주었다.
+
+  마찬가지로 l_sidebar와 l_main 역시 그 자체에 어떠한 디자인 서식을 주기 보다는 또다른 테그를 만들어 그 테그에다 디자인을 줌
+
+  ```html
+  <div class="contents">
+    <div class="l_wrapper">
+      <div class="l_sidebar">
+        <div class="checkout"></div>
       </div>
-
-      <aside class="payment" lang="ko">
-        <video controls>
-          <source
-            src="/assets/images/practice/lecture/sujin2.mp4"
-            type="video/wav"
-          />
-          <source
-            src="/assets/images/practice/lecture/sujin2.mp4"
-            type="video/ogg"
-          />
-          <source
-            src="/assets/images/practice/lecture/sujin2.mp4"
-            type="video/mpeg"
-          />
-        </video>
-
-        <div class="information">
-          <div class="cost">
-            <strong>11,000원</strong>
-            <strong>5,500원</strong>
-          </div>
-
-          <button type="button">장바구니에 추가</button>
-          <button type="button">지금 구매</button>
-          <div class="detail">
-            <strong>이 강좌는 다음을 포함합니다.</strong>
-            <ul>
-              <li>46.5시간 주문형 동영상</li>
-              <li>81개의 글</li>
-              <li>85개의 다운로드 가능 리소스</li>
-              <li>평생 이용</li>
-              <li>모바일 및 TV에 대한 엑세스</li>
-              <li>수료증</li>
-            </ul>
-          </div>
-        </div>
-      </aside>
+      <div class="l_main">
+        <div class="course"></div>
+      </div>
     </div>
-  </body>
-</html>
-```
+  </div>
+  ```
 
-```css
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-body {
-  background-image: url(/assets/images/practice/lecture/bg.png);
-  color: gray;
-}
-.rd-only {
-  display: none;
-}
+  ```css
+  .contents {
+    padding: 40px 0;
+  }
+  .checkout {
+    background-color: #666;
+  }
+  ```
 
-.wrapper {
-  max-width: 1200px;
-  margin: 30px auto;
-}
+  - Yosup Code : wrapper에 margin을 줌(이러면 나중에 재활용할때에 다른것도 margin에 영향을 받게됨)
 
-.lecture {
-  float: left;
-  width: 900px;
-}
+  ```html
+  <div class="wrapper">
+    <div class="lecture"></div>
+    <aside class="payment" lang="ko"></aside>
+  </div>
+  ```
 
-.lecture .intro {
-  width: auto;
-  background-image: url(/assets/images/practice/lecture/cover.png);
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 200px;
-  padding: 25px 25px;
-}
+  ```css
+  .wrapper {
+    width: 1200px;
+    margin: 30px auto;
+  }
+  ```
 
-.intro .intro_title {
-  width: 700px;
-  float: left;
-}
+* **HTML 구성(3)**
 
-.intro .intro_title h1 {
-  color: white;
-  font-size: 37px;
-}
+  - Expert Code : 같은 margin이 적용하기 위해 공통의 클래스를 적용하였다.
 
-.intro .intro_img {
-  float: left;
-  width: 100px;
-  margin-left: 50px;
-  color: white;
-}
+  ```html
+  <div class="checkout-section">
+    <p class="price">
+      11,000원
+      <span class="price-discount">5,500원</span>
+    </p>
+  </div>
+  <div class="checkout-section">
+    <a href="#" class="button button_block mb_5">장바구니 담기</a>
+    <a href="#" class="button button_block button_important">바로구매</a>
+  </div>
+  <div class="checkout-section">
+    section2
+  </div>
+  ```
 
-.intro .intro_img img {
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-}
+  ```css
+  .checkout-section {
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  ```
 
-.intro .intro_title strong {
-  font-size: 18px;
-}
+  - Yosup Code : 같은 margin을 적용하기 위해 infromaition 이라는 하나의 div로 묶어줬다. 이럴경우 cost 와 button detail의 간격도 떨어트려야 하기 때문에 또 다른 css를 적용할수 밖에 없다.
 
-.intro img {
-  display: block;
-}
+  ```html
+  <div class="information">
+    <div class="cost">
+      <strong>11,000원</strong>
+      <strong>5,500원</strong>
+    </div>
+    <button type="button">장바구니에 추가</button>
+    <button type="button">지금 구매</button>
+    <div class="detail">
+      <strong>이 강좌는 다음을 포함합니다.</strong>
+      <ul>
+        <li>46.5시간 주문형 동영상</li>
+        <li>81개의 글</li>
+        <li>85개의 다운로드 가능 리소스</li>
+        <li>평생 이용</li>
+        <li>모바일 및 TV에 대한 엑세스</li>
+        <li>수료증</li>
+      </ul>
+    </div>
+  </div>
+  ```
 
-.intro::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
+  ```css
+  .information {
+    width: 250px;
+    margin: 0 auto;
+  }
+  .payment button {
+    margin-top: 10px;
+  }
+  .payment .detail {
+    margin: 0 auto;
+    padding-top: 30px;
+  }
+  ```
 
-.wrapper::after {
-  content: " ";
-  display: block;
-  clear: both;
-}
+* **HTML 구성(4)**
 
-.curriculum {
-  margin-top: 15px;
-}
-.curriculum h1 {
-  padding: 15px 0px 15px 15px;
-  color: white;
-}
+  - Expert Code : class에 하위 요소에는 '-' 를 어떠한 기능을 할때는 언버바 를 붙였다.
 
-.curriculum section {
-  padding: 15px 0px 15px 15px;
-}
+  ```html
+  <div class="l_wrapper ">
+    <div class="l_sidebar">
+      <div class="checkout">
+        <div class="video">
+          Video
+        </div>
+        <div class="checkout-section">Price</div>
+        <div class="checkout-section">Section 1</div>
+        <div class="checkout-section">Section 2</div>
+      </div>
+    </div>
+    <div class="l_main">Main</div>
+  </div>
+  ```
 
-.wrapper .curriculum {
-  background-color: black;
-}
+  - Yosup Code : 그냥 의미 없는 class를 작성하였다. 하위요소에 - 를 해야하는데 언더바를 붙였네..
 
-.curriculum ul {
-  list-style-type: none;
-  padding: 0;
-}
+  ```html
+  <header class="intro">
+    <div class="intro_title">
+      <h1>THE WEB DEVELOPER BOOTCAMP</h1>
+      <strong>
+        Complete Data Science Training : Mathematics, Statistics,Python,
+        Advanced Statistics in Python, Machine & Deep Learning
+      </strong>
+    </div>
 
-.curriculum .box {
-  background-color: #3c3d3c;
-  border-radius: 5px;
-  height: 140px;
-  margin-top: 15px;
-}
+    <div class="intro_img">
+      <img src="/assets/images/practice/lecture/logo.png" alt="lecture logo" />
+      <strong>Creator Joseph</strong>
+    </div>
 
-.box h2 {
-  font-weight: 400;
-  font-size: 15px;
-  color: white;
-  padding-left: 30px;
-  padding-top: 10px;
-}
+    <img
+      src="/assets/images/practice/lecture/star-sprite.png"
+      alt="five start"
+      aria-label="lecture 
+            evaluation"
+    />
+  </header>
+  ```
 
-.curriculum .innerbox {
-  position: relative;
-  background-color: black;
-  margin: 15px 15px;
-  height: 85px;
-  border-radius: 5px;
-}
+- **CSS의 작성(1)**
 
-.curriculum .innerbox table {
-  margin-left: 10px;
-}
+  - Expert Code : css를 작성할때 공통으로 사용되는 요소 , 뼈대로 사용되는 요소, 구성요소 등 따로 분리해서 작성한다.
 
-.innerbox table a {
-  text-decoration: none;
-  color: gray;
-}
-.innerbox table a:hover {
-  text-decoration: underline;
-}
+  ```css
+  /* ---------------Layours :뼈대---------------------- */
+  .l_wrapper {
+    width: 960px;
+    margin: 0 auto;
+  }
+  .l_sidebar {
+    width: 260px;
+    float: right;
+    margin-left: 20px;
+    width: 300px;
+  }
 
-.innerbox table td:last-child {
-  position: absolute;
-  right: 15px;
-}
+  .l_main {
+    border: 10px solid red;
+    background-color: green;
+    overflow: hidden;
+  }
 
-.wrapper .payment {
-  width: 300px;
-  height: 939px;
-  float: left;
-  background-color: black;
-  margin: 0 auto;
-}
+  /* ----------------util------------*/
 
-.wrapper video {
-  width: 300px;
-  height: 250px;
-}
+  .mb_5 {
+    margin-bottom: 5px;
+  }
+  .mb_10 {
+    margin-bottom: 10px;
+  }
 
-.wrapper .payment .cost {
-  text-align: center;
-  margin: 30px;
-}
+  /* -----Commons : 공통적으로 사용할수 있는 것들-----*/
 
-.payment .cost strong:first-child {
-  font-size: 40px;
-  color: orangered;
-}
+  .clearfix:after {
+    content: " ";
+    display: table;
+  }
 
-.payment .information {
-  width: 250px;
-  margin: 0 auto;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-.payment button {
-  margin: 0 auto;
-  display: block;
-  width: 220px;
-  height: 35px;
-  margin-top: 10px;
-  border: 0;
-  font-weight: 900;
-  color: white;
-}
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 0.5em 1em;
+    display: inline-block;
+  }
 
-.payment button:nth-child(odd) {
-  background-color: orangered;
-}
-.payment button:nth-child(even) {
-  background-color: gray;
-}
+  .button_block {
+    display: block;
+    text-align: center;
+  }
 
-.payment .detail {
-  margin: 0 auto;
-  padding-top: 30px;
-}
-.payment .detail ul {
-  padding: 0;
-  margin-top: 30px;
-  margin-left: 20px;
-}
+  /* ------------Components---------------- */
 
-@media screen and (max-width: 1300px) {
-  .wrapper .payment {
+  .contents {
+    padding: 40px 0;
+  }
+
+  .checkout {
+    background-color: #666;
+  }
+  ```
+
+  - Yosup CODE : 구분 없이 그냥 작성
+
+  ```css
+  .wrapper {
+    width: 1200px;
+    margin: 30px auto;
+  }
+  .lecture {
+    float: left;
     width: 900px;
+  }
+  .lecture {
+    float: left;
+    width: 900px;
+  }
+  .lecture .intro {
+    width: auto;
+    background-image: url(/assets/images/practice/lecture/cover.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 200px;
+    padding: 25px 25px;
+  }
+  ```
+
+- **CSS의 작성(2) : CSS 방법론**
+
+  - Expert Code : CSS에 하위요소를 선언해서 사용하지 않고, 거의 클래스명으로 CSS를 적용시켜주었다. 이렇게 되면 HTML의 클래스의 명이 복잡해지겠지만 , CSS가 많아지고 복잡해지는것 보단 나은 방식이다.
+
+  ```html
+  <div class="checkout-section">
+    <a href="#" class="button button_block mb_5">장바구니 담기</a>
+    <a href="#" class="button button_block button_important">바로구매</a>
+  </div>
+  ```
+
+  - Yosup Code : 하위 요소 남발..
+
+  ```html
+  <div class="innerbox">
+    <table>
+      <tr class="rd-only">
+        <th>arrow img</th>
+        <th>title</th>
+        <th>date</th>
+      </tr>
+      <tr>
+        <td>▶</td>
+        <td><a href="#">A Note On Asking For Help</a></td>
+        <td>20.12</td>
+      </tr>
+      <tr>
+        <td>▶</td>
+        <td><a href="#">Adiitional FREE Content</a></td>
+        <td>20.12</td>
+      </tr>
+    </table>
+  </div>
+  ```
+
+  ```css
+  .innerbox table a {
+    text-decoration: none;
+    color: gray;
+  }
+  .innerbox table a:hover {
+    text-decoration: underline;
+  }
+
+  .innerbox table td:last-child {
+    position: absolute;
+    right: 15px;
+  }
+  ```
+
+- **float를 선언할 테그의 위치**
+
+  - EXPERT Code : float가 적용될 요소를 마크업 상단에 위치시켰다. 일반적으로 적용될 float가 상단에 위치해야한다고함
+
+  ```html
+  <div class="l_wrapper ">
+    <div class="l_sidebar">Side</div>
+    <div class="l_main">Main</div>
+  </div>
+  ```
+
+  ```css
+  .sidebar {
+    background-color: orange;
+    width: 300px;
+    float: right;
+  }
+  /* float가 적용될 요소는 마크업상 상단에 위치해야한다. */
+  .main {
+    border: 10px solid red;
+    overflow: hidden;
+  }
+  ```
+
+  - Yosup Code : 나는 보이는 순서대로 마크업을 구성하였고 그에 따라 float를 2번쓰는 경우가 발생하였다.
+
+  ```html
+  <div class="wrapper">
+    <div class="lecture"></div>
+    <aside class="payment" lang="ko"></aside>
+  </div>
+  ```
+
+  ```css
+  .lecture {
+    float: left;
+    width: 900px;
+  }
+
+  .payment {
+    width: 300px;
     height: 939px;
     float: left;
     background-color: black;
     margin: 0 auto;
   }
-  .wrapper video {
-    width: 900px;
-    height: 400px;
-  }
-}
-```
-
-- Expert Coding
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="expertstyles.css" />
-    <title>Lecture</title>
-  </head>
-  <body>
-    <!-- l_wrapper에 padding을 주지않고 contents를 굳이 만들어서 padding을 준 이유 ?? 
-    정답은 expertstyles.css에 적혀있다. -->
-    <div class="contents">
-      <div class="l_wrapper">
-        <div class="l_sidebar">
-          <div class="checkout clearfix">
-            <div class="video">
-              <iframe
-                src="https://player.vimeo.com/video/27246366?color=ffffff"
-                width="640"
-                height="360"
-                frameborder="0"
-                allow="autoplay; fullscreen"
-                allowfullscreen
-                class="video-iframe "
-              ></iframe>
-            </div>
-            <div class="checkout-section">
-              <p class="price">
-                11,000원
-                <span class="price-discount">5,500원</span>
-              </p>
-            </div>
-            <div class="checkout-section">
-              <a href="#" class="button button_block mb_5">장바구니 담기</a>
-              <a href="#" class="button button_block button_important"
-                >바로구매</a
-              >
-            </div>
-            <div class="checkout-section">
-              section2
-            </div>
-          </div>
-        </div>
-        <div class="l_main">
-          <div class="course">
-            <div class="course-cover">
-              <div class="course-creator">
-                <img
-                  src="/assets/images/practice/lecture/logo.png"
-                  alt=""
-                  class="course-creator-logo"
-                />
-                <div class="course-creator-contents">
-                  <strong>Creator</strong>
-                  Joseph
-                </div>
-              </div>
-              <div class="course-title">
-                <h1>The Web Developer BootCamp</h1>
-                <p>
-                  Complte Data Science Training : Mathematics, Statistics,
-                  Python, Advanced Statisctics in Python, Machine & Depp Lerning
-                </p>
-              </div>
-            </div>
-            <div class="course-section">
-              <h2>Curriculum</h2>
-              <div class="course-section-contents">
-                <ul class="curriculum">
-                  <li class="curriculum-item clearfix">
-                    <h3>Introduction to this Course</h3>
-                    <ul class="curriculum-item-list ">
-                      <li>
-                        <a href="" class="curriculum-link">
-                          <span>
-                            20:12
-                          </span>
-                          A Note ON Asking For Help
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="curriculum-link">
-                          <span>
-                            20:12
-                          </span>
-                          Additional FREE Content
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li class="curriculum-item clearfix">
-                    <h3>Introduction to Front End Development</h3>
-                    <ul class="curriculum-item-list ">
-                      <li>
-                        <a href="#" class="curriculum-link">
-                          <span>
-                            20:12
-                          </span>
-                          Unit Objectives
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="curriculum-link">
-                          <span>
-                            20:12
-                          </span>
-                          Note about Setting Up Front-End Developer Environment
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#" class="curriculum-link">
-                          <span>
-                            20:12
-                          </span>
-                          Additional FREE Content
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-</html>
-```
-
-```css
-body,
-p {
-  background-image: url(/assets/images/practice/lecture/bg.png);
-  color: #999;
-  margin: 0;
-}
-
-h1,
-h2,
-h3,
-ul {
-  padding: 0;
-
-  margin: 0;
-}
-li {
-  list-style-type: none;
-}
-
-/* l_wrapper , l_sidebar 처럼 class이름에 layout_sidebar의 약어인 l_sidebar라고 나타냈다.
-그 이유는 이 부분은 레이아웃만 담당이라는것을 명시하기 위함이라고 한다. 
-배경색이라던가 이런것 역시 담당이 아닌 오로지 레이아웃 즉 뼈대만 담당하는 용도라는 것을 명시하기 위함
-또한 이렇게 뼈대들은 똑같은 뼈대들이 있는 화면이 있을때 재활용해서 사용 가능하며, 따로 css를 만들어서 import해서 사용해도 
-좋을것 같다*/
-
-/* ---------------Layours :뼈대---------------------- */
-
-.l_wrapper {
-  max-width: 960px;
-  /* max-widh를 했는데 float 된곳은 줄어들지 않는다..??? 그 이유는 뜨기때문일까? */
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-.l_sidebar {
-  /* width: 260px; */
-  float: right;
-  margin-left: 20px;
-  width: 300px;
-  margin-left: 0;
-}
-
-.l_main {
-  overflow: hidden;
-  /* float: right; */
-  /* width: 680px;  */
-  /* overflow: hidden ? 나였으면 main에 일정크기를 먼저 주고 sidebar에도 일정크기를 준다음 
-  clear를 이용했을것 같은데... 뭐가 더 나은방법일까? 
-  그런데 부모요소가 아닌 그냥 얘한테 overflow : hidden을 주었네, 원래 overflow :hidden의 이미가
-  넘어버리면 숨긴다는 얘긴데... 여기서는 어떠한 역할을 하는지 모르곘다..*/
-}
-
-/* .l_wrapper::after {
-  display: block;
-  content: " ";
-  clear: both;
-} */
-
-/* wrapper에 주면 되지 굳이 contents 클래스를 만들었나 싶었는데, 앞서 말했듯이 l_wrapper는 레이아웃의 담당이고 나중에 다른곳에 
-l_wrapper라는 클래스만 적용해서 다시 재활용해서 사용할수도 있으므로 contents라는 클래스를 만들어 거기다가 padding을 주었다.
-l_wrapper에 padding을 주면 나중에 다론곳에 사용했을때도 padding이 적용되니까*/
-
-/* ------------Components---------------- */
-
-.contents {
-  padding: 40px 0;
-}
-
-.checkout {
-  background-color: #666;
-}
-
-.checkout-section {
-  margin: 20px;
-  background-color: rgba(255, 255, 255, 0.05);
-
-  /* margin 상쇄 효과 부분 */
-
-  /* 나는 같이 붙어있는 형제한테 margin 20px씩 주면 그 형제의 간격이 40px이 차이날줄 알았는데 20px 차이가 나더라
-  블록의 top 및 bottom 마진은 때로는 (결합되는 마진 중 크기가) 가장 큰 한 마진으로 결합(combine, 상쇄(collapsed))됩니다, 마진 상쇄(margin collapsing)로 알려진 행동
-  -MDN-*/
-
-  /* 부모박스와 마지막 자식박스의 하단 마진이 겹칠때는 부모 박스의 바깥으로만 랜더링이 되므로 하단의 margin이 0인건처럼 보이게 된다.
-  이 문제의 해결방법은 부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 
-  시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 overflow:hidden 또는 가상요소를 만들어주어 사용한다.
-  그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.*/
-}
-
-.video {
-  position: relative;
-  background-color: dodgerblue;
-  padding-top: 56.25%;
-}
-
-/* 나중에 비디오가 핸드폰화면에서도 비율을 유지하기 위해서는 px단위 처럼 정해진 값을 주면 안된다.
-그래서 사용 한게 % 인데, 그렇다고 해서 height 에 % 를 주면 안됌 
-heigh에서 %는 부모의 높이에 따른 비율인데 지금 부모의 높이가 없으므로 안됨  따라서 padding-top를 사용해서 높이를 만들어줌 
-padding-top의 %는 자기 자신의 너비에(현재 자기 자신의 너비가 명시되어 있지 않으므로 부모의 너비를 따름 즉 300px) 따른 높이의 비율을 정해줌 , 따라서 paddig-top : 100%는 정사각형이 나오게 됨 
-하지만 우리 비디오가 16:9 비율이기 때문에 56.25%를 주면 16:9비율이 만들어져 화면이 꽉 차게 들어간다.
-그리고 나중에 우리가 핸드폰 화면에서도 그 비율이 유지가 된다.
-
-padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주었기 때문에 높이와 너비가 꽉차지만 화면이 16:9 비율이므로 화면으로 꽉차지는 않는다. 
-
-*/
-
-.video-iframe {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-
-  /* left: 0;  top: 0;  bottom: 0; right: 0; 가  width : 100% 와 hegiht 100% 인줄알았는데 그게 아닌듯.. */
-}
-
-.price {
-  font-weight: bold;
-  color: orangered;
-  font-size: 40px;
-}
-
-.price-discount {
-  position: relative;
-  font-weight: normal;
-  color: #333;
-  font-size: 0.5em;
-}
-
-.price-discount::before {
-  content: " ";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0.6em;
-  opacity: 0.5;
-  height: 2px;
-  background-color: white;
-}
-
-/* through-line을 직접 만들었는데,  별로 좋은 방법은 아니라고 함*/
-
-.course-cover {
-  background-image: url(/assets/images/practice/lecture/cover.png);
-  padding: 30px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
-.course-cover::after {
-  content: " ";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.5;
-  background: -moz-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-  background: -webkit-linear-gradient(
-    top,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0.65) 100%
-  );
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=0 );
-}
-
-.course-creator,
-.course-title {
-  position: relative;
-  z-index: 10;
-  /* z-index를 주기 위해서는 position을 주어야한다. */
-}
-
-/* 텍스트가 흰색이라 잘 안보이는 경우가 있는데,배경을 줄때 어떤 이미지를 주더라도 텍스트가 잘 보이게끔 하기 위해 배경안에 또 다른 레이아웃을 넣어주고 특정 지역을 어둡게 하여 텍스트 있는 쪽은 잘 보이게끔 하기도 한다.*/
-
-.course-section {
-  margin: 20px 0px;
-}
-
-.course-creator {
-  float: right;
-  margin-left: 10px;
-  width: 100px;
-  text-align: right;
-}
-
-/* 전문가가 float는 주는 테그가 위에 자리 잡아야한다고 한다.
-그 이유를 아직 모르겠다.*/
-
-.course-creator img {
-  border-radius: 50%;
-  width: 50px;
-}
-
-.course-creator-contents {
-  padding: 5px;
-}
-.course-creator-contents strong {
-  display: block;
-}
-
-.course-title {
-  overflow: hidden;
-}
-/* overfolw : hidden을 주는 이유를 잘 모르겠다..
-그리고 그것을 주었을때 왜 그 모양이 나오는지도*/
-.course-title h1 {
-  color: white;
-  font-size: 50px;
-  line-height: 1.4;
-  font-weight: bold;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-/* line-height 에 대해서 찾아보자 */
-
-.course-title p {
-  margin-bottom: 20px;
-}
-
-.course-section {
-  margin: 20px 0;
-}
-.course-section h2 {
-  font-size: 30px;
-  color: white;
-  border-bottom: 2px solid;
-}
-.course-section-contents {
-}
-
-.curriculum {
-  background-color: #333;
-}
-
-.curriculum-item {
-  background-color: #666;
-  margin-bottom: 10px;
-}
-.curriculum-item:last-child {
-  margin-bottom: 0;
-}
-/* margin 중복현상때문에 사라지긴 하지만 명시해주는것이 좋다. */
-
-.curriculum-item h3 {
-  padding: 10px 20px;
-  /* marging을 줄경우 상단에 마진 겹침현상이 발생한다. */
-}
-
-.curriculum-item-list {
-  background-color: #111;
-  padding: 20px 0;
-  margin: 5px;
-}
-
-.curriculum-link {
-  background-color: rgba(255, 255, 255, 0.05);
-  display: block;
-  margin: 5px 20px;
-  padding: 10px;
-}
-
-.curriculum-link span {
-  float: right;
-  font-size: 10px;
-}
-/* CSS방법론에 따르면 CSS선택자로 아이디와 태그를 사용하지 말것을 권장한다고함  */
-
-.curriculum-link::before {
-  content: "▶";
-  font-size: 10px;
-}
-
-.curriculum-link:hover {
-  color: white;
-}
-/* -----Commons : 공통적으로 사용할수 있는 것들-----*/
-
-/* 마진 상쇄가 자주 발생하므로 이것을 통해 해결 */
-.clearfix:after,
-.clearfix::before {
-  content: " ";
-  display: table;
-  /* 마진 상쇄의 해결방법 : 가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
-  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. */
-}
-
-a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.button {
-  background-color: #333;
-  color: white;
-  padding: 0.5em 1em;
-  display: inline-block;
-  /* a 태그는 inline 요소이므로 padding을 주면 안된다고 했다.
-  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈  
-  
-  보통 버튼은 inline-block으로 많이 해줌*/
-}
-
-.button_block {
-  display: block;
-  text-align: center;
-}
-
-.button_important {
-  background-color: orangered;
-}
-
-/* 버튼끼리의 간격을 어떻게 주는게 좋을까?
-버튼에 margin-bottom을 준다? 그런데 button은 공통적 요소로 우리가 두기로 했잖아.. 그러면 다른 곳에서도 margin-bottom이 적용 될텐데?? 그러면 차라리 margin들을 사용할수 있게끔 하는 다양한 클래스를 만들어 주자*/
-
-/* util */
-
-.mb_5 {
-  margin-bottom: 5px;
-}
-.mb_10 {
-  margin-bottom: 10px;
-}
-
-.mb_15 {
-  margin-bottom: 15px;
-}
-
-.mb_20 {
-  margin-bottom: 20px;
-}
-
-/* Typograph */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: normal;
-  font-size: 100%;
-  /* 부모의 font-size를 받아옴 
-  일반적인 폰트사이즈는 16px */
-}
-
-/* mediaqueries */
-
-@media screen and (max-width: 768px) {
-  .l_sidebar {
-    width: auto;
-    float: none;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .course-cover {
-    text-align: center;
-  }
-  .course-creator {
-    float: none;
-    margin: 0;
-    width: auto;
-    text-align: center;
-  }
-}
-```
-
----
-
-- ### 코드 비교 와 꿀 팁~
-
-* **1.아직도 반응형 작성방법에 대한 이해가 잘 안됨.. 좀 더 효율적인 코딩이 쉬운 반응형 작업을 하는데 도움이 될것 같다는 결론을 얻음**
-
-- **2.CSS 마진 상쇄(필수로 외워두자)**
-
-  [CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
-
-* **3.CSS 마진 상쇄 해결방법**
+  ```
+
+  - 의문점(1) : 그러면 보이는대로 작성하고 sidebar에다가 float: right를 해주면 되지 않을까?
+  - 결과 : 너가 제대로 float에 대해 이해를 못하고 있구나, 보이는대로 작성하고 float:right를 작성하면 다른 모습이 나오지..
+
+  ```html
+  <div class="l_wrapper ">
+    <div class="l_main">Main</div>
+    <div class="l_sidebar">Side</div>
+  </div>
+  ```
 
   ```css
-  .clearfix:after {
-    content: " ";
-    display: table;
-
-    /* 마진 상쇄의 해결방법 : 
-    
-    가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로  
-    diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다. 
-  
-    또 다른 해결방법(but 잘 쓰지 않음) : 
-  
-    부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로 
-    시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나 
-    overflow:hidden 또는 가상요소를 만들어주어 사용한다. 
-    그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는 
-    의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
-    */
+  .sidebar {
+    background-color: orange;
+    width: 300px;
+    float: right;
+  }
+  /* float가 적용될 요소는 마크업상 상단에 위치해야한다. */
+  .main {
+    border: 10px solid red;
+    overflow: hidden;
   }
   ```
+
+  - 의문점(2) : 그러면 순서대로 작성하고 위에거에다가 float : left를 해주면 되지 않을까?
+  - 결과 : 너가 나중 결과를 생각하지 않고 작성한 코드구나, 나중에 휴대폰 화면에서 side가 main 위로 올라가야할때 코드 작성이 어려움이 생긴다.
+
+  ```html
+  <div class="l_wrapper ">
+    <div class="l_main">Main</div>
+    <div class="l_sidebar">Side</div>
+  </div>
+  ```
+
+  ```css
+  .l_sidebar {
+    overflow: hidden;
+    background-color: orange;
+  }
+
+  .l_main {
+    border: 10px solid red;
+    float: left;
+    width: 660px;
+  }
+  ```
+
+-**Vedio 사용 방법**
+
+- EXPERT Code : 외부에서 비디오를 받아왔는데, 그럴경우 지정된 높이와 너비에 의해 부모 밖으로 비디오가 나가는 현상이 발생한다.
+  그걸 방지하기 위해 .video-iframe 에 absolute를 주고 부모의 너비와 높이 만큼 꽉 채웠다.
+  그런데 특이한점은 부모의 높이를 padding-top: % 를 통해 주었다는것이다. padding-top : % 는 적용된 테그의 너비만큼 비례해서 높이가 정해진다고 한다.(따라서 padding-top : 100% 는 정사각형 모양이 나오는것임)
+
+  그냥 height px로 주면 되지 않을까? 그럴경우 px은 고정되어있기 때문에 나중에 반응형 작업을 할때 크게 나와야할 상황에서도 적용한 px만큼 나오기 때문에 좋지 않은 방법이다.
+  그러면 height 를 %로 주면 되지 않을까? height % 는 부모의 높이에 따른 %를 주기 때문에 비디오의 16:9 사이즈를 유지하기가 쉽지 않다.
+
+  ```html
+  <div class="video">
+    <iframe
+      src="https://player.vimeo.com/video/27246366?color=ffffff"
+      width="640"
+      height="360"
+      frameborder="0"
+      allow="autoplay; fullscreen"
+      allowfullscreen
+      class="video-iframe "
+    ></iframe>
+  </div>
+  ```
+
+  ```css
+  .video {
+    position: relative;
+    background-color: dodgerblue;
+    padding-top: 56.25%;
+  }
+
+  .video-iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  ```
+
+  - Yosup Code : 다양한 비디오에도 감당하기 위해 다음과 같은 HTML을 준건 나쁘지 않았는데, px로 줬네.. 이러면 반응형 작업할때 일을 두번 해야하는 현상이 생기더라..
+
+  ```html
+  <video controls>
+    <source src="/assets/images/practice/lecture/sujin2.mp4" type="video/wav" />
+    <source src="/assets/images/practice/lecture/sujin2.mp4" type="video/ogg" />
+    <source
+      src="/assets/images/practice/lecture/sujin2.mp4"
+      type="video/mpeg"
+    />
+  </video>
+  ```
+
+  ```css
+  .wrapper video {
+    width: 300px;
+    height: 250px;
+  }
+  ```
+
+- **Button을 만드는 방법**
+
+  - EXPERT Code : a 테그로 button을 만들어서 사용했다. 하지만 a 테그는 inline 요소이기에 padding top , bottom을 주면 안된다고 했으므로
+    a 테그를 원래 button의 display 속성인 inline-block으로 해준다. 그러나 지금의 상황에서는 한줄에 하나의 button이 필요하므로 또다른 클래스를 만들어 block요소를 적용해주었다.
+    .button 요소에 직접 block과 maring을 줘도되지만 이 button은 다른 곳에서도 사용되는 공통의 요소이기 때문에 또다른 클래스인 md_5 나 button_block를 추가 시켜준것이다
+
+  ```html
+  <a href="#" class="button button_block mb_5">장바구니 담기</a>
+  <a href="#" class="button button_block button_important">바로구매</a>
+  ```
+
+  ```css
+  .button {
+    background-color: #333;
+    color: white;
+    padding: 0.5em 1em;
+    display: inline-block;
+  }
+
+  .button_block {
+    diplay: block;
+    text-align: center;
+  }
+
+  /* util */
+  .mb_5 {
+    margin-bottom: 5px;
+  }
+  .mb_10 {
+    margin-bottom: 10px;
+  }
+  .mb_15 {
+    margin-bottom: 15px;
+  }
+  ```
+
+  - Yosup Code : 그냥 버튼 테그를 사용함, 버튼 자체는 inline-block이므로 따로 한줄에 하나씩 사용하기 위해 block으로 바꿔주기만 함
+
+  ```html
+  <button type="button">장바구니에 추가</button>
+  <button type="button">지금 구매</button>
+  ```
+
+  ```css
+  .payment button {
+    margin: 0 auto;
+    display: block;
+    width: 220px;
+    height: 35px;
+    margin-top: 10px;
+    border: 0;
+    font-weight: 900;
+    color: white;
+  }
+  ```
+
+- **max-width vs width 그리고 변하지 요소 vs 변하는 요소**
+
+  - max-width의 정의 : max-width CSS 속성은 요소의 최대 너비를 설정합니다. max-width는 width 속성의 **사용값이 자신의 값보다** 커지는걸 방지합니다.
+
+    - 사용값 : 사용값은 계산값에 모든 계산을 수행한 후의 결과 값입니다.
+
+    * 계산값 : 계산값은 상속 과정에서 부모가 자식에게 물려주는 값을 말합니다.
+
+    * 즉 사용값이라 하면 auto를 의미하는것 같다.
+
+  - max-width vs width
+
+    - width : 980px로 잡았을 경우 화면을 줄여도 980px을 유지 한다.
+
+    - width : % 로 잡았을 경우 부모에 width값에 %를 적용한 값을 받기 때문에 화면이 줄면 같이 줄어들게 되지만, 대신 화면이 커지면 같이 커지게 된다.
+
+    - max-width : 980px로 잡았을 경우 width 속성의 **사용값인 auto가 적용되고** 그렇기 때문에 화면이 width를 적용했을 때와 다르게 줄어도 같이 줄어들게 되며 auto값이 980px보다 커지는것을 방지한다.
+
+    * max-width % 로 잡았을 경우 width: auto가 적용되며, 화면을 늘렸을때 적용한 %보다 커지는것을 방지한다.
+
+  * 변하지 않는 요소와 변하는 요소
+
+    - 변하는 요소는 : px로 고정값을 주지 않는 요소들이다.
+    - 변하지않는 요소 : px로 준 요소들
+
+    따라서 px로 side의 너비를 정했기 때문에 사이드가 고정이 되는 모습을 보인것이다.
+
+  * Expert code
+
+    ```html
+    <div class="contents">
+      <div class="l_wrapper ">
+        <div class="l_sidebar">sidebar</div>
+        <div class="l_main">Main</div>
+      </div>
+    </div>
+    ```
+
+    ```css
+    .l_wrapper {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .l_sidebar {
+      width: 300px;
+      float: right;
+      background-color: orange;
+    }
+
+    .l_main {
+      overflow: hidden;
+      border: 10px solid red;
+    }
+    ```
+
+  - Yosup code : width를 px로 잡았기 때문에 화면이 줄어들어도 1200px를 유지할것이고,width를 max-width로 잡아서 줄인다고 한들 payment는 300px와 lecture 역시 변하지 않는 코드를 만듬, 화면을 줄임으로 해서 변해야하는 반응형 웹에는 적합하지 않은 코딩
+
+  ```html
+  <div class="wrapper">
+    <div class="lecture">
+      <header class="intro"></header>
+    </div>
+
+    <aside class="payment" lang="ko"></aside>
+  </div>
+  ```
+
+  ```css
+  .wrapper {
+    width: 1200px;
+    margin: 30px auto;
+  }
+
+  .lecture {
+    float: left;
+    width: 900px;
+  }
+  .payment {
+    width: 300px;
+    height: 939px;
+    float: left;
+    background-color: black;
+    margin: 0 auto;
+  }
+  ```
+
+### 꿀 팁~
+
+- **1.아직도 반응형 작성방법에 대한 이해가 잘 안됨.. 좀 더 효율적인 코딩이 쉬운 반응형 작업을 하는데 도움이 될것 같다는 결론을 얻음**
+
+* **2.CSS 마진 상쇄(필수로 외워두자)**
+
+[CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
+
+- **3.CSS 마진 상쇄 해결방법**
+
+```css
+.clearfix:after {
+  content: " ";
+  display: table;
+
+  /* 마진 상쇄의 해결방법 :
+
+  가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
+  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다.
+
+  또 다른 해결방법(but 잘 쓰지 않음) :
+
+  부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로
+  시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나
+  overflow:hidden 또는 가상요소를 만들어주어 사용한다.
+  그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는
+  의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
+  */
+}
+```
 
 - **4.레이아웃을 먼저 잡는게 중요하며, 레이아웃(뼈대)만 따로하는 테그를 만들어 사용하면 나중에 재활용할수 있다. (그리고 그 레이아웃은 뼈대용도로만 사용해야한다.) 마찬 가지로 공통된 스타일은 별도의 클래스로 만들고 재사용한다. (=== CSS 방법론)**
 
@@ -1151,40 +848,7 @@ h6 {
 
   [**CSS 방법론**](https://gomdoreepooh.github.io/notes/smacss-bem-oocss)
 
-* **11.float를 주는 테그가 위에 자리 잡아야 한다. 그 이유는???? 나중에 미디어쿼리시 발생하는 모습도 예상했기에 right를 해줌??**
-
-  ```html
-  <div class="course-creator">
-    <img
-      src="/assets/images/practice/lecture/logo.png"
-      alt=""
-      class="course-creator-logo"
-    />
-    <div class="course-creator-contents">
-      <strong>Creator</strong>
-      Joseph
-    </div>
-  </div>
-
-  <div class="course-title">
-    <h1>The Web Developer BootCamp</h1>
-    <p>
-      Complte Data Science Training : Mathematics, Statistics, Python, Advanced
-      Statisctics in Python, Machine & Depp Lerning
-    </p>
-  </div>
-  ```
-
-  ```css
-  .course-creator {
-    float: right;
-    margin-left: 10px;
-    width: 100px;
-    text-align: right;
-  }
-  ```
-
-- **12.텍스트가 흰색이라 잘 안보이는 경우가 있는데,배경을 줄때 어떤 이미지를 주더라도 텍스트가 잘 보이게끔 하기 위해 배경안에 또 다른 레이아웃을 넣어주고 특정 지역을 어둡게 하여 텍스트 있는 쪽은 잘 보이게끔 하기도 한다.**
+* **11.텍스트가 흰색이라 잘 안보이는 경우가 있는데,배경을 줄때 어떤 이미지를 주더라도 텍스트가 잘 보이게끔 하기 위해 배경안에 또 다른 레이아웃을 넣어주고 특정 지역을 어둡게 하여 텍스트 있는 쪽은 잘 보이게끔 하기도 한다.**
 
   ```css
   .course-cover {
@@ -1224,9 +888,7 @@ h6 {
 
   ```
 
-* **13.max-width를 했는데 float 된곳은 줄어들지 않는다..??? 그 이유는 뜨기때문일까?**
-
-* **14.보통 버튼은 inline-block으로 많이 해줌**
+- **13.보통 버튼은 inline-block으로 많이 해줌**
 
   ```css
   .button {
@@ -1235,13 +897,13 @@ h6 {
     padding: 0.5em 1em;
     display: inline-block;
     /* a 태그는 inline 요소이므로 padding을 주면 안된다고 했다.
-  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈  
+  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈
   
   보통 버튼은 inline-block으로 많이 해줌*/
   }
   ```
 
-- **15.각 기기별 미디어쿼리 적용사이즈**
+* **14.각 기기별 미디어쿼리 적용사이즈**
 
 ```css
 /*
@@ -1252,7 +914,7 @@ h6 {
   /* CSS */
 }
 
-/* 
+/*
   ##Device = Laptops,Desktops
   ##Screen  =  B/w  1025px  to  1280px
 */
@@ -1260,25 +922,25 @@ h6 {
   /* CSS */
 }
 
-/* 
+/*
   ##Device = Tablets,Ipads  (portrait)
-  ##Screen  =  B/w  768px  to  1024px  
+  ##Screen  =  B/w  768px  to  1024px
 */
 @media (min-width: 768px) and (max-width: 1024px) {
   /* CSS */
 }
 
-/* 
+/*
   ##Device = Tablets,Ipads  (landscape)
-  ##Screen  =  B/w  768px  to  1024px  
+  ##Screen  =  B/w  768px  to  1024px
 */
 @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
   /* CSS */
 }
 
-/* 
-  ##Device = Low Resolution Tablets,Mobiles  (Landscape)  
-  ##Screen  =  B/w  481px  to  767px  
+/*
+  ##Device = Low Resolution Tablets,Mobiles  (Landscape)
+  ##Screen  =  B/w  481px  to  767px
 */
 @media (min-width: 481px) and (max-width: 767px) {
   /* CSS */
@@ -1286,7 +948,7 @@ h6 {
 
 /*
   ##Device  =  Most  of  the  Smartphones  Mobiles  (Portrait)
-  ##Screen  =  B/w  320px  to  479px  
+  ##Screen  =  B/w  320px  to  479px
 */
 @media (min-width: 320px) and (max-width: 480px) {
   /* CSS */

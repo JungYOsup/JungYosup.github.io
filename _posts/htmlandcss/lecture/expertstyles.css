@@ -26,18 +26,21 @@ li {
 /* ---------------Layours :뼈대---------------------- */
 
 .l_wrapper {
-  max-width: 960px;
-  /* max-widh를 했는데 float 된곳은 줄어들지 않는다..??? 그 이유는 뜨기때문일까? */
+  max-width: 980px;
+
+  /* width % 는 부모의 사이즈에 따라서 계속 80%를 유지하려고 하기때문에 화면을 줄여도 줄인만큼의 80%를 계속 유지한다.
+  px 의 경우 고정적이기 때문에 화면을 줄인거에 상관없이 그 px를 유지하려한다.
+  
+  max-width CSS 속성은 요소의 최대 너비를 설정합니다. max-width는 width 속성의 사용값이 자신의 값보다 커지는걸 방지합니다.
+
+  max-width px일 경우*/
   margin: 0 auto;
-  padding: 0 20px;
 }
 
 .l_sidebar {
-  /* width: 260px; */
   float: right;
   margin-left: 20px;
   width: 300px;
-  margin-left: 0;
 }
 
 .l_main {
@@ -234,8 +237,6 @@ padding-top : 100%를 줘도 .video-iframe에 width 와 height 를 100% 를 주�
   font-size: 30px;
   color: white;
   border-bottom: 2px solid;
-}
-.course-section-contents {
 }
 
 .curriculum {

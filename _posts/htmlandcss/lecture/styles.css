@@ -189,7 +189,7 @@ body {
   margin-left: 20px;
 }
 
-@media screen and (max-width: 1300px) {
+/* @media screen and (max-width: 1300px) {
   .wrapper .payment {
     width: 900px;
     height: 939px;
@@ -201,4 +201,4 @@ body {
     width: 900px;
     height: 400px;
   }
-}
+} */
