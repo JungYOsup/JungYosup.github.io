@@ -14,6 +14,6 @@ toc_sticky: true
 
 - Mobile
 
-<img src="/assets/images/practice/mobile/mobile2.PNG" width="20%"><img src="/assets/images/practice/mobile/mobile.PNG" width="40%">
+<img src="/assets/images/practice/mobile/mobile2.PNG" width="20%"> <img src="/assets/images/practice/mobile/mobile.PNG" width="60%">
 
 - 모바일로 먼저 만드는 경우는 우리나라에서 극히 드물지만, 모바일청첩잡 같은경우 우선적으로 작업하기도 함
