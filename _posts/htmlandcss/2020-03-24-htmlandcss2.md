@@ -639,26 +639,26 @@ toc_sticky: true
 
 - **3.CSS 마진 상쇄 해결방법**
 
-```css
-.clearfix:after {
-  content: " ";
-  display: table;
+  ```css
+  .clearfix:after {
+    content: " ";
+    display: table;
 
-  /* 마진 상쇄의 해결방법 :
-
-  가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
-  diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다.
-
-  또 다른 해결방법(but 잘 쓰지 않음) :
-
-  부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로
-  시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나
-  overflow:hidden 또는 가상요소를 만들어주어 사용한다.
-  그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는
-  의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
-  */
-}
-```
+    /* 마진 상쇄의 해결방법 :
+  
+    가상요소를 만들어 주되 이 문제는 block과 block 사이에서 발생하는 문제이므로
+    diplay를 block도 inline(inline은 위 아래가 아닌 흐름이자네~)도 아닌요소인 table로 해준다.
+  
+    또 다른 해결방법(but 잘 쓰지 않음) :
+  
+    부모요소에 경계를 줄수 있는 padding 이나 border를 준다. but 이것은 시각적으로 보일수 있으므로
+    시각적으로 보이지 않게 하기 위해 display:flow-root (flow-root 는 호환성이 별루..) 나
+    overflow:hidden 또는 가상요소를 만들어주어 사용한다.
+    그러나 overflow:hidden를 사용하면 overflow:hidden 자체의 목적인 "넘쳤을때 자른다"라는
+    의미에 맞지 않게 사용되므로 가상요소를 사용하여 해결해주는것이 좋을것 같다.
+    */
+  }
+  ```
 
 - **4.레이아웃을 먼저 잡는게 중요하며, 레이아웃(뼈대)만 따로하는 테그를 만들어 사용하면 나중에 재활용할수 있다. (그리고 그 레이아웃은 뼈대용도로만 사용해야한다.) 마찬 가지로 공통된 스타일은 별도의 클래스로 만들고 재사용한다. (=== CSS 방법론)**
 
@@ -905,52 +905,52 @@ toc_sticky: true
 
 * **14.각 기기별 미디어쿼리 적용사이즈**
 
-```css
-/*
-  ##Device  =  Desktops
-  ##Screen  =  1281px  to  higher  resolution  desktops
-*/
-@media (min-width: 1281px) {
-  /* CSS */
-}
+  ```css
+  /*
+    ##Device  =  Desktops
+    ##Screen  =  1281px  to  higher  resolution  desktops
+  */
+  @media (min-width: 1281px) {
+    /* CSS */
+  }
 
-/*
-  ##Device = Laptops,Desktops
-  ##Screen  =  B/w  1025px  to  1280px
-*/
-@media (min-width: 1025px) and (max-width: 1280px) {
-  /* CSS */
-}
+  /*
+    ##Device = Laptops,Desktops
+    ##Screen  =  B/w  1025px  to  1280px
+  */
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    /* CSS */
+  }
 
-/*
-  ##Device = Tablets,Ipads  (portrait)
-  ##Screen  =  B/w  768px  to  1024px
-*/
-@media (min-width: 768px) and (max-width: 1024px) {
-  /* CSS */
-}
+  /*
+    ##Device = Tablets,Ipads  (portrait)
+    ##Screen  =  B/w  768px  to  1024px
+  */
+  @media (min-width: 768px) and (max-width: 1024px) {
+    /* CSS */
+  }
 
-/*
-  ##Device = Tablets,Ipads  (landscape)
-  ##Screen  =  B/w  768px  to  1024px
-*/
-@media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
-  /* CSS */
-}
+  /*
+    ##Device = Tablets,Ipads  (landscape)
+    ##Screen  =  B/w  768px  to  1024px
+  */
+  @media (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {
+    /* CSS */
+  }
 
-/*
-  ##Device = Low Resolution Tablets,Mobiles  (Landscape)
-  ##Screen  =  B/w  481px  to  767px
-*/
-@media (min-width: 481px) and (max-width: 767px) {
-  /* CSS */
-}
+  /*
+    ##Device = Low Resolution Tablets,Mobiles  (Landscape)
+    ##Screen  =  B/w  481px  to  767px
+  */
+  @media (min-width: 481px) and (max-width: 767px) {
+    /* CSS */
+  }
 
-/*
-  ##Device  =  Most  of  the  Smartphones  Mobiles  (Portrait)
-  ##Screen  =  B/w  320px  to  479px
-*/
-@media (min-width: 320px) and (max-width: 480px) {
-  /* CSS */
-}
-```
+  /*
+    ##Device  =  Most  of  the  Smartphones  Mobiles  (Portrait)
+    ##Screen  =  B/w  320px  to  479px
+  */
+  @media (min-width: 320px) and (max-width: 480px) {
+    /* CSS */
+  }
+  ```
