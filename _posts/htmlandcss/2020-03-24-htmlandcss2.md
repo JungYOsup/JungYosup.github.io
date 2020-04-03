@@ -633,7 +633,7 @@ toc_sticky: true
 
 * **2.CSS 마진 상쇄(필수로 외워두자)**
 
-[CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
+  [CSS 마진 상쇄](https://velog.io/@raram2/CSS-%EB%A7%88%EC%A7%84-%EC%83%81%EC%87%84Margin-collapsing-%EC%9B%90%EB%A6%AC-%EC%99%84%EB%B2%BD-%EC%9D%B4%ED%95%B4)
 
 - **3.CSS 마진 상쇄 해결방법**
 
@@ -886,22 +886,7 @@ toc_sticky: true
 
   ```
 
-- **13.보통 버튼은 inline-block으로 많이 해줌**
-
-  ```css
-  .button {
-    background-color: #333;
-    color: white;
-    padding: 0.5em 1em;
-    display: inline-block;
-    /* a 태그는 inline 요소이므로 padding을 주면 안된다고 했다.
-  why? 여기서는 부모밖으로 튀어 나오는 쓸때없는 영역을 차지하기 때문에 하지만 padding을 주고 싶어서 display를 inline-block으로 바꿈
-  
-  보통 버튼은 inline-block으로 많이 해줌*/
-  }
-  ```
-
-* **14.각 기기별 미디어쿼리 적용사이즈**
+- **13.각 기기별 미디어쿼리 적용사이즈**
 
   ```css
   /*
