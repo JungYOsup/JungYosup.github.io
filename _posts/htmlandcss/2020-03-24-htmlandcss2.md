@@ -38,9 +38,7 @@ toc_sticky: true
 
 * **HTML 구성(2)**
 
-  - Expert Code : 위에서 말한것처럼 l_wrapper를 우리가 뼈대로 이미 정했기 때문에 l_wrapper에 padding을 주변 다른곳에서 재활용할때에도 상하단에 padding이 적용되기 때문에 그걸 다른요소(contents)로 감싸서 그 테그에다가 padding을 주었다.
-
-  마찬가지로 l_sidebar와 l_main 역시 그 자체에 어떠한 디자인 서식을 주기 보다는 또다른 테그를 만들어 그 테그에다 디자인을 줌
+  - Expert Code : 위에서 말한것처럼 l_wrapper를 우리가 뼈대로 이미 정했기 때문에 l_wrapper에 padding을 주변 다른곳에서 재활용할때에도 상하단에 padding이 적용되기 때문에 그걸 다른요소(contents)로 감싸서 그 테그에다가 padding을 주었다. 마찬가지로 l_sidebar와 l_main 역시 그 자체에 어떠한 디자인 서식을 주기 보다는 또다른 테그를 만들어 그 테그에다 디자인을 줌
 
   ```html
   <div class="contents">
