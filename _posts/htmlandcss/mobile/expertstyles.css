@@ -1,0 +1,211 @@
+body {
+  background-color: #000;
+  color: #999;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* components */
+
+.cover {
+  background-image: url(/assets/images/practice/mobile/cover.png);
+  padding: 50px 0;
+  /* padding과 margin이 어떻게 동작하는지 완벽하게 숙지하자. 햇갈릴때가 너무 많다. */
+  text-align: center;
+  /* font-size: 100%; 이게 default 값인가보다. 선언을 안해도 알아서 선언되기 때문에 .cover-title에서 em을 쓸수 있나보다 */
+  background-position: center;
+  background-size: cover;
+}
+
+.cover-title {
+  background-color: #000;
+  color: orangered;
+  display: inline-block;
+  font-family: "Oswald", sans-serif;
+  font-weight: normal;
+  padding: 0.1em 0.5em 0;
+}
+
+.contents {
+  padding: 40px;
+}
+.contents-section:last-child {
+  margin-bottom: 0;
+}
+
+.contents-section h2 {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.contents-section p {
+  margin-bottom: 20px;
+}
+.contents-section h2 span {
+  white-space: nowrap;
+}
+/* 한줄로 나오거나 두줄로 나오게끔 하기 위해서 */
+
+.item {
+  background-color: #222;
+  position: relative;
+  padding-top: 100%;
+}
+
+.item-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 100%;
+  transition: all 0.5s;
+  opacity: 0.5;
+}
+
+.item:hover .item-cover {
+  transform: scale(1.1);
+  opacity: 1;
+}
+
+/* 이런식으로도 선언하는구나 item 이 hover 되었을때 .item-cover에 css가 적용되도록 */
+
+.contents-section-cover {
+  float: right;
+  margin-right: -40px;
+  margin-left: 40px;
+  display: none;
+}
+
+/* layout */
+
+.l_row {
+  margin: 0 -10px;
+}
+
+.l_col {
+  float: left;
+  width: 20%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.l_col_ld_8_12_right {
+  float: right;
+  /* img는 콘텐츠이기 때문에 이렇게 해도 옆에 이미지들이 나열될수 있는것이다.
+  콘텐츠는 block 요소를 감지한다고 했잖아 */
+}
+
+.l_col_12_12 {
+  width: 100%;
+}
+.l_col_11_12 {
+  width: 91.66666667%;
+}
+.l_col_10_12 {
+  width: 83.33333333%;
+}
+.l_col_9_12 {
+  width: 75%;
+}
+.l_col_8_12 {
+  width: 66.66666667%;
+}
+.l_col_7_12 {
+  width: 58.33333333%;
+}
+.l_col_6_12 {
+  width: 50%;
+}
+.l_col_5_12 {
+  width: 41.66666667%;
+}
+.l_col_4_12 {
+  width: 33.33333333%;
+}
+.l_col_3_12 {
+  width: 25%;
+}
+.l_col_2_12 {
+  width: 16.66666667%;
+}
+.l_col_1_12 {
+  width: 8.33333333%;
+}
+
+.l_col_3_15 {
+  width: 20%;
+}
+
+/* meidaqueries */
+
+@media screen and (min-width: 768px) {
+  .cover {
+    padding: 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 60vw;
+    /* viewport를 기준으로 width의 범위, 60vw 는 viewport를 기준으로 60% */
+    height: 100vh;
+    /* viewport를 기준으로 width의 범위, 100vh 는 viewport를 기준으로 100% */
+  }
+
+  .cover-title {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    font-size: 6rem;
+  }
+
+  .contents {
+    margin-left: 60vw;
+  }
+  .contents-section-cover {
+    display: block;
+  }
+
+  .l_col_ld_12_12 {
+    width: 100%;
+  }
+  .l_col_ld_11_12 {
+    width: 91.66666667%;
+  }
+  .l_col_ld_10_12 {
+    width: 83.33333333%;
+  }
+  .l_col_ld_9_12 {
+    width: 75%;
+  }
+  .l_col_ld_8_12 {
+    width: 66.66666667%;
+  }
+  .l_col_ld_7_12 {
+    width: 58.33333333%;
+  }
+  .l_col_ld_6_12 {
+    width: 50%;
+  }
+  .l_col_ld_5_12 {
+    width: 41.66666667%;
+  }
+  .l_col_ld_4_12 {
+    width: 33.33333333%;
+  }
+  .l_col_ld_3_12 {
+    width: 25%;
+  }
+  .l_col_ld_2_12 {
+    width: 16.66666667%;
+  }
+  .l_col_ld_1_12 {
+    width: 8.33333333%;
+  }
+
+  /* 안의 내용이 많아 이미지를 빠져나오는 경우 어떻게 해결할까? 
+  첫번째 해결방법 , cover을 fixed로 두니까 이미지가 나가는것 처럼 보이지 않는 듯한 느낌이 듬 */
+}
