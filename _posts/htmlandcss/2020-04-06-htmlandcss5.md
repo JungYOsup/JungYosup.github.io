@@ -23,3 +23,65 @@ toc_sticky: true
 - 모바일
 
 <img src="/assets/images/practice/household/household04.PNG" width="30%">
+
+## 코드 비교
+
+- **HTML 구성(1) : Header 부분**
+
+  - Expert code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```
+
+  - Yosup code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```
+
+* **HTML 구성(2) : Main 부분**
+
+  - Expert code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```
+
+  - Yosup code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```
+
+* **HTML 구성(3) : Footer 부분**
+
+  - Expert code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```
+
+  - Yosup code :
+
+  ```html
+
+  ```
+
+  ```css
+  ```

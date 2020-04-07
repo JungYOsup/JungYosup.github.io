@@ -1,0 +1,38 @@
+/* Reset */
+body {
+  margin: 0;
+  padding: 0;
+}
+/* Typography */
+
+/* Commons */
+
+/* Layouts */
+
+.l_wrapper {
+  width: 980px;
+  border: 1px solid red;
+  margin: 0 auto;
+}
+
+/* Components */
+.header {
+  background-color: #999;
+}
+
+.cover {
+  background-color: #666;
+}
+
+.contents {
+}
+
+.section {
+  background-color: red;
+}
+
+.footer {
+  background-color: blue;
+}
+
+/* Mediaqueries */
