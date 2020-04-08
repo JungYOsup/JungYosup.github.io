@@ -1,30 +1,229 @@
 /* Reset */
-body {
+body,
+ul,
+p {
   margin: 0;
   padding: 0;
 }
+
+li {
+  list-style-type: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
 /* Typography */
+html {
+  font-size: 62.5%;
+  line-height: 1.4;
+}
+body {
+  font-size: 1.4rem;
+}
+
+/* body가 아닌 html에 한 이유는 html에 typography를 적기로 약속했기 때문이다. */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+  margin: 0;
+}
+
+/* h1~6까지의 font를 두껍게 하지 않고 일반적으로 한다음
+나중에 css에서 영향을 준다
+옛날에 말햇듯이 테그들은 브라우저에게 알려주기 위함이지
+어떠한 꾸미는 용도가 아니라고 했으므로 이렇게 해주는것 같다. */
 
 /* Commons */
+
+.clearfix::after {
+  content: " ";
+  display: block;
+  clear: both;
+}
 
 /* Layouts */
 
 .l_wrapper {
-  width: 980px;
+  max-width: 980px;
   border: 1px solid red;
   margin: 0 auto;
+  padding: 0 20px;
+}
+
+.l_sidebar {
+  background-color: red;
+  float: left;
+  width: 200px;
+}
+
+.l_sidebar_right {
+  float: right;
+}
+
+.l_main {
+  border: 1px solid white;
+  overflow: hidden;
+}
+
+.l_row {
+  margin: -20px -10px 0 -10px;
+}
+
+.l_col {
+  float: left;
+  width: 33.3333333%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  margin-top: 20px;
 }
 
 /* Components */
+body {
+  background-color: #0e0e0e;
+  color: #999;
+}
+
 .header {
-  background-color: #999;
+  color: white;
+  padding: 20px 0;
+  position: relative;
+  /* 여기서의 position relative의 역할? */
+}
+.header-inside {
+  border: 1px solid white;
+}
+
+.header-logo {
+  background-color: orange;
+  float: left;
+  background-image: url("/assets/images/practice/household/logo.png");
+  width: 115px;
+  height: 40px;
+  background-size: cover;
+  /* 이미지들은 준비할때 적용할 CSS보다 큰 것을 준비해야
+  CSS적용시에도 깨지지 않는다. */
+}
+
+.header-menu {
+  float: right;
+}
+
+.header-menu li {
+  float: left;
+  border-left: 1px solid;
+}
+.header-menu li a {
+  height: 40px;
+  display: block;
+  padding: 0 10px;
+  line-height: 40px;
+  /* line-height 는 위 아래에 40px을 20px씩 줘서 
+  가운데 정렬을 하게끔 만들어준다.; */
+
+  /* menu li vs menu li a 
+  이 둘중  어떤곳에 높이를 주는것이 좋을까?
+  바로 a 테그한테 주는것이 좋다. 그 이유는 a가 눌려야하는데 a를 크게하면 실질 메뉴처럼 누를수 있기 때문이다. 하지만 a테그는 inline이므로 block으로 처리해줘야한다.*/
 }
 
 .cover {
   background-color: #666;
+  background-image: url("/assets/images/practice/household/header-cover.png");
+  color: white;
+  background-size: cover;
+  background-position: center;
+  margin-top: -82px;
+  padding-top: 82px;
+}
+
+.cover-contents {
+  padding: 60px 0;
+  max-width: 450px;
+}
+
+.cover-contents h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cover-contents p {
+  color: #666;
+  line-height: 1.4;
 }
 
 .contents {
+}
+
+.category {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 10px 0;
+}
+.category-wrapper {
+  margin: 0 -5px;
+}
+/* 위쪽과 카테고리의 좌우를 맞추기 위해 */
+
+.category-list {
+  display: table;
+  width: 100%;
+}
+
+.category-list li {
+  display: table-cell;
+}
+/* css단에서 table로 만들기? 
+table로 만든 grid의 장점은 테이블의 갯수를 조절해도
+알아서 그 비율을 유지한다는것이다.
+그러나 단점은 너비를 100%를 줬다고 해서 
+자식들의 너비가 100%안으로 모두 들어가는게 아니다.
+이게 너무 큰 단점이기에 잘 사용하지 않음*/
+
+.category-anchor {
+  display: block;
+  background-color: red;
+  height: 50px;
+  margin: 0 5px;
+  position: relative;
+}
+
+.category-anchor-bg {
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+
+.category-anchor::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: #000;
+  opacity: 0.5;
+}
+/* 이미지를 조금 어둡게 해서 글자를 더 잘 보이게 하기 위한 CSS */
+
+.category-anchor strong {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  text-align: center;
+  transform: translateY(-50%);
+  /*  transform: translateY(-50%); 이게 뭐지? */
+  color: white;
+  z-index: 10;
 }
 
 .section {
