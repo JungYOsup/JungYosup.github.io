@@ -1299,7 +1299,7 @@ upper-box라는것을 굳이 만들필요 없고, upper-box에 있는 padding을
 
 * 2.transform 에 대한 내용
 
-## 결론
+### 결론
 
 - **1. float를 이용한 grid는 한계가 있다.**
 
