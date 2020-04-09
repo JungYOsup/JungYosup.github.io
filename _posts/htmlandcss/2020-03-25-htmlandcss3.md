@@ -134,7 +134,7 @@ toc_sticky: true
 
 - **이미지의 중요성**
 
-  - 이미지의 경우 inline-block이기 때문에 생기는 하단의 공간이 있다.
+  - 이미지의 경우 inline이기 때문에 생기는 하단의 공간이 있다.
 
   * 해결방법 : display: block이나 vertical-align : top을 사용한다
 

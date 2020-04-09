@@ -1,0 +1,102 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #1f2d3d;
+  line-height: 1.4545454545;
+}
+
+span {
+  font-size: 14px;
+  font-weight: 400;
+  color: #7d858f;
+  line-height: 1.5;
+}
+
+strong {
+  font-size: 22px;
+  color: #2860e1;
+  line-height: 1.0909090909;
+}
+
+strong span {
+  font-size: 16px;
+  font-weight: 400;
+  color: #525d69;
+  line-height: 1.5;
+}
+
+button {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: transparent;
+}
+
+/* ▼ WHERE YOUR CODE BEGINS */
+
+.card {
+  width: 400px;
+}
+
+.card-carousel {
+  position: relative;
+  background-color: black;
+}
+
+.card-carousel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+#prev,
+#next {
+  position: absolute;
+  top: 50%;
+  /*기준점으로 잡은 즉 relative로 잡은 것을 기준으로 한다. 
+  그리고 50%부터 이미지를배치하기 때문에 화면상으로 볼때 반에 위치하는것 처럼 보이지 않는다.*/
+
+  transform: translateY(-50%);
+  /* 이미지 배치의 문제를 고치기 위해 사용하는 transform : translate(X,Y) , X축과 Y축으로 얼마만큼 이동하느냐*/
+  /* transform은 자기자신을 기준으로 하고 있다. 따라서 translateY(-50%)를 하면 자기자신(#prev,#next)의 높이(Y축)의 -50%를 만큼 이동하게 된다 -50%이므로 위로 자기자신의 높이의 반을 올라가게된다.  */
+}
+
+#prev {
+  left: 0;
+}
+#prev {
+  right: 0;
+}
+
+.card-content {
+  padding: 12px 12px;
+}
+
+.card-content h1 {
+  margin-bottom: 2px;
+}
+
+/* margin-bottom으로 해결이 되는 형태라면 margin-bottom만 이용해서 해결하는것이 좋지 
+margin-bottom , margin-top 을 다양하게 이용하는것은 좋지 못하다. */
+
+.card-content strong {
+  display: block;
+  margin-top: 8px;
+  text-align: right;
+}
+
+/* position을 사용할때 아무때나 사용하는것이 아니라, 상황에 맞는 position을 하는게 중요하다. */
