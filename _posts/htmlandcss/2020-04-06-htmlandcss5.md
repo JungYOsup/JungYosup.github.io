@@ -278,7 +278,8 @@ toc_sticky: true
   }
   ```
 
-결론 : 어떤 데이터의 목적이 아닌 꾸미는 용도의 이미지는 background로 쓰는게 좋겠다.
+결론 : 어떤 데이터의 목적이 아닌 꾸미는 용도의 이미지는 background로 쓰는게 좋겠다. 또한 굿이 upper 자체가 재활용으로 쓰지 않을것이기 때문에
+upper-box라는것을 굳이 만들필요 없고, upper-box에 있는 padding을 upper에다가 줘도 같은 결과값을 얻을수 있었다.
 
 - **HTML 구성(3) : header의 text 위치**
 
@@ -744,8 +745,566 @@ toc_sticky: true
   </footer>
   ```
 
-## 꿀팁~
+  - **CSS 구성 : 전체적인 부분**
+
+  - Expert code : CSS의 선택자가 header, main(cover,section), footer 을 이해하기가 쉽게 표현되어있다. 처음 본 사람이 그냥 봐도 어떤부분인지 이해가 됨
+
+  ```css
+  /* Reset */
+  body,
+  ul,
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    list-style-type: none;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  /* Typography */
+  html {
+    font-size: 62.5%;
+    line-height: 1.4;
+  }
+  body {
+    font-size: 1.4rem;
+  }
+
+  /* body가 아닌 html에 한 이유는 html에 typography를 적기로 약속했기 때문이다. */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-size: 100%;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  /* h1~6까지의 font를 두껍게 하지 않고 일반적으로 한다음
+  나중에 css에서 영향을 준다
+  옛날에 말햇듯이 테그들은 브라우저에게 알려주기 위함이지
+  어떠한 꾸미는 용도가 아니라고 했으므로 이렇게 해주는것 같다. */
+
+  /* Commons */
+
+  .clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+
+  /* Layouts */
+
+  .l_wrapper {
+    max-width: 980px;
+    border: 1px solid red;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .l_sidebar {
+    background-color: red;
+    float: left;
+    width: 200px;
+  }
+
+  .l_sidebar_right {
+    float: right;
+  }
+
+  .l_main {
+    border: 1px solid white;
+    overflow: hidden;
+  }
+
+  .l_row {
+    margin: -20px -10px 0 -10px;
+  }
+
+  .l_col {
+    float: left;
+    width: 33.3333333%;
+    padding: 0 10px;
+    box-sizing: border-box;
+    margin-top: 20px;
+  }
+
+  /* Components */
+  body {
+    background-color: #0e0e0e;
+    color: #999;
+  }
+
+  .header {
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    /* 여기서의 position relative의 역할? */
+  }
+  .header-inside {
+    border: 1px solid white;
+  }
+
+  .header-logo {
+    background-color: orange;
+    float: left;
+    background-image: url("/assets/images/practice/household/logo.png");
+    width: 115px;
+    height: 40px;
+    background-size: cover;
+    /* 이미지들은 준비할때 적용할 CSS보다 큰 것을 준비해야
+    CSS적용시에도 깨지지 않는다. */
+  }
+
+  .header-menu {
+    float: right;
+  }
+
+  .header-menu li {
+    float: left;
+    border-left: 1px solid;
+  }
+  .header-menu li a {
+    height: 40px;
+    display: block;
+    padding: 0 10px;
+    line-height: 40px;
+    /* line-height 는 위 아래에 40px을 20px씩 줘서 
+    가운데 정렬을 하게끔 만들어준다.; */
+
+    /* menu li vs menu li a 
+    이 둘중  어떤곳에 높이를 주는것이 좋을까?
+    바로 a 테그한테 주는것이 좋다. 그 이유는 a가 눌려야하는데 a를 크게하면 실질 메뉴처럼 누를수 있기 때문이다. 하지만 a테그는 inline이므로 block으로 처리해줘야한다.*/
+  }
+
+  .cover {
+    background-color: #666;
+    background-image: url("/assets/images/practice/household/header-cover.png");
+    color: white;
+    background-size: cover;
+    background-position: center;
+    margin-top: -82px;
+    padding-top: 82px;
+  }
+
+  .cover-contents {
+    padding: 60px 0;
+    max-width: 450px;
+  }
+
+  .cover-contents h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .cover-contents p {
+    color: #666;
+    line-height: 1.4;
+  }
+
+  .contents {
+  }
+
+  .category {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 10px 0;
+  }
+  .category-wrapper {
+    margin: 0 -5px;
+  }
+  /* 위쪽과 카테고리의 좌우를 맞추기 위해 */
+
+  .category-list {
+    display: table;
+    width: 100%;
+  }
+
+  .category-list li {
+    display: table-cell;
+  }
+  /* css단에서 table로 만들기? 
+  table로 만든 grid의 장점은 테이블의 갯수를 조절해도
+  알아서 그 비율을 유지한다는것이다.
+  그러나 단점은 너비를 100%를 줬다고 해서 
+  자식들의 너비가 100%안으로 모두 들어가는게 아니다.
+  이게 너무 큰 단점이기에 잘 사용하지 않음*/
+
+  .category-anchor {
+    display: block;
+    background-color: red;
+    height: 50px;
+    margin: 0 5px;
+    position: relative;
+  }
+
+  .category-anchor-bg {
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+  }
+
+  .category-anchor::after {
+    content: " ";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #000;
+    opacity: 0.5;
+  }
+  /* 이미지를 조금 어둡게 해서 글자를 더 잘 보이게 하기 위한 CSS */
+
+  .category-anchor strong {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    text-align: center;
+    transform: translateY(-50%);
+    /*  transform: translateY(-50%); 이게 뭐지? */
+    color: white;
+    z-index: 10;
+  }
+
+  .section {
+    background-color: red;
+  }
+
+  .footer {
+    background-color: blue;
+  }
+  ```
+
+  - Yosup code : 선택자의 이름이 부분별하고 , 나만 봤을때 이해가 가능 CSS 선택자 사용..
+
+  ```css
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+
+  body {
+    background-color: black;
+    color: white;
+    text-transform: capitalize;
+    font-size: 80%;
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+
+  p {
+    color: #777;
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  main img {
+    opacity: 0.5;
+  }
+
+  main a:hover img {
+    opacity: 1;
+    transition: all 0.5s ease-in-out;
+  }
+  /* layout */
+
+  .l_row {
+    width: auto;
+  }
+  .l_col {
+    float: left;
+    width: 10%;
+    padding: 5px;
+  }
+
+  .l_title {
+    width: 20%;
+    float: left;
+    padding: 20px 10px;
+  }
+  .l_grid {
+    float: left;
+    width: 80%;
+  }
+
+  /* components */
+  .wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+
+  .upper {
+    background-image: url("/assets//images/practice/household/header-cover.png");
+    height: 500px;
+    /* 이걸 vh로 잡아보니 ipad같은 높이가 긴거에서도 60%가 잡혀버리니까 조금 이상해지는것 같다
+    따라서 그냥 고정값을 주자 */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    padding: 30px 0 0 0;
+  }
+
+  .upper-img {
+    height: 100%;
+  }
+
+  .upper-box {
+    padding: 30px 0 0 0;
+  }
+
+  .item {
+    position: relative;
+    height: 80px;
+  }
+
+  .box-title {
+    position: absolute;
+  }
+
+  /* 여기서 item에게 padding을 주는게 맞는걸까?? 이거 수정이 필요할것 같은 느낌이 든다.*/
+
+  .box-inform {
+    padding: 10px;
+  }
+
+  .box-inform h1 {
+    padding: 30px 0;
+  }
+
+  .sort {
+    padding: 10px;
+  }
+
+  .item2 {
+    position: relative;
+  }
+  .item2 .sort-img {
+    height: 70px;
+  }
+
+  .item2 .sort-title {
+    position: absolute;
+  }
+
+  .contents {
+    padding: 50px 10px;
+  }
+
+  .item3 {
+    position: relative;
+  }
+
+  .item3 .grid-title {
+    position: absolute;
+    padding: 10px;
+    bottom: 0;
+    left: 0;
+    font-family: "Nanum Gothic", sans-serif;
+  }
+
+  .lower {
+    padding: 0 10px 40px 10px;
+  }
+  .additional {
+    float: left;
+    margin-right: 20px;
+  }
+  .additional h2 {
+    margin: 10px 0px;
+  }
+
+  .additional a {
+    color: #777;
+  }
+
+  /* 이미지는 텍스트이기때문에 다른요소가 absolute를 잡았을때 relative 역할을 못하나보다 */
+
+  /* commons */
+
+  .clearfix::after {
+    content: " ";
+    display: block;
+    clear: both;
+  }
+
+  .textmiddle {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* 가운데 정렬 완성.. 이게 의미하는게 뭔지 알아보자 */
+  }
+
+  .border_white {
+    border: 1px solid white;
+  }
+
+  /* utility */
+
+  .l_col_10_10 {
+    width: 100%;
+  }
+  .l_col_9_10 {
+    width: 90%;
+  }
+  .l_col_8_10 {
+    width: 80%;
+  }
+  .l_col_7_10 {
+    width: 70%;
+  }
+  .l_col_6_10 {
+    width: 60%;
+  }
+  .l_col_5_10 {
+    width: 50%;
+  }
+  .l_col_4_10 {
+    width: 40%;
+  }
+  .l_col_3_10 {
+    width: 30%;
+  }
+  .l_col_2_10 {
+    width: 20%;
+  }
+  .l_col_1_10 {
+    width: 10%;
+  }
+
+  .l_col_12_12 {
+    width: 100%;
+  }
+  .l_col_11_12 {
+    width: 91.66666667%;
+  }
+  .l_col_10_12 {
+    width: 83.33333333%;
+  }
+  .l_col_9_12 {
+    width: 75%;
+  }
+  .l_col_8_12 {
+    width: 66.66666667%;
+  }
+  .l_col_7_12 {
+    width: 58.33333333%;
+  }
+  .l_col_6_12 {
+    width: 50%;
+  }
+  .l_col_5_12 {
+    width: 41.66666667%;
+  }
+  .l_col_4_12 {
+    width: 33.33333333%;
+  }
+  .l_col_3_12 {
+    width: 25%;
+  }
+  .l_col_2_12 {
+    width: 16.66666667%;
+  }
+  .l_col_1_12 {
+    width: 8.33333333%;
+  }
+
+  /* mediaqueries  */
+
+  /* laptop */
+
+  /* tablet */
+  @media screen and (max-width: 768px) {
+    body {
+      font-size: 60%;
+    }
+    .l_title {
+      width: auto;
+    }
+    .l_grid {
+      width: auto;
+    }
+  }
+  /* mobile */
+  @media screen and (max-width: 430px) {
+    body {
+      font-size: 55%;
+    }
+
+    .l_col_12_mb_12 {
+      width: 100%;
+    }
+    .l_col_11_mb_12 {
+      width: 91.66666667%;
+    }
+    .l_col_10_mb_12 {
+      width: 83.33333333%;
+    }
+    .l_col_9_mb_12 {
+      width: 75%;
+    }
+    .l_col_8_mb_12 {
+      width: 66.66666667%;
+    }
+    .l_col_7_mb_12 {
+      width: 58.33333333%;
+    }
+    .l_col_6_mb_12 {
+      width: 50%;
+    }
+    .l_col_5_mb_12 {
+      width: 41.66666667%;
+    }
+    .l_col_4_mb_12 {
+      width: 33.33333333%;
+    }
+    .l_col_3_mb_12 {
+      width: 25%;
+    }
+    .l_col_2_mb_12 {
+      width: 16.66666667%;
+    }
+    .l_col_1_mb_12 {
+      width: 8.33333333%;
+    }
+  }
+  ```
+
+### 꿀팁~
 
 - 1.외부에서 데이터를 받아서 와야하는 부분의 경우 css단에서 background로 이미지를 주면 안된다. 예전에 배웠듯이 css를 배경화면으로 주는 이유는 바로 중요하지 않는거에만 그렇게 했다. 데이터의 의미를 지닌 이미지의 경우는 img 테그를 써야한다.
 
 * 2.transform 에 대한 내용
+
+## 결론
+
+- 1. float를 이용한 grid는 한계가 있다.
+
+* 2. 재활용할 layout을 잡는게 중요하며, layout을 잡을때 숲을 먼저 잡는게 중요하다.
+
+- 3. layout을 잡은 테그는 배경이나, 어떠한 꾸미기 용도가 아니다, 따라서 꾸미는 용도의 테그를 하나 더 잡아줘야 한다.
+
+* 4. 재활용될수 있는 영역을 판단하고 , 재활용을 하자
