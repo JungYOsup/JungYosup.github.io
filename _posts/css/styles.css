@@ -4,99 +4,116 @@
 }
 
 body {
-  font-family: "Noto Sans KR", sans-serif;
-  letter-spacing: -0.02em;
+  width: 100%;
+  height: 100vh;
+  font-family: "Nunito Sans", sans-serif;
+  color: #273444;
+  background-color: #000;
 }
 
-h1 {
-  font-size: 22px;
-  font-weight: 500;
-  color: #1f2d3d;
-  line-height: 1.4545454545;
+input:focus,
+input:active,
+button:focus,
+button:active {
+  box-shadow: none;
+  outline: none;
 }
 
-span {
-  font-size: 14px;
-  font-weight: 400;
-  color: #7d858f;
-  line-height: 1.5;
+.modal {
+  background-color: #fff;
 }
 
-strong {
-  font-size: 22px;
-  color: #2860e1;
-  line-height: 1.0909090909;
+.modal-title {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.6666666667;
 }
 
-strong span {
+.modal-desc {
   font-size: 16px;
-  font-weight: 400;
-  color: #525d69;
   line-height: 1.5;
 }
 
-button {
-  display: block;
-  width: 28px;
-  height: 28px;
+.input-group input,
+.input-group button {
+  font-size: 14px;
+  font-family: "Nunito Sans", sans-serif;
+  line-height: 1.4285714286;
+}
+
+.close-button {
+  width: 20px;
+  height: 20px;
   border: none;
+  background-color: transparent;
+  background-position: center center;
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center center;
-  background-color: transparent;
 }
 
 /* ▼ WHERE YOUR CODE BEGINS */
 
-.card {
-  width: 400px;
-}
+.modal {
+  position: fixed;
+  /* position fixed를 선언하면 허점있는 block요소가 되는데
+   따라서 그 텍스트 만큼 자리잡지만 padding이 있기때문에 
+   padding을 포함한 모습을 보이게 된다.
+   또한 fixed의 기준점은 viewport 이기 떄문에 이걸 기준으로 위치를 지정햇다*/
 
-.card-carousel {
-  position: relative;
-  background-color: black;
-}
-
-.card-carousel img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-#prev,
-#next {
-  position: absolute;
   top: 50%;
-  /*기준점으로 잡은 즉 relative로 잡은 것을 기준으로 한다. 
-  그리고 50%부터 이미지를배치하기 때문에 화면상으로 볼때 반에 위치하는것 처럼 보이지 않는다.*/
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* 그래서 top과 left 50%로 줬지만 화면상 이상하므로 transform을 해줘서 가운데정렬을 맞춰줬다. */
 
-  transform: translateY(-50%);
-  /* 이미지 배치의 문제를 고치기 위해 사용하는 transform : translate(X,Y) , X축과 Y축으로 얼마만큼 이동하느냐*/
-  /* transform은 자기자신을 기준으로 하고 있다. 따라서 translateY(-50%)를 하면 자기자신(#prev,#next)의 높이(Y축)의 -50%를 만큼 이동하게 된다 -50%이므로 위로 자기자신의 높이의 반을 올라가게된다.  */
+  padding: 32px 40px;
 }
 
-#prev {
-  left: 0;
-}
-#prev {
-  right: 0;
+.modal-title,
+.modal-desc {
+  text-align: center;
 }
 
-.card-content {
-  padding: 12px 12px;
+.modal-title {
+  margin-bottom: 4px;
 }
 
-.card-content h1 {
-  margin-bottom: 2px;
+.modal-desc {
+  width: 590px;
+  margin: 0 auto;
 }
 
-/* margin-bottom으로 해결이 되는 형태라면 margin-bottom만 이용해서 해결하는것이 좋지 
-margin-bottom , margin-top 을 다양하게 이용하는것은 좋지 못하다. */
-
-.card-content strong {
-  display: block;
-  margin-top: 8px;
-  text-align: right;
+.input-group {
+  text-align: center;
 }
 
-/* position을 사용할때 아무때나 사용하는것이 아니라, 상황에 맞는 position을 하는게 중요하다. */
+/* block 요소안에 inline요소의 정렬을 위해 사용되는 text-align
+
+block 요소 안의 inline-block 또는 inline은 text-align이 먹힌다는 사실..!! 
+하지만 이것보다 더 좋은 방식이 있으니 이부분은 참고만 하자 */
+
+.input-group input {
+  width: 200px;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 4px;
+  border: none;
+  margin-right: 8px;
+  background-color: white;
+}
+
+/* 가운데 정렬을 하기위해 padding이나 margin을 사용하는 건 별로 좋지 않은 방법 같다. 너무 px의 값이 커질수도 있으니.. */
+
+.input-group button {
+  height: 36px;
+  padding: 0 14px;
+  border-radius: 4px;
+  border: none;
+  background-attachment: #2860e1;
+}
+
+.close-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  /* 우리가 position absolute를 했을때 다른곳의 기준점을 주기위해  .modal에 position :relative를 넣어야하지만, 여기서는 .modal에 이미 positon : fixed가 있기때문에 또 선언해줄필요가 잆다.  */
+}
