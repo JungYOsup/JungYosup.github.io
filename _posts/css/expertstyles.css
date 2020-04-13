@@ -43,23 +43,20 @@ a {
 /* ▼ WHERE YOUR CODE BEGINS */
 
 .banner {
-  width: 100%;
   position: fixed;
   bottom: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: yellow;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
   height: 64px;
 }
 
-.banner-title {
-  font-size: 18px;
-}
 .banner-title a {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
+  height: 64px;
   font-size: 18px;
 }
 
@@ -76,6 +73,7 @@ a {
 }
 .landing-title {
   text-align: right;
+  margin-bottom: 24px;
 }
 
 .landing-link {
@@ -83,27 +81,36 @@ a {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 130px;
+  width: 160px;
   height: 52px;
-  border: 1px solid white;
-  border-radius: 16px;
   font-size: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: 2px solid white;
+  border-radius: 16px;
 }
 
 /* 이름은 white 색인데 배경색에 opacity를 줄경우 font도 흐려지는 현상을 고치는법?  a테그를 가운데 정렬하는방법? 
-a테그에 flex를 주면 그 하위요소인 contents도 적용이 되는구나*/
+  a테그에 flex를 주면 그 하위요소인 contents도 적용이 되는구나*/
 
-@media screen and (min-width: 375px) {
+@media screen and (min-width: 768px) {
   .banner {
-    position: unset;
+    top: 0;
+    bottom: auto;
   }
-  .landing {
-    align-items: center;
+  .banner-title a {
+    height: 80px;
   }
 
   .landing-title {
     text-align: center;
-    font-size: 30px;
+    font-size: 50px;
     padding-bottom: 15px;
+  }
+
+  .landing-link {
+    font-size: 18px;
+    width: 180px;
+    height: 56px;
+    margin-bottom: 32px;
   }
 }
