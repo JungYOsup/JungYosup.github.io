@@ -1,0 +1,54 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.rd-only {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+}
+
+img {
+  display: block;
+}
+
+/* layout */
+
+.l_wrapper {
+}
+
+/* Components */
+
+.menu {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.main-title {
+}
+
+.media {
+  background-color: blue;
+}
+
+.contents {
+  background-attachment: red;
+}
+
+.section {
+  background-color: green;
+}
+.aside {
+  background-color: gray;
+}
