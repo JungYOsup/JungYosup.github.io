@@ -155,18 +155,17 @@ img {
   flex: 0 1 30%;
 }
 
+.box_title {
+  flex: 0 1 70%;
+  padding-left: 10px;
+  font-size: 0.5rem;
+}
 .box_img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-}
-
-.box_title {
-  flex: 0 1 70%;
-  padding-left: 10px;
-  font-size: 0.5rem;
 }
 
 /* media quaries */
