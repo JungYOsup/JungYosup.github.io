@@ -55,6 +55,11 @@ header {
   color: var(--white-color);
 }
 
+header .title {
+  margin-right: auto;
+  padding-left: var(--side-padding);
+}
+
 header .logo {
   font-size: var(--font-large);
 }
