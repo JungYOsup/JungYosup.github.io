@@ -1,34 +1,13 @@
-html,
-body {
-  height: 100%;
-}
 .wrap {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-.header {
-  height: 65px;
-  background-color: #00c73c;
-}
-.tablist {
-  height: 70px;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
-  background-color: white;
+  width: 100px;
+  height: 500px;
 }
 
-.content {
-  display: flex;
-  flex: 1;
-}
-.aside {
-  display: flex;
-  flex: none;
-  width: 400px;
-  background-color: #bfbab078;
-}
-.main {
-  display: flex;
-  flex: 1;
-  overflow: auto;
-}
+/* flex된 요소에서는 margin auto가 이유는 모르겠으나 먹힌다는거 너비를 주지 않고도 먹힌다는거 */
+
+/* flex-dircetion : row일때는 item 들이 이상한 block 처럼 contents 만큼 너비를 차지하고
+높이는 container 높이만큼 늘어난다. */
+
+/* flex-direction : column일때는 item들이 contents만큼 높이를 차지하고 너비는 container만큼 너비를 차지한다. */
+
+/* inline요소를 flex로 바꾸니까 모자란 block요소로 바뀌네 */
