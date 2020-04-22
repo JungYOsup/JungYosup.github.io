@@ -24,7 +24,7 @@ toc_sticky: true
 
 ## 4. 어쨌든 이벤트 루프는 무엇입니까? (중요)
 
-[What the heck is the event loop anyway? | Philip Roberts | JSConf EU](https://www.youtube.com/watch?time_continue=791&v=8aGhZQkoFbQ)
+[What the heck is the event loop anyway?](https://www.youtube.com/watch?time_continue=791&v=8aGhZQkoFbQ)
 
 ## 5. 자바스크립트 외 다양한 언어에 이해를 돕는 사이트
 
