@@ -1,5 +1,5 @@
 ---
-title: "Javascript에 대해서 필수로 알아둬야할 자료들"
+title: "2.Javascript에 대해서 필수로 알아둬야할 자료들"
 excerpt: "javascript 자료들"
 categories:
   - javascript

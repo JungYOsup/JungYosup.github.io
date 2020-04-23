@@ -1,14 +1,4 @@
-let a = 20;
+const symbol1 = Symbol.for("id");
+const symbol2 = Symbol.for("id");
 
-function abc() {
-  console.log(a);
-  let b = 30;
-}
-
-{
-  let c = 40;
-}
-
-abc(); //20
-console.log(b); // b is not defined
-console.log(c); // c is not defined
+console.log(`value: ${symbol1}, type: ${typeof symbol1}`);
