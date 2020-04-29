@@ -114,9 +114,9 @@ toc_sticky: true
   ```javascript
   var elm = document.getElementById("elm");
   elm.insertAdjacentHTML("beforebegin", "<span>Hey-</span>");
-  elm.insertAdjacentHTML("afterbegin", "<span>Hey-</span>");
-  elm.insertAdjacentHTML("beforeend", "<span>Hey-</span>");
-  elm.insertAdjacentHTML("afterend", "<span>Hey-</span>");
+  elm.insertAdjacentHTML("afterbegin", "<span>dude-</span>");
+  elm.insertAdjacentHTML("beforeend", "<span>are-</span>");
+  elm.insertAdjacentHTML("afterend", "<span>you?-</span>");
 
   console.log(document.body.innerHTML);
 
@@ -405,10 +405,10 @@ toc_sticky: true
   console.log(ul.children); // HTMLCollenction이며, 모든 자식 노드는 text를 가짐
 
   // 첫 번째 li의 부모 element는?
-  console.log(ul.firstElementCild.parentElement); //ul이 출력
+  console.log(ul.firstElementChild.parentElement); //ul이 출력
   ```
 
-- 1.1.16 ccontains()와 compareDocumentPosition()으로 DOm 트리 내의 Node 위치를 확인하기
+- 1.1.16 contains()와 compareDocumentPosition()으로 DOm 트리 내의 Node 위치를 확인하기
 
   노드의 contains() 메서드를 활용하면 특정 노드가 다른 노드내에 포함되어있는지를 확이날수 있다.
   그리고 리턴값으로 boolean값을 전달해준다.
@@ -442,4 +442,134 @@ console.log(input[0].isEqualNode(input[1]));
 //자식 text 노드가 동일하지 않으므로 false
 ```
 
-주목 : 두 노드가 와전히 동일한지가 아니라. 두 노드 참조가 동일한 노드를 참조하고 있는지 알고 싶다면 === 연산자를 사용하여 간단하게 확인해볼수 있다.
+주목 : 두 노드가 완전전히 동일한지가 아니라. 두 노드 참조가 동일한 노드를 참조하고 있는지 알고 싶다면 === 연산자를 사용하여 간단하게 확인해볼수 있다.
+
+## 2. Document 노드
+
+### 2.1 document 노드 개요
+
+document로 부터 상속되는 HTMLDocument 생성자는 DOM 내에 DOCUMENT_NODE(window.document)를 생성한다.
+
+```js
+console.log(window.document.constructure); // function HTMLDocument(){ [native code]}
+console.log(window.document.nodeType); // DOCUMENT_NODE에 대한 숫자 키 매핑인 9가 출력
+```
+
+HTMLDocument 생성자 함수가 window.document 노드 개체를 생성하며, 이 노드가 DOCUMENT_NODE 개체이다.
+
+### 2.2 HTMLDocument의 속성 및 메서드
+
+HTMLDocument 노드(window.document)에 존재하는 속성 및 메서드들중 주목해야할 속성과 메서드는 다음과 같다
+
+- doctype
+
+* documentElement
+
+* implementation.
+
+* activeElement
+
+* body
+
+* head
+
+* title
+
+- lastModified
+
+- referrer
+
+- URL
+
+- defaultview
+
+- compatMode
+
+- ownerDocument
+
+- hasFocus();
+
+* 주목 : HTMLDocument 노드 개체(window.document)는 DOM를 다룰 때 사용 가능한 수많은 메서드와 속성(ex) document.querySelectorAll())에 접근하는 데 사용된다.
+
+### 2.3 일반적인 HTML 문서정보 얻기
+
+- document 개체는 로드된 HTML 문서/DOM에 대한 일반적인 정보에 접근할 수 있게 해준다.
+
+```javascript
+const d = document;
+
+console.log("title = " + d.title); //Document
+console.log("url = " + d.URL); // url 주소
+console.log("referrer = " + d.referrer); //참조 주소
+console.log("lastModified = " + d.lastModified); // 마지막 수정일
+
+//BackComapt(Quirks 모드) 또는 CSS1Compat(Strict 모드) 중 하나가 출력된다.
+
+console.log("compatibility mode = " + d.compatMode); //CSS!compat
+```
+
+### 2.4 document 자식 노드
+
+- document 개체의 자식은 doctype/DTD 와 <html lang="en"> 이 포함된 배열을 얻게 될것이다.
+
+```js
+console.log(document.childNodes[0].nodeType); // DOCUMENT_TYPE_NODE를 의미하는 숫자 키 10이 출력
+
+console.log(document.childNodes[1].nodeType); // Element_TYPE_NODE를 이미하는 숫자 키 1이 출력
+```
+
+- 주목 : 참고로 DOCUMENT_TYPE_NODE와 DOCUMENT_NODE는 다르다. 그리고 HTMLDocument 생성자에서 생성되는 **window.document 개체** 와 **Document 개체** 를 혼동해서는 안된다. widow.document가 DOM 인터페이스에 시작점이라는 것만 기억하자. Document.childNodes가 자식 노드를 가지고 있는 이유가 바로 이 때문이다.
+
+### 2.5 document는 <!Doctype>,<html>,<head>,<body>에 대한 바로가기를 제공한다.
+
+```js
+console.log(document.doctype); //DocumentType NOde
+console.log(document.documentElement); //<html lang="en">가 출력
+console.log(document.head); // <head>
+console.log(document.body); // <body>
+```
+
+- 주목 doctype과 DTD의 nodetype은 10 또는 DOCUMENT_TYPE_NODE이며, DOCUMENT_NODE(즉 HTMLDocument()로부터 생성되는 window.document)와 혼동해서는 안된다.
+
+### 2.6 document.implementation.hasFeature()를 사용하여 DOM 사양/기능 탐지
+
+- document.implementation.hasFeature()를 사용하면 현재 문서에 대한 브라우저가 구현/지원하는 기능 및 수준에 대해 물어 볼 수 있다. 예를들어 브라우저가 Core DOM level3 사양을 구현했는지 물어보려면 다음과 같은 코드를 사용한다.
+
+```js
+console.log(document.implementation.hasFeature("Core", "2.0"));
+console.log(document.implementation.hasFeature("Core", "3.0"));
+```
+
+### 2.7 문서 내에서 포커스를 가지고 있거나 활성 상태인 노드에 대한 참조를 얻기
+
+- document.activeElement를 사용하면, 문서 내에서 포커스를 가지고 있거나 활성 상태인 노드에 대한 참조를 바로 얻을 수 있다.
+
+```js
+document.querySelector("textarea").focus();
+
+//문서내에서 포커스를 가지고 있거나 활성 상태인 element에 대한 참조르 얻음
+console.log(document.activeElement); //textarea가 출력됨
+```
+
+- 주목 : **포커스를 가지고 있거나 활성 상태인 element는 포커스를 받을 수 있는 element를 반환한다. 노드를 선택하는 것(마우스를 사용하여 HTML 페이지 내에서 반전된 영역), 키스트로크, 스페이스바,마우스로 무언가를 입력하기 위해 포커스를 받은 element를 혼동하지 말자.**
+
+### 2.8 문서 혹은 문서 내의 특정 노드가 포커스를 가지고 있는지 판별하기
+
+- document.hasFocus() 메서드를 사용하면, 사용자가 현재 해당 HTML 문서가 로드된 창에 포커스를 두고 있는지를 확인할 수 잇다.
+
+```js
+// 문서가 로드된 창/텝에 계속 포커스를 두면 true를 반환한다. 그렇지 않을경우 false가 반환된다.
+setTimeout(function () {
+  console.log(document.hasFocus());
+}, 5000);
+```
+
+### 2.9 document.defaultView는 최상위/전역 개체에 대한 바로가기이다.
+
+- defaultView 속성은 javascript 최상위 개체, 혹은 전역 개체라고 불리는것에 대한 바로가기 이다. 웹 브라우저에서 최상위 개체는 window개체이므로, javaScript 브라우저 환경에서 defaultView는 이 개체를 가리킨다.
+
+* 최상위 개체가 없는 DOM이나 웹 브라우저 내에서 실행되지 않는 javascript 환경(Node.js)의 경우 이 속성을 통해 최상위 개체 영역에 접근할 수 있게 해준다.
+
+### 2.10 Element에서 ownerDocument를 사용하여 Document에 대한 참조 얻기
+
+- 노드에서 onwerDocument 속성을 호출하면, 노드가 포함된 document에 대한 참조를 반환한다.
