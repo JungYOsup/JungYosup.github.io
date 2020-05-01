@@ -573,3 +573,143 @@ setTimeout(function () {
 ### 2.10 Element에서 ownerDocument를 사용하여 Document에 대한 참조 얻기
 
 - 노드에서 onwerDocument 속성을 호출하면, 노드가 포함된 document에 대한 참조를 반환한다.
+
+## 3. Element 노드
+
+### 3.1 HTML Element 개체 개요
+
+각 element들은 고유한 성질을 가지며, 각자 element를 Dom 트로내의 노드 개체로 인스턴스화 하는 고유한 Javascript 생성자를 가진다.
+예를 들어 <a> element 는 HTMLAnchorElement() 생성자를 통해 DOM 노드로 만들어 진다. **즉 각 element들은 노드개체로 인스턴스화 하는 Javascript 생성자를 가진다.**
+
+### 3.2 HTML Element 개체의 속성 및 메서드(상속 받은것 포함)
+
+- createElement()
+
+- tagName
+
+* children
+
+- getAttribute()
+
+- setAttribute()
+
+- hasAttribute()
+
+- removeAttribute()
+
+- classList()
+
+- dataset
+
+- attributes
+
+### 3.3 Element 생성
+
+Element 노드는, 브라우자가 HTML 문서를 해석하여 DOM이 만들어질 때 인스턴스화 된다.
+이것 외에 createElement()를 사용하여 프로그램밍적으로도 Element 노드를 생성할수 있다.
+
+```js
+let elementNode = document.creatElement("textarea");
+
+document.body.appendChild(elementNode);
+```
+
+### 3.4 Element의 태그 이름 얻기
+
+tagName 속성을 사용하면, element의 이름에 접근할 수 있다. tagName속성은 nodeName이 반환하는 것과 동일한 값을 반환한다. 원본 HTML문서에서의 대소문자 여부에 관계없이 둘다 값을 대문자로 반환한다.
+
+```html
+<a href="#">Hi</a>
+```
+
+```js
+console.log(document.querySelector("a").tagName); //A 가 출력
+console.log(document.querySelector("a").nodeName); //A가 출력
+```
+
+### 3.5 Element의 Attribute 및 값에 대한 리스트/컬렉션 얻기(좋은방법X)
+
+```html
+<a href="#" title="title" data-foo="dataFoo"> </a>
+```
+
+```js
+var atts = document.querySelector("a").attributes;
+// 배열형태로 반환한다.
+```
+
+- 주목 : **attributes를 사용 하여 속성에 변화를 주는것보다도, getAttribute(), setAttribute(), hasAttribute9), removeAttribute()를 사용하는것이 좋다.** attributes를 사용할 때의 유일한 이점은 라이브 상태의 attributes 목록을 반환한다는 것이다.
+
+### 3.6 Element의 Attribute 값 획득, 설정(재설정), 제거
+
+element 의 attribute 값을 가져오고, 설정 및 제거하기 위한 가장 일관된 방법은 getAttribute(), setAttribute(), removeAttribute() 메서드를 사용하는 것이 좋다.
+
+- 주목 : **attribute가 없을때, setAttribute를 사용하여 attribute 값을 null이나 ''를 설정하지 말고 removeAttribute()를 사용하는것이 좋다.**
+
+**일부 element attribute는 element 노드에서 개체 속성으로 존재한다. 예를들어 document.body.id 나 document.body.className, 작성자는 이 속성을 사용하지 말고 attribute에 대한 remove , set, get 메서드를 사용하도록 권고하고 있다.**
+
+```js
+//bad example
+let a = (document.querySelector("a").className = "안녕");
+console.log(document.querySelector("a")); //<a href class="안녕"></a>
+
+//good example
+
+let a = document.querySelector("a").setAttribute("class", "안녕");
+console.log(document.querySelector("a")); //<a href class="안녕"></a>
+```
+
+### 3.7 Element의 특정 attrbute를 가지고 있는지 확인하기
+
+- element가 attribute를 가지고 있는지 판별(boolean으로 return) 하기 위한 가장 좋은 방법은 hasAttribute() 메서드를 사용하는것이다.
+
+### 3.8 Class Attribute 값 리스트 얻기
+
+- element 노드에 존재하는 classList 속성을 사용하면 className 속성에서 반환되는 공백으로 구분된 문자열 값을 사용하는 것보다 훨신 쉽게 class attribute 값 리스트에 접근할수 있다.
+
+```html
+<div class="big brown bear"></div>
+```
+
+```js
+let elm = docuemnt.querySelector("div");
+
+console.log(elm.classList); // big brown bear{0="big" , 1="brown", 2="bear" , length=3 ,...}
+console.log(elm.className); // big brown bear
+```
+
+주목 : **classList는 유사배열 컬랙션이며, 읽기전용인 length 속성을 가진다. classList는 읽기 전용이지만, add(), remove(), contains(), toggle() 메서드를 사용해서 변경할수 있다.**
+
+### 3.9 class attribute에 하위 값 추가 및 제거하기
+
+```js
+let elm = document.querySelector("div");
+
+elm.classList.add("cat");
+elm.calssList.remove("dog");
+```
+
+### 3.10 class attribute 값 토글
+
+- classList.toggle() 메서드를 사용하면, class attribute의 하위 값을 토글시킬 수 있다. **이 메서드는 값이 누락된 경우 추가하거나 값이 이미 있는 경우 제거할 수 있게 해준다.**
+
+```html
+<div class="visible"></div>
+```
+
+```js
+let elm = document.querySelector("div");
+
+elm.classList.toggle("visible"); //기존에 visible이 있으므로 삭제
+elm.classList.toggle("grow"); // 기존에 grow가 없으므로 생성
+
+console.log(elm.className); //grow
+```
+
+### 3.11 class attribute 값이 특정 값을 가지고 있는지 판별하기
+
+classList.containes() 메서드를 사용하면 class attribute 값이 특정 하위 값을 가지고 있는지를 판별 할 수 있다.
+
+### 3.12 data attribute를 가져오고 설정하기(이 꼴을 언제쓰는지 잘 모르겠다.)
+
+- 나중에 다시 확인해보자
