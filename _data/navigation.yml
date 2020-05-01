@@ -12,6 +12,9 @@ main:
   - title: "javascript"
     url: /javascript/
 
+  - title: "jsproject"
+    url: /jsproject/
+
   - title: "react"
     url: /react/
 

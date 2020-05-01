@@ -1,8 +1,8 @@
 ---
-title: "Javascript로 Chrome 만들기"
+title: "1.Javascript로 Chrome 만들기"
 excerpt: "javascript 프로젝트 첫번째"
 categories:
-  - javascript
+  - jsproject
 tags:
   - jekyll
 last_modified_at: 2018-07-01T13:00:00+09:00
