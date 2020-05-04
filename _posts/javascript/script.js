@@ -1,3 +1,9 @@
-let a = document.querySelector("a").setAttribute("class", "안녕");
+"use strict";
 
-console.log(document.querySelector("a"));
+const a = 10;
+
+function Person() {
+  console.log(this);
+}
+
+Person();
