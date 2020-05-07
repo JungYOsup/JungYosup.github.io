@@ -1,12 +1,10 @@
-const a = document.querySelectorAll("li");
-const b = document.getElementsByTagName("li");
-const c = document.getElementsByClassName("liClass");
-console.log(a);
-console.log(b);
-console.log(c);
+"use strict";
 
-const li = document.createElement("li");
-const ul = document.querySelector("ul");
+const user = { name: "ellie", age: "20" };
+const user4 = {};
+Object.assign(user4, user);
 
-li.setAttribute("class", "hoho");
-ul.appendChild(li);
+user4.name = "yosup";
+
+console.log(user4);
+console.log(user);
