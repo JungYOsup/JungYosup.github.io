@@ -712,4 +712,138 @@ classList.containes() 메서드를 사용하면 class attribute 값이 특정 �
 
 ### 3.12 data attribute를 가져오고 설정하기(이 꼴을 언제쓰는지 잘 모르겠다.)
 
-- 나중에 다시 확인해보자
+- data- 에 관련된 자료 [data-](https://developer.mozilla.org/ko/docs/Learn/HTML/Howto/%EB%8D%B0%EC%9D%B4%ED%84%B0_%EC%86%8D%EC%84%B1_%EC%82%AC%EC%9A%A9%ED%95%98%EA%B8%B0)
+
+## 4.Element 노드 선택
+
+### 4.1 특정 Element 노드 선택하기
+
+단일 element 노드에 대한 참조를 얻는데 가장 흔히 사용되는 메서드는 다음과 같다.
+
+- querySelector()
+
+- getElementById();
+
+```html
+<body>
+  <ul>
+    <li>Hello</li>
+    <li>big</li>
+    <li>bad</li>
+    <li id="last">world</li>
+  </ul>
+</body>
+```
+
+```js
+console.log(document.querySelector("li").textContent); //Hello 출력
+console.log(document.getElementById("last").textContent); //world 출력
+```
+
+- getElementById()메서드는 querySelector() 메서드에 비해 매우 단순하다.
+- qurySelector() 메서드는 CSS selector 문법 형식의 매개변수를 사용하기 때문에 특정 단일 li에 접근을 하려면 querySelector(body>ul>li:nth-of-type(2))를 전달해야한다.
+
+* 주목 : querySelector()는 selector 기반으로 문서 내에서 발견되는 **첫번째 노드 element를** 반환한다. querySelector()는 element 노드에도 정의되어 있다. 그 덕분에 메서드의 결가를 DOM 트리의 특정 부분에 한정할 수 있어서 상황에 맞는 쿼리를 할수 있게 해준다.
+
+### 4.2 Element 노드 리스트 선택 및 생성하기
+
+HTML 문서내의 **노드 리스트(NodeList)를 선택 및 생성하는 데 가장 흔히 사용되는 메서드**는 다음과 같다.
+( NodeList 나 HTMLCollection은 **배열의 형태**이지만, **array의 메서드를 상속하는 진정한 javascript 배열이 아니다.**)
+
+- querySelectorAll()
+
+* getElementsByTagName()
+
+* getElementsByClassName()
+
+주목 : getElementsByTagName() , getElementsByClassName() 으로 생성된 **HTMLCollection은 라이브상태**로 간주되며, 리스트를 생성하고 선택한 후에 문서가 업데이트 된 경우도 문서의 상태를 항상 반영
+
+그러나 querySelectorAll() 메서드는 **라이브 상태의 element 리스트를 반환하지 않는다.** 이는 querySelectorAll()에서 반환하는 리스트는 리스트 생성 시점의 문서 스냅샵이며, **문서의 변경 내용을 반영하지 않는다는 것을 의미한다.** 해당 리스트는 정적이며, 라이브상태가 아니다.
+**NodeList와 HTMLCollection은 라이브 상태이지만 , querySelectorAll()로 반환된 리스트는 정적이다.**
+
+예를들어
+
+```html
+<ul>
+  <li class="liClass">1</li>
+  <li class="liClass">2</li>
+  <li class="liClass">3</li>
+  <li class="liClass">4</li>
+  <li class="liClass">5</li>
+</ul>
+```
+
+```js
+const a = document.querySelectorAll("li");
+const b = document.getElementsByTagName("li");
+const c = document.getElementsByClassName("liClass");
+console.log(a); // 정적이며 라이브 상태가 아니므로, li의 갯수가 5
+console.log(b); // 라이브상태이므로 li의 갯수가 6개
+console.log(c); // 라이브상태이지만 클래스가 다르므로 갯수가 5개
+
+const li = document.createElement("li");
+const ul = document.querySelector("ul");
+
+li.setAttribute("class", "hoho");
+ul.appendChild(li);
+```
+
+- **childNodes도 querySelectorAll(), getElementByTagName(), getElementByClassName()처럼 Nodelist를 반환한다는 것을 명심하기 바란다. NodeList는 유사 배열리스트/컬랙션이며 , 읽기 전용인 length 속성을(array의 메서드 상속을 받는것은 아님) 가진다.**
+
+### 4.3 직계 자식 Element 노드를 모두 선택하기
+
+element 노드에서 children 속성을 사용하면, element 노드의 직계 자식 노드 전체 리스트(HTMLCollection)를 얻을 수 있다.
+children은 직계 element 노드만을 제공하며, element 가 아닌 노드는 제외한다.
+
+- 주목 : HTMLCollection은 element를 문서 내의 순서대로 가진다. 즉 element 가 DOM에 나타나는 순서대로 배열 내에 위치한다 HTMLCollection은 라이브 상태이므로, 문서가 변경되면 동적으로 컬랙션에 반영된다.
+
+### 4.4 컨텍스트 기반 Element 선택
+
+querySelector() , querySelectorAll(), getElementsByTagName(), getElementsByClassName()은 element 노드에도 정의되어 있다.
+이는 해당 메서드의 결과를 DOM 트리의 특정 부분으로 제한 할 수 있게 해준다. 달리말해 element 노드 개체에서 이 메서드를 호출하면, element노드를 검색하고자 하는 특정 컨텍스트를 선택할수 있다는 것이다.
+
+### 4.5 사전에 구성된 Element 노드 선택/리스트
+
+HTML 문서에서 element 노드를 포함하고 있는 미리 사전에 등록되어 있는 유사배열 리스트
+
+- document.all : HTML 문서내의 모든 element
+
+- document.forms : HTML 문서내의 모든 <form> element
+
+* document.images : HTML 문서내의 모든 <img> element
+
+* document.links : HTML 문서내의 모든 <a> element
+
+* document.scripts : HTML 문서내의 모든 <script> element
+
+* document.styleSheets : HTMl 문서내의 모든 <link> 또는 <style> element
+
+- 앞의 사전에 구성된 배열들은 HTMLCloolection 인터페이스/개체를 통해 생성되는데, document.styleSheets만 예외적으로 StyleSheetList를 사용한다.
+
+### 4.6 선택될 Element 검증을 위해 matchesSelector()를 사용하기(지금은 사용안하고 -> matches()로 바뀜)
+
+```html
+<ul>
+  <li>Hello</li>
+  <li>world</li>
+</ul>
+```
+
+```js
+console.log(document.querySelector("li").matchesSelector("li:first-child")); //false
+```
+
+최신 브라우저에서는 브라우저 접두어인 moz,webkit,o,ms를 사용하지 않으면 실패한다.
+따라서 다음과 같이 사용해야한다.
+
+```js
+console.log(document.querySelector("li").mozmatchesSelector("li:first-child")); //true
+
+console.log(
+  document.querySelector("li").webkitmatchesSelector("li:first-child")
+); //true
+
+console.log(document.querySelector("li").omatchesSelector("li:first-child")); //true
+
+console.log(document.querySelector("li").msmatchesSelector("li:first-child")); //true
+```

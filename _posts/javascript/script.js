@@ -1,11 +1,12 @@
-var numbers = {
-  array: [3, 5, 10],
-  getNumbers: function () {
-    return this.array;
-  },
-};
-// 바인딩 함수
-var boundGetNumbers = numbers.getNumbers.bind(numbers);
-boundGetNumbers(); // => [3, 5, 10]
-console.log(boundGetNumbers());
-// 객체로부터 메소드를 추출 = 함수 호출
+const a = document.querySelectorAll("li");
+const b = document.getElementsByTagName("li");
+const c = document.getElementsByClassName("liClass");
+console.log(a);
+console.log(b);
+console.log(c);
+
+const li = document.createElement("li");
+const ul = document.querySelector("ul");
+
+li.setAttribute("class", "hoho");
+ul.appendChild(li);
