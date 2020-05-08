@@ -1,44 +1,14 @@
-* {
-  margin: 0;
-  padding: 0;
+:root {
+  --base: #ffc600;
+  --spacing: 10px;
+  --blur: 10px;
 }
 
-html,
-body {
-  width: 100%;
-  height: 100%;
-}
+/* 문서의 루트 요소 선택
+   HTML에서는 <html>  즉 :root는 <html>을 가리킨다.*/
 
-.clock {
-  height: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+img {
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
 }
-
-.clock-box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  background-color: red;
-  border-radius: 50%;
-  width: 300px;
-  height: 300px;
-}
-
-.hand {
-  width: 10px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  background-color: black;
-}
-
-.hour-hand {
-  transform: rotate(0deg);
-}
-
-/* utility */

@@ -7,5 +7,30 @@
     <link rel="stylesheet" href="styles.css" />
     <script defer src="script.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="controls">
+      <label for="spacing">Spacing:</label>
+      <input
+        type="range"
+        name="spacing"
+        min="10"
+        max="200"
+        value="10"
+        data-sizing="px"
+      />
+      <label for="blur">Blur:</label>
+      <input
+        type="range"
+        name="blur"
+        min="0"
+        max="25"
+        value="10"
+        data-sizing="px"
+      />
+      <label for=""></label>
+      <input type="color" name="base" value="#ffc600" />
+    </div>
+
+    <img src="/assets/images/yosup.jpg" alt="내 사진" />
+  </body>
 </html>
