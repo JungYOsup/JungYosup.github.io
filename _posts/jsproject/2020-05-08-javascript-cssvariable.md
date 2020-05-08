@@ -16,6 +16,10 @@ toc_sticky: true
 
 - Expert Code : data- 는 언제 쓰는게 가장 바람직한거야 , 그냥 이렇게 막(?) 써도 되는걸까??
 
+해답 : data- 속성은 표준이 아닌 속성이나 추가적인 DOM 속성, Node.setUserData()과 같은 다른 조작을 하지 않고도,data-를 쓰는 이유는 의미론적 표준 HTML 요소에 추가 정보를 저장할 수 있도록 해줍니다.
+
+보여야 하고 접근 가능해야하는 내용은 데이터 속성에 저장하지 마세요. 접근 보조 기술이 접근할 수 없기 때문입니다.
+
 ```html
 <body>
   <div class="controls">
@@ -179,4 +183,29 @@ if (colorRange) {
 }
 ```
 
-결론 : 직접적으로 변수를 통해서 CSS의 값을 바꿀수 있다는 것을 알게 되었으며, 추가적으로 data- 를 언제 쓰는지 한번 확인해보자
+**꿀 팁(꼭보자)**
+
+1. 하나의 선택자의 여러개의 이벤트를 줄수 있다는 것.
+
+```js
+inputs.forEach((input) => input.addEventListener("change", handleUpdate));
+//change로 할경우 range 를 눌렀이동했을때만 나오고 이동중에는 값이 안나온다.
+
+inputs.forEach((input) => input.addEventListener("mousemove", handleUpdate));
+```
+
+2.event로 발생한 함수의 this 는 event.target과 같다는것
+
+```js
+function handleUpdate() {
+  console.log(this.value); //this === event.taget??
+}
+
+inputs.forEach((input) => input.addEventListener("change", handleUpdate));
+```
+
+3. data- 속성은 표준이 아닌 속성이나 추가적인 DOM 속성, Node.setUserData()과 같은 다른 조작을 하지 않고도,data-를 쓰는 이유는 의미론적 표준 HTML 요소에 추가 정보를 저장할 수 있도록 해줍니다.
+
+보여야 하고 접근 가능해야하는 내용은 데이터 속성에 저장하지 마세요. 접근 보조 기술이 접근할 수 없기 때문입니다.
+
+4. Javascript로 inline CSS를 조절뿐만아니라, 변수를 통해 CSS에 변화를 줄수 있다는 것이다.
