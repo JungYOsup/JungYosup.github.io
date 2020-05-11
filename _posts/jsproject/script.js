@@ -1,24 +1,80 @@
 "use strict";
 
-const inputs = document.querySelectorAll(".controls input");
+const inventors = [
+  { first: "Albert", last: "Einstein", year: 1879, passed: 1955 },
+  { first: "Isaac", last: "Newton", year: 1643, passed: 1727 },
+  { first: "Galileo", last: "Galilei", year: 1564, passed: 1642 },
+  { first: "Marie", last: "Curie", year: 1867, passed: 1934 },
+  { first: "Johanne", last: "Keppler", year: 1571, passed: 1630 },
+  { first: "Nicolous", last: "Corpenicus", year: 1473, passed: 1543 },
+  { first: "Max", last: "Planck", year: 1858, passed: 1947 },
+];
 
-// console.log(input) // NodeList 가 나오며 이것은 배열유사품이지 배열이 아니다.
+// Array.prototype.filter()
+// 1. filter the list if invetors for those who were born in the 1500's
+//1500 년대에 태어난 사람들을 위해 invetors가 있다면 목록을 필터링하십시오.
 
-function handleUpdate() {
-  console.log(this.value); //this === event.taget??
+const fifteen = inventors.filter((inventor) => {
+  if (inventor.year >= 1500 && inventor.year < 1600) {
+    return true; // 그 조건에 맞는 객체를 리턴함 == inventor
+  }
+});
 
-  const suffix = this.dataset.sizing || "";
-  document.documentElement.style.setProperty(
-    `--${this.name}`,
-    this.value + suffix
-  );
-}
+console.table(fifteen);
 
-inputs.forEach((input) => input.addEventListener("change", handleUpdate));
-//change로 할경우 range 를 눌렀이동했을때만 나오고 이동중에는 값이 안나온다.
+// same code
 
-inputs.forEach((input) => input.addEventListener("mousemove", handleUpdate));
+// const fifteen = inventors.filter(
+//   (inventor) => inventor.year >= 1500 && inventor.year < 1600
+// );
 
-//그래서 이동중에도 값을 나타내기위해 mousemove를 사용했다.actions
-//여기서 알아야할점은 하나의 선택자에 2개의 이번트를 줄수 있다는 것이다.
-//하지만 input에 마우스만 이동해도 값이 나오므로, 차라리 이벤트로 input을 주는게 나을것 같다.
+// Array.protoptye.map()
+// 2. Give us an array of the inventory first and last name
+// 재고 이름과 성으로 구성된 배열을 제공하십시오
+
+const fullNames = inventors.map(
+  (inventor) => `${inventor.first} ${inventor.last}`
+);
+
+console.log(fullNames);
+
+// Array.prototype.sort()
+// 3. Sort the inventory by birthdate, oldest to youngest
+//생년월일, 가장 오래된 것부터 가장 어린 것까지 인벤토리를 정렬
+
+// const ordered = inventors.sort(function (a, b) {
+//   if (a.year > b.year) {
+//     return 1; //오름차순
+//   } else {
+//     return -1;
+//   }
+// });
+
+// console.table(ordered);
+
+// Array.prototype.reduce()
+// 4. How many year did all the inventory live?
+// 모든 재고는 몇 년 동안 살았습니까?
+
+// for (var i = 0; i < inventors.length; i++) {
+//   totalYears += inventors[i].year;
+// }
+
+const tatalYears = inventors.reduce((total, inventor) => {
+  return total + (inventor.passed - inventor.year);
+}, 0);
+
+const months = [""];
+months.sort();
+console.log(months);
+// expected output: Array ["Dec", "Feb", "Jan", "March"]
+
+const total = 0;
+
+const testArray = [1, 3, 5, 7, 9];
+
+testArray.forEach(function (item, index, array) {
+  array[index] = Math.pow(item, 2);
+});
+
+console.log(testArray);
