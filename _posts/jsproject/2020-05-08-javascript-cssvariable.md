@@ -185,7 +185,7 @@ if (colorRange) {
 
 **꿀 팁(꼭보자)**
 
-1. 하나의 선택자의 여러개의 이벤트를 줄수 있다는 것.
+1.하나의 선택자의 여러개의 이벤트를 줄수 있다는 것.
 
 ```js
 inputs.forEach((input) => input.addEventListener("change", handleUpdate));

@@ -847,3 +847,134 @@ console.log(document.querySelector("li").omatchesSelector("li:first-child")); //
 
 console.log(document.querySelector("li").msmatchesSelector("li:first-child")); //true
 ```
+
+## 5. Element 노드 지오메트리와 스크롤링 지오메트리 ( 이 부분은 잠시 넘어가기로 하자 )
+
+## 6. Element 노드 인라인 스타일
+
+### 6.1 style attribute(element CSS 속성이라고도 함 ) 개요
+
+- 인라인 CSS 속성은 코드에서 style 속성이 **문자열이 아닌 CSSStyleDeclaration 개체를 반환**한다는 점에 유의한다. 또한 CSSStyleDeclaration 개체에는 **element의 인라인 스타일만이 포함**
+
+```html
+<div style="background-color:red;border;1px"></div>
+```
+
+```js
+const divStyle = document.querySelector("div").style;
+
+console.log(divStyle); // CSSStyleDeclaration {0="background-color",...} 출력
+```
+
+### 6.2 개별 인라인 CSS 속성 가져오기, 설정 , 제거
+
+- 6.2.1 : CSSStyleDeclaration 개체로 개별 CSS 속성에 대한 접근
+
+```html
+<div></div>
+```
+
+```js
+const divStyle = document.querySelector("div").style;
+
+//설정
+divStyle.bacgroundColor = "red";
+divStyle.border = "1px solid black";
+
+// 가져오기
+console.log(divStyle.backgroundColor);
+console.log(divStyle.border);
+
+// 제거
+
+divStyle.backgroundColor = "";
+divStyle.border = "";
+```
+
+- 주목 : style개체에 포함된 속성명에는 하이픈이 포함되지 않는다. 그리고 설정,가져올때,제거 할때는 camelCase를 사용하면 된다. 또한 측정단위가 필요한 CSS속성의 경우, 적절한 단위를 포함시켜야 한다.
+
+- 6.2.2 : element 노드의 개별 CSS 속성을 조작하는데 사용되는 setPropertyValue(),getPropertyValue()
+
+```html
+<div stule="background-color:green; border: 1px solid purple"></div>
+```
+
+```js
+const divStyle = document.querySelector("div").style;
+
+//설정
+divStyle.setProperty("background-color", "red");
+divStyle.setProperty("border", "1px solid purple");
+
+//가져오기
+console.log(divStyle.getProperty("background-color"));
+console.log(divStyle.getProperty("border"));
+
+//제거
+divStyle.removeProperty("background-color");
+divStyle.removeProperty("border");
+```
+
+### 6.3 모든 인라인 CSS 속성 가져오기, 설정, 제거
+
+- CSSStyleDeclaration 개체의 cssText 속성과 getAttribute() 및 setAttribute() 메서드를 사용하면, javaScript 문자열을 사용하여 style attribute의 전체 값(모든 인라인 속성)을 가져오고, 설정 및 제거 할수 있따.
+
+* 또한 getAttribute 와 setAttribute는 Style 외에도 클래서 , id 등 다른 속성들을 설정하고 가져오고 제거할수 있다.
+
+```js
+const div = document.quertSelector("div");
+const divStyle = div.style;
+
+div.setAttribute(
+  "style",
+  "background-color:red;border:1px solide black; heigh:100px; width:100px;"
+);
+
+div.getAttribute("style"); //모든 인라인 속성의 스타일을 가져옴
+
+div.removeAttribute("style"); //제거
+```
+
+- 주목 : **style attribute 값을 새로운 문자열로 바꾸는 것은** element의 style에 여러 변경수행하는 **가장 빠른 방법**
+
+### 6.4 getComputedStyle()을 사용하여 element의 계산된 스타일(계층화된 것을 포함한 실제 스타일) 가져오기
+
+style 속성은 style attribute를 통해 정의된 CSS만을 가지고 있다.(= 인라인에서 정의된 CSS), 그러나 인라인스타일 뿐만아니라 스타일시트, 외부 스타일시트 를 가져오려면 **getComputedStyle()를 사용한다.**
+
+```html
+<div style="background-color:green;border:1px solid purple;"></div>
+```
+
+```css
+div {
+  background-color: red;
+}
+```
+
+```js
+const div = document.querySelector("div");
+
+window.getComputedStyle(div).backgroundColor; //rgb(0,128,0) 또는 green이 출력됨
+```
+
+- 주목 : getComputedStyle() 에서 반환되는 CSSStyleDeclaration 개체는 읽기 전용이다.
+
+### 6.5 class 및 id attribute를 사용하여 element의 CSS 속성을 적용 및 제거하기
+
+```html
+<div class="헤이"></div>
+```
+
+```js
+const div = document.querySelector("div");
+
+div.setAttribute("id", "bar"); // id 설정
+
+div.classList.add("foo"); // 클래스 추가
+//<div style="background-color: red;" id="bar" class="헤이 foo"></div>
+
+div.setAttribute("class", "안녕"); //클래스 수정
+//<div style="background-color: red;" id="bar" class="안녕"></div>
+
+console.log(div);
+```
