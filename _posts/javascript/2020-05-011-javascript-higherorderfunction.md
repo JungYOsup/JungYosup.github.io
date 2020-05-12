@@ -100,7 +100,7 @@ const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
 
 ## 2. Array.prototype.forEach()
 
-- forEach는 배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. 콜백함수의 매개변수를 통해 배열요소의 값(item), 요소 인덱스(index), 순회할 배열(array)을 전달받을수 있다. 반환값은 undefined이다.
+- forEach는 배열을 순회하며 배열의 각 요소에 대하여 인자로 주어진 콜백함수를 실행한다. 콜백함수의 매개변수를 통해 배열요소의 값(item), 요소 인덱스(index), 순회할 배열(array)을 전달받을수 있다. **반환값은 undefined이다.**
 
 * forEach 메소드는 **원본 배열을 변경하지 않는다.**
 
@@ -193,9 +193,27 @@ console.log(result);
 
 ### 4.1 두번째 인자로 this를 전달할수 있다.
 
-## 5. Array.prototype.reduce()
+## 5. Array.prototype.reduce(callback[,initialValue])
 
 배열을 순회하며 각요소에 대하여 **이전의** 콜백함수 실행 반환값을 전달하여 콜백함수를 실행하고 그 결과를 반환한다.
+
+- callback : 배열의 각 요소에 대해 실행할 함수, 다음 네가지 인수를 받는다.
+
+  - accumulator
+    - 누산기accmulator는 콜백의 반환값을 누적합니다. 콜백의 이전 반환값 또는, 콜백의 첫 번째 호출이면서 **initialValue를 제공한 경우에는 initialValue의 값입니다.**
+
+  * currentValue
+    - 처리할 현재 요소.
+
+  - currentIndex Optional
+    - 처리할 현재 요소의 인덱스. initialValue를 제공한 경우 0, 아니면 1부터 시작합니다.
+
+  * array Optional
+    - reduce()를 호출한 배열.
+
+* initialValaue(넣어도 되고 안넣어도 되고)
+
+  - callback의 최초 호출에서 **첫 번째 인수에 제공하는 값.** **초기값을 제공하지 않으면 배열의 첫 번째 요소를 사용합니다.** 빈 배열에서 초기값 없이 reduce()를 호출하면 오류가 발생합니다.
 
 ### 5.1 배열의 합 구하기
 
@@ -220,10 +238,9 @@ const sum = arr.reduce(function (
   //   4 : 10+5 = 15
 
   // 15
-});
+}, 0);
 ```
 
-**currentValue의 시작은 항상 index가 1부터이다.**
 **previousValue는 이전값이 하닌 이전콜백의 반환값이다**
 
 ### 5.1 배열의 최대값 구하기
@@ -282,6 +299,11 @@ console.log(result) // [ {id : 2, name : 'Kim'},{id : 2, name : 'Sup'}]
 
 ```
 
-## 8. Array.protoType.findIndex()
+## 9. Array.protoType.findIndex()
 
 배열을 순회하며 각 요소에 대하여 인자로 주어진 **콜백함수를 실행하여 그 결과가 참인 첫번째 요소의 인덱스를 반환한다.** 콜백함수의 실행 결과가 참인 요소가 존재하지 않는다면 **-1을 반환**한다.
+
+## 10. Array.protoType.includes()
+
+배열이 특정 요소를 포함하고 있는지 판별합니다.
+그리고 결과값으로 boolean값을 return 합니다. find()와 다른점은 find()는 return 값이 조건에 맞는 첫번째 객체를 전달하지만, find()는 있는지 없는지를 판단하여 boolean값을 리턴한다는것이다.

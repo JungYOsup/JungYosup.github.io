@@ -10,7 +10,7 @@ toc: true
 toc_sticky: true
 ---
 
-## 배열에서 어떨때 어떤 메소드를 사용해야할까?
+## 1.배열에서 어떨때 어떤 메소드를 사용해야할까? 라는 개념을 깨우치기 위한 연습(1)
 
 - 전체 데이터
 
@@ -26,89 +26,167 @@ const inventors = [
 ];
 ```
 
-### 1. Array.proptotype.filter()
+## 문제]
 
-- filter의 가장 큰 특징은 **boolean형태의 return값을 갖는다.** **return값이 true일경우 그 요소를 반환하고** **false일경우 반환하지 않는다.** 기본값은 false이다. 예를 들어보자.
-
-* 주의할점:
+### 1. 1500에 태어난 사람들의 list를 가져오세요
 
 ```js
-//1500 년대에 태어난 사람들을 위해 invetors가 있다면 목록을 필터링하십시오.
-const fifteen = inventors.filter((inventor) => {
-  if (inventor.year >= 1500 && inventor.year < 1600) {
-    return true; // 그 조건에 맞는 요소를 반환함, 즉 조건에 맞는 객체를 반환함
-  }
-});
-
-console.table(fifteen);
-```
-
-### 2. Array.prototype.map()
-
-- filter와 다른점이라고 하면, filter는 return값으로 true/false만 쓸 수 있으며, 요소를 반환하지만, map의 경우 요소가 아닌 **새로운 값을 만들어서** return할 수 있다.
-
-* 주의할점 :
-
-```js
-const fullNames = inventors.map(
-  (inventor) => `${inventor.first} ${inventor.last}`
+const array1 = inventors.filter((inventor) =>
+  inventor.year >= 1500 && inventor.year < 1600 ? true : false
 );
 
-console.log(fullNames);
+console.table(array1);
 ```
 
-### 3. Array.prototype.sort()
-
-- sort() 메서드는 배열의 요소를 적절한 위치에 정렬한 후 그 배열을 반환합니다. 정렬 순서를 정의하는 함수. **파라미터를 생략하면 배열은 각 요소의 문자열 변환에 따라 각 문자의 유니 코드 코드 포인트 값에 따라 정렬됩니다.** 따라서 우리가 원하는 내림차순 , 오름차순이 안될수도 있다. 그러므로 오름차순과, 내림차순을 하려면 파라미터를 입력해야한다.
-
-- 주의할점 : **정렬한 배열. 원 배열이 정렬되는 것에 유의하세요. 복사본이 만들어지는 것이 아닙니다.**
-
-* 3.1 문자열 정렬 : 문자열을 정렬하는건 문제가 없지만 , 숫자를 정렬할때 문제가 발생한다. 그 이유는 기본 정렬 순서는 문자열의 유니코드 코드 포인트를 따르기 때문이다.
+### 2. 첫번째 이름과 마지막이름을 포함하여 배열을 만드세요
 
 ```js
-const months = ["March", "Jan", "Feb", "Dec"];
-months.sort();
-console.log(months);
-// expected output: Array ["Dec", "Feb", "Jan", "March"]
+const array2 = inventors.map(
+  (inventor) => `${inventor.last} ${inventor.first}`
+);
 
-const array1 = [1, 30, 4, 21, 100000];
-array1.sort();
-console.log(array1);
-// expected output: Array [1, 100000, 21, 30, 4]
+console.table(array2);
 ```
 
-- 3.2 숫자 정렬 : 숫자를 비교하기 위해 compare 함수는 a에서 b를 뺄 수 있습니다.
+### 3. 생년월일을 통해 나이가 많은사람부터 내림차순하세요
 
 ```js
-const numbers = [4, 2, 5, 1, 3];
-numbers.sort(function (a, b) {
-  return a - b;
-});
-console.log(numbers);
+const array3 = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
 
-// [1, 2, 3, 4, 5]
+console.table(array3);
 ```
 
-- 3.2 개체는 해당 속성 중 **하나의 값을 기준**으로 정렬 할 수 있습니다.
+### 4. 모든 발명가는 몇 년을 살았습니까?
 
 ```js
-//year, 하나의 값을 기준으로 정렬
-const ordered = inventors.sort(function (a, b) {
-  if (a.year > b.year) {
-    return 1; //오름차순
-    //return -1; //내림차순
-  } else {
-    return -1;
+const array4 = inventors.reduce((sum, inventor) => {
+  return sum + (inventor.passed - inventor.year);
+}, 0);
+
+console.log(array4);
+```
+
+### 5. 수명을 기준으로 발명가를 정렬
+
+```js
+const array5 = inventors.sort((a, b) =>
+  a.passed - a.year > b.passed - b.year ? 1 : -1
+);
+
+console.table(array5);
+```
+
+### 6. 이들 각각의 인스턴스를 요약합니다.(중요하니 잘 보도록)
+
+```js
+const data = [
+  "car",
+  "car",
+  "truck",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "bike",
+  "walk",
+  "car",
+  "van",
+  "car",
+  "truck",
+];
+
+const array6 = data.reduce(function (obj, item) {
+  if (!array[item]) {
+    array[item] = 0;
+  }
+  array[item]++;
+  return obj;
+  // item이 정해진것이 아니므로 . 이 아닌 []를 사용하였다는것에 주목하자
+}, {});
+```
+
+## 2.배열에서 어떨때 어떤 메소드를 사용해야할까? 라는 개념을 깨우치기 위한 연습(2)
+
+- 전체 데이터
+
+```js
+const people = [
+  { name: "Wes", year: 1988 },
+  { name: "Kait", year: 1986 },
+  { name: "Irv", year: 1970 },
+  { name: "Lux", year: 2015 },
+];
+
+const comments = [
+  { text: "Love this!", id: 523423 },
+  { text: "Super good", id: 823423 },
+  { text: "You are the best", id: 203423 },
+  { text: "Ramen in my fav food ever", id: 123423 },
+  { text: "Nice Nice Nice!", id: 542523 },
+];
+```
+
+## 문제]
+
+### 1. 적어도 1명의 19살인 사람이 있습니까?
+
+```js
+const array1 = people.some(function (item) {
+  const Date = new Date();
+  const CurrentYear = Date.getFufllYear();
+
+  if (CurrentYear - item.year >= 19) {
+    return true;
   }
 });
+
+console.log(array1); //true
 ```
 
-- 3.2를 arrow function으로
+### 2. 모든사람들이 19살 사람입니까?
 
 ```js
-const ordered = inventors.sort((a, b) => (a.year > b.year ? 1 : -1));
+const array1 = people.every(function (item) {
+  const Date = new Date();
+  const CurrentYear = Date.getFufllYear();
+
+  if (CurrentYear - item.year >= 19) {
+    return true;
+  }
+});
+
+console.log(array1); //true
 ```
 
-### 4. Array.prototype.reduce()
+### 3. ID 가 823423 인 사람을 찾으세요
 
-### 5.
+```js
+const array3 = people.find((item) => {
+  return item.id === 823423;
+});
+```
+
+### 4. ID 가 823423 인 사람을 지우세요
+
+```js
+const index = comments.findIndex((item) => item.id === 823423);
+
+console.log(index); // 1
+
+comments.splice(index, 1);
+
+splice 또는 이방법을 사용한다.
+
+// const newComments = [
+//   ...comments.slice(0,index);
+//   ...comments.slice(index+1);
+// ];
+```
+
+### splice와 spread 연산자(...) 와 slice
+
+[splice mdn]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice")
+
+[spread 와 rest ](https://jeong-pro.tistory.com/117)
+
+[slice]("https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/slice")
