@@ -978,3 +978,253 @@ div.setAttribute("class", "안녕"); //클래스 수정
 
 console.log(div);
 ```
+
+## 7. Text 노드
+
+### 7.1 Text 개체 개요
+
+- HTML 문서에서 텍스트는 text 노드를 만들어내는 TEXT() 생성자 함수의 인스턴스로 표현된다.
+
+* 당연히 hi가 출력될줄 알았는데, TEXT노드로 변환되서 출력되었다.
+
+```html
+<p>hi</p>
+```
+
+```js
+const textHi = document.querySelector("p").firstChild;
+
+console.log(textHI.constructor); // TEXT()가 출력됨
+
+console.log(textHi); // 보이는것은 "hi"가 출력됨 하지만 실직적으로 TEXT {textContent="hi" ,length =2 , ...}가 출력되는것을 볼수가 있다.
+// 그 증거로 typeof 할경우 object를 반환한다.
+console.log(typeof textHi); //object
+```
+
+- TEXT() 생성자 함수가 text 노드를 생성한다는 결론을 내려 주지만, **Text가 CharacterData, Node Object로 부터 상속받는다는 점을 명심해야한다.**
+
+### 7.2 Text 개체 및 속성
+
+- Text 노드에 존재하는 속성과 메서드에 관련된 정확한 정보를 얻으려면 브라우저에 직접 물어보는것이 가장 좋다.
+
+* 다음과 같은 속성과 메서드가 있다.
+
+  - textContent
+
+  * splitText()
+
+  * appendData()
+
+  * insertData()
+
+  * replaceData()
+
+  * subStringData()
+
+  * normalize()
+
+  * data
+
+  * document.createTextNode()
+
+### 7.3 공백도 Text 노드를 생성한다.
+
+```html
+<p id="p1"></p>
+<p id="p2"></p>
+```
+
+```js
+console.log(document.querySelecotr("#p1").firstChild); //null이 출력됨
+console.log(document.querySelecotr("#p1").firstChild.nodeName); //#text가 출력됨
+```
+
+- 이렇게 **공백이나 텍스트 문자가 보통 text 노드로 표현된다는 것을 잊지 말기 바란다.** **줄 바꿈도 당연히 text 노드**로 간주된다. 다음 코드에서는 줄 바꿈 문자도 text 노드라는 것을 강조하기 위해 줄 바꿈을 출력한다.
+
+```html
+<p id="p1"></p>
+//이 주석 앞에 줄 바꿈 text 노드가 존재하며, 이 주속도 노드다
+<p id="p2"></p>
+```
+
+```js
+console.log(document.querySelecotr("#p1").nextSibiling); //Text가 출력됨
+```
+
+- 그런데 나는 p1테그의 옆에 테그인 p테그를 목적으로 js를 코딩했다면 nextSibling이 아닌 다른 속성을 이용하는것이 좋다. 예를 들어 nextElementSibling 같은것
+
+### 7.4 Text 노드 생성 및 삽입하기
+
+- createTextNode()를 사용하여 DOM 에 TEXT를 노드를 삽입할수 있다.
+
+### 7.5 data나 nodeValue로 text 노드 값 가져오기
+
+- Text 노드로 표현되는 텍스트 값과 데이터는 .data나 nodeVlaue 속성을 사용하여 노드에서 추출할 수 있다. 두 속성 모두 Text 노드에 포함된 텍스트를 반환한다.
+
+```html
+<p>Hi, <strong>cody</strong></p>
+```
+
+```js
+console.log(document.querySelector("p").firstChild.data); //'Hi,'가 출력됨
+console.log(document.querySelector("p").firstChild.nodeValue); //'Hi,'가 출력됨
+console.log(document.querySelector("p").data); //undefiend
+console.log(document.querySelector("p").nodeValue); //null
+```
+
+- 주목 : TEXT 노드에 포함된 문자의 길이를 가져오려면 , 텍스트노드자체 또는 노드의 실제 텍스트의 값/데이터의 length 속성에 접근하면 된다.
+
+```js
+console.log(document.querySelector("p").firstChild.length); //3
+```
+
+### 7.6 appendData() , deleteData(), insertData() , replaceData(), subStringData()로 text 노드 조작하기
+
+Text 노드가 메서드를 상속받은 CharaterData개체는 Text 노드의 하위 값을 조작하고 추출하기 위한 메서드를 제공한다.
+
+- appendData() : 하위값 추가 (맨마지막에 추가됨)
+- deleteData() : 하위값 제거
+- insertData() : 하위값 삽입 (원하는 위치에 삽입할수 있다)
+- replaceData() : 하위값 교체
+- subStringData() : 부분 문자열 추출
+
+### 7.7 복수의 형제 텍스트 노드가 발생하는 경우
+
+통상적으로 형제 텍스트 노드가 인접해서 나타나지는 않는다
+
+```html
+<p>Hi Yosup</p>
+```
+
+```js
+const pElement = document.querySelector("p");
+
+console.log(pElement.childNodes.data);
+//Hi Yosup
+```
+
+복수의 형제 텍스트 노드가 발생하는 경우는 다음과 같다
+
+```html
+<p>Hi <strong>HH</strong> yosup</p>
+```
+
+```js
+const pElement = document.querySelector("p");
+
+console.log(pElement.childNodes.length); //3이 출력됨 <text> , <Strong> <text> 이렇게 3개로 길이 3개
+console.log(pElement.childNodes.data); //Hi
+console.log(pElement.firstChild.nextSibiling); // Element 노드 <strong>
+console.log(pElemet.lastchild.data); // yosup
+```
+
+```html
+<body>
+  <div></div>
+</body>
+```
+
+```js
+const pElementNode = document.createElement("p");
+const textNodeHi = document.createTextNode("HI ");
+const textNodeCody = document.createTextNode("Cody");
+
+pElementNode.appendChild(textNodeHi);
+pElementNode.appendChild(textNodeCody);
+
+document.querySelectod("div").appendChild(pElementNode);
+
+console.log(document.querySelector("div p").childNodes.length); //2가 출력됨
+```
+
+**childNodes에서 반환되는 NodeList는 직계 자식 노드만을 가진다.** **childNodes가 element 노드 뿐만 아니라 다른 노드 유형(ex text 및 comment 노드) 도 포함된다는 점을 유의해야한다.**
+
+### 7.8 textContent를 사용하여 마크업이 제거된 모든 자식 텍스트 노드를 반환하기
+
+- textContent 속성은 모든 자식 텍스트 노드를 가져올 뿐만 아니라. 노드의 내용을 특정 Text 노드로 설정하는데도 사용할수 있다.
+
+```html
+<body>
+  <h2>Dude</h2>
+  <p>you <strong>rock!</strong></p>
+</body>
+```
+
+```js
+console.log(document.body.textContent); // 공백이 추가된 `Dode you rock!' 이 출력
+```
+
+- 노드내에 포함된 텍스트를 설정하는데 textContent를 사용하면 , **모든 자식노드가 제거되고 단일 Text로 바뀐다.**
+
+```html
+<body>
+  <div>
+  <h2>Dude</h2>
+  <p>you <strong>rock!</strong></p>
+  <div>
+</body>
+```
+
+```js
+document.body.textContent = "you dont rock!";
+
+console.log(document.querySelecotr("div").textContent); // you dont rock! 이 출력 //뭐지 적용은 되는데 오류가 뜨는데...
+```
+
+- textContent는 document 나 doctype 노드에서 사용될 경우 null을 반환한다. script 및 style element 경우에는 내용이 반환된다.
+
+### 7.9 textContent 와 innerText 간의 차이
+
+- innerText에는 CSS가 반영된다. 즉 숨겨진 텍스트가 있을경우 innerText는 이 텍스트를 무시하는 반면, textContent는 무시하지 않는다.
+
+- innerText는 CSS의 영향을 받으므로 리플로우가 발생되는 반면, textContent는 그렇지 않다.
+
+- innerText는 script와 style element 내에 포함된 Text 노드를 무시한다.
+
+- textContent와 달리 innerText는 텍스트를 정규화해서 반환한다. textContent는 문서 내에 있는 것을 마크업만 제거해서 그대로 반환하는 것으로 생각하면 된다. 여기에는 공백, 줄 바꿈, 개행 문자가 포함된다.
+
+* innerText는 비표준이고 브라우저에 국한된 것으로 간주되지만, textContent 는 DOM 사양으로 구현되었다.
+
+### 7.10 normalize()를 사용하여 형제 텍스트 노드들을 단일 텍스트 노드로 결합하기
+
+```html
+<body>
+  <div></div>
+</body>
+```
+
+```js
+const pElementNode = document.createElement("p");
+const textNodeHi = document.createTextNode("HI ");
+const textNodeCody = document.createTextNode("Cody");
+
+pElementNode.appendChild(textNodeHi);
+pElementNode.appendChild(textNodeCody);
+
+document.querySelector("div").appendChild(pElementNode);
+console.log(document.querySelector("p").childNodes.length); //2가 출력됨 <text> <text>
+
+document.querySelector("div").normalize(); //형제 텍스트 노드들을 결합
+console.log(document.querySelector("p").childNodes.length); // <text>
+```
+
+### 7.11 splitText()를 사용하여 텍스트 노드를 분할하기
+
+- Text 노드에서 splitText()를 호출하면, 해당 텍스트 노드를 변경(옵셋까지의 텍스트는 내버려둠)하고 옵셋을 기반으로 원래 텍스트에서 분할된 텍스트를 가진 새로운 Text 노드를 반환한다.
+
+* 다음 코드에서 Hey Yo! 텍스트 노드는 Hey 이후부터 분활되어, Hey는 DOM에 남아있고 Yo!는 새로운 텍스트 노드가 되어 splitText() 메서드에서 반환된다.
+
+console.log(document.querySelector("p").firstChild.splitText(4).data); //Yo가 출력됨
+
+console.log(document.querySelector("p").firstChild.textContent); //Hey가 출력됨
+
+```html
+<body>
+  <p>Hey Yo!</p>
+</body>
+```
+
+```js
+console.log(document.querySelector("p").firstChild.splitText(4).data); //Yo가 출력됨
+console.log(document.querySelector("p").firstChild.textContent); //Hey가 출력됨
+```
