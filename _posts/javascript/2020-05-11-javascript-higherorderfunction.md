@@ -1,6 +1,6 @@
 ---
 title: "Highter order function (고차함수)"
-excerpt: "고차 함수"
+excerpt: "객체(object)에 대해서 자세히 알아보자"
 categories:
   - javascript
 tags:
