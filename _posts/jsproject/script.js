@@ -1,22 +1,51 @@
-const panels = document.querySelectorAll(".panel");
+const endpoint =
+  "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
 
-function toggleOpen(e) {
-  console.log(e.target); // event가 발생한 타겟, 즉 클릭한 타겟이 p 이므로 -> p테그를 가르키는 반면
-  console.log(this); // div테그를 가리킨다. (클릭한 panel을 가리키네)
-  //이벤트에서 즉 e.target과 this는 다른것이다.
-  this.classList.toggle("open");
+const cities = [];
+fetch(endpoint)
+  .then((blob) => blob.json())
+  .then((data) => cities.push(...data));
+
+function findMatches(wordToMatch, cities) {
+  return cities.filter((place) => {
+    // here we need to figure out if the city or state matches what was searched
+    const regex = new RegExp(wordToMatch, "gi");
+    return place.city.match(regex) || place.state.match(regex);
+  });
 }
 
-function toggleActive(e) {
-  // console.log(this);
-  // console.log(e.propertyName);
-  if (e.propertyName.includes("flex")) {
-    this.classList.toggle("open-active");
-  }
+function numberWithCommas(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
 
-panels.forEach((panel) => panel.addEventListener("click", toggleOpen));
+function displayMatches() {
+  const matchArray = findMatches(this.value, cities);
+  const html = matchArray
+    .map((place) => {
+      const regex = new RegExp(this.value, "gi");
+      const cityName = place.city.replace(
+        regex,
+        `<span class="hl">${this.value}</span>`
+      );
+      const stateName = place.state.replace(
+        regex,
+        `<span class="hl">${this.value}</span>`
+      );
+      return `
+      <li>
+        <span class="name">${cityName}, ${stateName}</span>
+        <span class="population">${numberWithCommas(place.population)}</span>
+      </li>
+    `;
+    })
+    .join("");
 
-panels.forEach((panel) =>
-  panel.addEventListener("transitionend", toggleActive)
-);
+  console.log(html);
+  suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector(".search");
+const suggestions = document.querySelector(".suggestions");
+
+searchInput.addEventListener("change", displayMatches);
+searchInput.addEventListener("keyup", displayMatches);
