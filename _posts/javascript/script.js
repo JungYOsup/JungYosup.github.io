@@ -1,4 +1,15 @@
-const targetStr = "AA BB ZZ Aa Bb";
-const regexr = /[A-Z]+/gi; //사실상 모든 targetStr의 모든 문자열을 가져온다고 보면된다.
+const ulElm = document.querySelector("ul");
+const docFrag = document.createDocumentFragment();
 
-console.log(targetStr.match(regexr)); //['AA' , 'BB' , 'Aa' , 'Bb']
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  docFrag.appendChild(li);
+});
+
+ulElm.appendChild(docFrag);
+
+console.log(document.body.innerHTML);
+// <ul><li>blue</li><li>red</li><li>green</li></ul> 가 출력됨
+
+console.log(docFrag);

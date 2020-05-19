@@ -271,7 +271,11 @@ searchInput.addEventListener("keyup", displayMatches);
 
     - 따라서 이 두개를 같이 사용함으로써 input의 이벤트의 역할을 하게됨, 그런데 굳이 이둘을 모두 사용하지말고 input 이벤트를 사용하는게 더 좋지 않았을까?
 
-  * 7. 템플릿 리터럴 방식 : 이 프로젝트에서는 map을 이용하고 , return 으로 템플릿 리터럴방식안에 html 태그를 넣었는데, 이런방법이 있으로 하게 되면 나처럼 createElement를 안하면서 쉽게 HTML을 구성할수 있겠구나라는 생각을 함
+  * 7. 템플릿 리터럴 방식 : 이 프로젝트에서는 map을 이용하고 , return 으로 템플릿 리터럴방식안에 html 태그를 넣었는데, 이런방법이 있으로 하게 되면 나처럼 createElement를 안하면서 쉽게 HTML을 구성할수 있겠구나라는 생각을 함, 또한 **템플릿 리터럴 안에 함수도 넣을수 있다는것을 알게 됨**
+
+    ```js
+    <span class="population">${numberWithCommas(place.population)}</span>
+    ```
 
     - [템플릿 리터럴 mdn](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Template_literals)
 
@@ -281,12 +285,14 @@ searchInput.addEventListener("keyup", displayMatches);
 
 * 알게된 사실
 
-  - 1. **정규표현식**을 사용함으로써 더 간단하게, 내가 원하는 데이터를 분류할수 있었다는점.. 그리고 정규표현식은 꼭 알아둘필요가 있다는점
+- 1. **정규표현식**을 사용함으로써 , 조건문 없이도 문자열의 특정 내용을 **찾거나** **대체** 또는 **발췌하는데** 사용할수 있게 되었다.
 
-  * 2. **템플릿 리터럴 방식** : 이 프로젝트에서는 map을 이용하고 , return 으로 템플릿 리터럴방식안에 html 태그를 넣었는데, 이런방법이 있으로 하게 되면 나처럼 createElement를 안하면서 쉽게 HTML을 구성할수 있겠구나라는 생각을 함, **또한 map의 역할이 기존 배열을 수정하여 새로운 배열을 만드는것에 주된 목적이 있다는것은 맞는데, 저것처럼 배열이 아니더라도 아예 새로운 형태로 만들수도 있다는 것을 배움**
+  - 나의 엄청 긴 코드가 반으로 줄어버렸네..
+
+* 2. **템플릿 리터럴 방식** : 이 프로젝트에서는 map을 이용하고 , return 으로 템플릿 리터럴방식안에 html 태그를 넣었는데, 이런방법이 있으로 하게 되면 나처럼 createElement를 안하면서 쉽게 HTML을 구성할수 있겠구나라는 생각을 함, **또한 map의 역할이 기존 배열을 수정하여 새로운 배열을 만드는것에 주된 목적이 있다는것은 맞는데, 저것처럼 배열이 아니더라도 아예 새로운 형태로 만들수도 있다는 것을 배움**
 
 - Yosup Code
-      
+
 ```js
 "use strict";
 

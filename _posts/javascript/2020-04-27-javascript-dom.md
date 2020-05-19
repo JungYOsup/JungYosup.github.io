@@ -1228,3 +1228,172 @@ console.log(document.querySelector("p").firstChild.textContent); //Hey가 출력
 console.log(document.querySelector("p").firstChild.splitText(4).data); //Yo가 출력됨
 console.log(document.querySelector("p").firstChild.textContent); //Hey가 출력됨
 ```
+
+## 8. DocumentFragment 노드
+
+### 8.1 DocumentFragment 개체 개요
+
+- DocumentFragment 노드를 생성해서 사용하면 라이브 Dom 트리 외부에 경량화된 문서 DOM을 만들수 있다. DocumentFragment는 마치 라이브 DOM 트리처럼 동작하되, **메모리상에서만 존재하는 빈 문서 템플릿으로 생각하면된다.**
+
+### 8.2 createDocmentFragment()를 사용하여 DocumentFragment를 생성하기
+
+```js
+const docFrag = document.createDocumentFragment();
+
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  docFrag.appendChild(li);
+});
+
+console.log(docFrag.textContent); //blueredgreen
+```
+
+- **DocumentFragment를 사용하여 메모리상에서 노드 구조를 만들고 이를 라이브 노드 구조에 삽입하면 매우 효율적**이다.
+
+* DocumentFragment를 사용하는것이 좋은이유?
+
+  - DocumentFragment 는 **어떤 종류의 노드를 가질수 있는 반면(<body>나 <html>을 제외)** element는 그렇지 않다.
+
+  * DocumentFragment 는 DOM에 추가하더라도, **DocumentFrament 자체는 추가되지 않으며**, 노드의 **내용만이 추가된다.**
+
+  - DocumentFragment를 DOM에 추가할때, DocumentFragment는 추가되는 위치로 이전되며, 생성한 메모리상의 위치에 더 이상 존재하지 않는다. 노드를 포함하기 위해 일시적으로 사용된 후 라이브 DOM으로 이동되는 element노드는 그렇지 않다. (결국에는 메모리를 효율적으로 사용할수 있다는 말인가..??)
+
+### 8.3 DocumentFragment를 라이브 DOM에 추가하기
+
+```html
+<body>
+  <ul></ul>
+</body>
+```
+
+```js
+const ulElm = document.queryselector("ul");
+const docFrag = docment.createDocumentFragment();
+
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  docFrag.appendChild(li);
+});
+
+ulElm.appendChild(docFrag);
+
+console.log(docment.body.innerHTML);
+// <ul><li>blue</li><li>red</li><li>green</li></ul> 가 출력됨
+
+console.log(docFrag); // 라이브 DOM에 할당되었으므로 그 값이 사라짐
+```
+
+- 즉 아래 예시처럼 사용하는것보다 DocumentFragment를 사용하는것이 더 메모리상으로 더 좋다는 의미
+
+```js
+const ulElm = document.querySelector("ul");
+
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  ulElm.appendChild(li);
+});
+
+console.log(document.body.innerHTML);
+// <ul><li>blue</li><li>red</li><li>green</li></ul> 가 출력됨
+```
+
+- 주목 : 노드를 삽입하는 메서드에 DocumentFragment를 인수로(아규먼트)로 전달하면, 자식노드 구조 전체가 삽입되며 DocmentFragment노드 자체는 무시된다. (즉 라이브 DOM에 추가될경우 자식 노드구조 전체가 삽입됨)
+
+### 8.4 DocumentFragment에서 innerHTML 사용하기
+
+```js
+const divElm = document.createElement("div");
+const docFrag = document.createDoucmentFragment();
+
+docFrag.appendChild(divElm);
+
+docFrag.querySelector("div").innerHTML = "<ul><li>foo</li><li>bar</li></ul>";
+console.log(docFrag.qeurySelectorAll("li").length); // 2가출력됨
+```
+
+```html
+<div></div>
+```
+
+```js
+const divElm = document.createElement("div");
+const docFrag = document.createDocumentFragment();
+
+docFrag.appendChild(divElm);
+
+docFrag.querySelector("div").innerHTML = "<ul><li>foo</li></ul>";
+
+document
+  .querySelector("div")
+  .appendChild(docFrag.querySelector("div").firstChild);
+
+console.log(docFrag); // <div></div> //div안에 있던 <ul><li>foo</li></ul> 이 사라짐 , 즉 메모리에서 사라짐
+
+console.log(document.querySeletor("div").innerHTML);
+//<ul><li>foo</li><li>bar</li></ul> 가 출력됨
+```
+
+```js
+const divElm = document.createElement("div");
+const docFrag = document.createDocumentFragment();
+
+docFrag.appendChild(divElm);
+
+docFrag.querySelector("div").innerHTML = "<ul><li>foo</li></ul>";
+
+document.querySelector("div").appendChild(docFrag.firstChild);
+
+console.log(docFrag); // 빈값 //<div><ul><li>foo</li></ul></div> 이 사라짐 , 즉 메모리에서 사라짐
+
+console.log(document.querySeletor("div").innerHTML);
+//<ul><li>foo</li><li>bar</li></ul> 가 출력됨
+```
+
+- 즉 fragment 는 라이브 돔에 할당될시 , 그 fragment의 값들이 메모리에서 사라지게 된다
+
+### 8.5 복제를 사용하여 Fragment 노드를 메모리상에서 유지하기
+
+DocumentFramgment를 추가하면, Fragment 내에 포함된 노드들을 추가하는 구조로 이동한다. 노드를 추가한 이후에도 Fragment 내용을 **메모리상에서 유지하려면 , cloneNode()를 사용하여 추가할 DocumentFragment를 복제하면 된다.**
+(일반적으로 DocumentFragment는 메모리상에서 위치에 존재하지 않는다.)
+
+```js
+const ulElm = document.querySelector("ul");
+const docFrag = document.createDocumentFragment();
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  docFrag.appendChild(li);
+});
+
+// ulElm.appendChild(docFrag); // DocumentFragment 메모리상에 안남음
+
+ulElm.appendChild(docFrag.cloneNode(true)); // 복제된 DOcumentFragment 를 라이브 DOM의 ul에 추가
+
+console.log(document.querySelector("ul".innerHTML));
+// <li>blue</li><li>red</li><li>green</li>
+
+console.log(docFrag.childNodes); //NodeList(3) [li, li, li]
+```
+
+```js
+const ulElm = document.querySelector("ul");
+const docFrag = document.createDocumentFragment();
+
+["blue", "red", "green"].forEach((e) => {
+  const li = document.createElement("li");
+  li.textContent = e;
+  docFrag.appendChild(li);
+});
+
+// ulElm.appendChild(docFrag); // DocumentFragment 메모리상에 안남음
+
+ulElm.appendChild(docFrag); // 복제된 DOcumentFragment 를 라이브 DOM의 ul에 추가
+
+console.log(document.querySelector("ul").innerHTML);
+// <li>blue</li><li>red</li><li>green</li>
+
+console.log(docFrag.childNodes); // NodeList [] 빈값이 나옴 !!
+```
