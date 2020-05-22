@@ -1,60 +1,54 @@
-const endpoint =
-  "https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json";
+"use strict";
 
-const cities = [];
+const canvas = document.querySelector(".canvas");
+const context = canvas.getContext("2d");
+const colors = document.querySelectorAll(".paint");
 
-console.log(cities);
+canvas.width = canvas.offsetWidth;
+//canvas의 offsetWidth와 offsetHeight를 지정해줘야한다.
+canvas.height = canvas.offsetHeight;
+//canvas의 offsetWidth와 offsetHeight를 지정해줘야한다.
 
-// 데이터를 얻어서 cities에 넣기
+console.log(canvas.width);
 
-fetch(endpoint)
-  .then((response) => response.json())
-  .then((json) => cities.push(...json));
+let painting = false;
 
-// 내가입력한것과 데이터와 일치하는 부분찾기
-function findMatches(wordToMatch, cities) {
-  const regexr = new RegExp(`${wordToMatch}`, "ig");
-  console.log(regexr);
-
-  const array = cities.filter(
-    (city) => city.city.match(regexr) || city.state.match(regexr)
-  );
-
-  return array;
+if (canvas) {
+  canvas.addEventListener("mousedown", startPainting);
+  canvas.addEventListener("mousemove", drawCavas);
+  canvas.addEventListener("mouseup", stopPainting);
+  canvas.addEventListener("mouseleave", colorPainting);
 }
 
-function numberWithCommas(x) {}
+function startPainting() {
+  painting = true;
+}
 
-// 일치하는 부분 프린트하기
-function displayMatches() {
-  const inputValue = this.value;
-  const matchesItems = findMatches(inputValue, cities);
+function stopPainting() {
+  painting = false;
+}
 
-  // 받은 데이터를 가지고 return 해줌으로써
+function drawCavas(e) {
+  const x = e.offsetX;
+  const y = e.offsetY;
 
-  const html = matchesItems.map((matchesItem) => {
-    const regex = new RegExp(inputValue, "ig");
+  if (!painting) {
+    context.beginPath();
+    context.moveTo(x, y);
+  } else {
+    context.lineTo(x, y);
+    context.stroke();
+  }
+}
 
-    console.log(regex);
-
-    const cityName = matchesItem.city.replace(
-      regex,
-      `<span class="hl">${inputValue}</span>`
-    );
-
-    const stateName = matchesItem.state.replace(
-      regex,
-      `<span class="hl">${inputValue}</span>`
-    );
-
-    return `<li> ${cities} , ${stateName}</li>`;
+function colorPainting() {
+  colors.forEach((color) => {
+    color.addEventListener("click", getColor);
   });
-
-  suggestions.innerHTML = html;
 }
 
-const searchInput = document.querySelector(".search");
-const suggestions = document.querySelector(".suggestions");
-
-searchInput.addEventListener("change", displayMatches);
-searchInput.addEventListener("keyup", displayMatches);
+function getColor(e) {
+  console.log(e.target.dataset.color);
+  const color = e.target.dataset.color;
+  context.strokeStyle = color;
+}

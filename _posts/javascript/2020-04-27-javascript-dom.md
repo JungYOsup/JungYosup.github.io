@@ -848,7 +848,189 @@ console.log(document.querySelector("li").omatchesSelector("li:first-child")); //
 console.log(document.querySelector("li").msmatchesSelector("li:first-child")); //true
 ```
 
-## 5. Element 노드 지오메트리와 스크롤링 지오메트리 ( 이 부분은 잠시 넘어가기로 하자 )
+## 5. Element 노드 지오메트리와 스크롤링 지오메트리
+
+### 5.1 Element 노드 크기, 오프셋, 스크롤링 개요
+
+### 5.2 offsetParent를 기준으로 element의 offsetTop 및 offsetLeft 값을 가져오기
+
+- offsetTop 및 offsetLeft 속성을 사용하면, offsetParent로부터 element 노드의 오프셋 픽셀 값을 가져올 수 있다.
+
+* 따라서 offsetParent의 대상이 무엇인지를 파악하는것이 중요하다.
+
+```html
+<div id="blue"><div id="red"></div></div>
+```
+
+```css
+#blue {
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+  border: 10px solid gray;
+  padding: 25px;
+  margin: 25px;
+}
+
+#red {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  border: 10px solid gray;
+}
+```
+
+```js
+const div = document.querySelecotr("#red");
+
+console.log(div.offsetLeft); // 60이 출력됨
+console.log(div.offsetTop); // 60이 출력됨
+console.log(div.offsetParent); //div가 아닌 <body>가 출력됨
+```
+
+```html
+<div id="blue"><div id="red"></div></div>
+```
+
+```css
+#blue {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+  border: 10px solid gray;
+  padding: 25px;
+  margin: 25px;
+}
+
+#red {
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  border: 10px solid gray;
+}
+```
+
+```js
+const div = document.querySelecotr("#red");
+
+console.log(div.offsetLeft); // 25이 출력됨
+console.log(div.offsetTop); // 25이 출력됨
+console.log(div.offsetParent); //<div>가 출력
+```
+
+- 주목 : 대부분의 브라우저에서는 offsetParent가 <body>이고 <body> 나 <html> element 가 눈에 보이는 여백(margin), 패딩(padding), 테투리 값을 가지는 경우 바깥쪽 테투리에서 안쪽 테두리까지의 측정이 제대로 되지 않는다.
+
+### 5.3 getBoundingClientRect()를 사용하여 뷰포트 기준으로 element의 Top,Right,Bottom,Left 테두리 오프셋 얻기
+
+- getBoundingClientRect() 메서드를 사용하면, 뷰포트의 좌상단 끝을 기준으로 element가 브라우저에서 그려질 때 element의 바깥쪽 테두리 위치를 얻을 수 있다. left 및 right는 element의 바깥쪽 테두리로부터 뷰포트의 왼쪽 끝까지로 측정되며, top과 bottom은 element의 바깥쪽 테두리로부터 뷰포트의 상단 끝까지로 측정된다.
+
+### 5.7 scrollHeight와 scrollWidth를 사용하여 스크롤 될 element의 크기를 얻기
+
+- scrollHeight와 scrollWidth 속성은 **스크롤될 노드의 높이와 너비**를 제공해준다.
+
+```html
+<div><p></p></div>
+```
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+}
+
+div {
+  height: 100px;
+  width: 100px;
+  overflow: auto;
+}
+
+p {
+  height: 1000px;
+  width: 1000px;
+  background-color: red;
+}
+```
+
+```js
+const div = document.querySelector("div");
+
+console.log(div.scrollHeight, div.scrollWidth);
+```
+
+- 주목 : 스크롤 가능한 영역 내에 있는 노드가 스크롤 가능한 영역의 뷰포트보다 작은경우 **해당 노드의 높이와 너비를 알아야한다면**, **scrollHeight 와 scrollWidth는 뷰포트의 크기를 반환**하므로 사용하지 않는것이 좋다.
+
+### 5.8 scrollTop과 scrollLeft를 사용하여 top 및 left로부터 스크롤될 픽셀을 가져오거나 설정하기
+
+- scrollTop 속성과 scrollLeft 속성은 스크롤 때문에 **현재 뷰포트에서 보이지 않는 left나 top까지의 픽셀을 반환한다.**
+
+```html
+<div>
+  <p></p>
+</div>
+```
+
+```css
+div {
+  height: 100px;
+  width: 100px;
+  overflow: auto;
+}
+
+p {
+  height: 1000px;
+  width: 1000px;
+  background-color: red;
+}
+```
+
+```js
+const div = document.querySelector("div");
+div.scrollTop = 750;
+div.scrollLeft = 750;
+
+console.log(div.scrollTOp, div.scrollLeft); //'750 750' 출력
+```
+
+### 5.9 scrollintoView()를 사용하여 element를 View로 스크롤 하기
+
+```html
+<div>
+  <content>
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+    <p>10</p>
+  </content>
+</div>
+```
+
+```css
+div {
+  height: 200px;
+  width: 200px;
+  overflow: auto;
+}
+
+p {
+  background-color: red;
+}
+```
+
+```js
+// 결과를 보면 자식요소 5번째의 p테그를 선택해서 view로 스크롤시킨다.
+document.querySelector("content").children[4].scrollIntoView(true);
+```
+
+- 결과를 보면 자식요소 5번째의 p테그를 선택해서 view로 스크롤시킨다.
+
+* 매개변수가 true이면 top에서 view가 보이도록 스크롤하라는것이고 false일경우 bottom에서 view가 보이도록 스크롤 시키는 것이다.
 
 ## 6. Element 노드 인라인 스타일
 
@@ -1229,7 +1411,7 @@ console.log(document.querySelector("p").firstChild.splitText(4).data); //Yo가 �
 console.log(document.querySelector("p").firstChild.textContent); //Hey가 출력됨
 ```
 
-## 8. DocumentFragment 노드
+## 8. DocumentFragment 노드(실제로 잘 사용하지 않은듯)
 
 ### 8.1 DocumentFragment 개체 개요
 
@@ -1257,7 +1439,7 @@ console.log(docFrag.textContent); //blueredgreen
 
   * DocumentFragment 는 DOM에 추가하더라도, **DocumentFrament 자체는 추가되지 않으며**, 노드의 **내용만이 추가된다.**
 
-  - DocumentFragment를 DOM에 추가할때, DocumentFragment는 추가되는 위치로 이전되며, 생성한 메모리상의 위치에 더 이상 존재하지 않는다. 노드를 포함하기 위해 일시적으로 사용된 후 라이브 DOM으로 이동되는 element노드는 그렇지 않다. (결국에는 메모리를 효율적으로 사용할수 있다는 말인가..??)
+  - DocumentFragment를 DOM에 추가할때, DocumentFragment는 추가되는 위치로 이전되며, **생성한 메모리상의 위치에 더 이상 존재하지 않는다.** 노드를 포함하기 위해 일시적으로 사용된 후 라이브 DOM으로 이동되는 element노드는 그렇지 않다. (결국에는 메모리를 효율적으로 사용할수 있다는 말인가..??)
 
 ### 8.3 DocumentFragment를 라이브 DOM에 추가하기
 
@@ -1285,7 +1467,7 @@ console.log(docment.body.innerHTML);
 console.log(docFrag); // 라이브 DOM에 할당되었으므로 그 값이 사라짐
 ```
 
-- 즉 아래 예시처럼 사용하는것보다 DocumentFragment를 사용하는것이 더 메모리상으로 더 좋다는 의미
+- 즉 아래 예시처럼 사용하는것보다 DocumentFragment를 사용하는것이 더 메모리상으로 더 좋다는 의미??
 
 ```js
 const ulElm = document.querySelector("ul");
