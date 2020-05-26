@@ -1,5 +1,5 @@
 ---
-title: "10. Cavas 그리기"
+title: "10.Cavas 그리기"
 excerpt: "javascript 프로젝트 열번째"
 categories:
   - jsproject
