@@ -84,13 +84,16 @@ const students = [
 {
   const result = students.reduce((prev, curr) => prev + curr.score, 0);
 
-  console.log(result / students.length);
+  const result3 = students
+    .filter((student, index) => {
+      if (index >= 3) {
+        return;
+      }
+      return student;
+    })
+    .reduce((prev, curr) => prev + curr.score, 0);
 
-  const result2 = students.reduce((prev, curr) => {
-    return prev.score + curr.score;
-  });
-
-  console.log(result2); //Nan //이렇게 하면 안됌
+  console.log(result3);
 }
 
 // Q10. make a string containing all the scores
