@@ -1,6 +1,6 @@
 ---
-title: "11.포트폴리오 클론코딩 만들기(feat.Ellie)(별 100만개)"
-excerpt: "javascript 프로젝트 열한번째"
+title: "11.포트폴리오 클론코딩 만들기 HTML 비교(feat.Ellie)(별 100만개)"
+excerpt: "javascript 프로젝트 열한번째 HTML"
 categories:
   - jsproject
 tags:
@@ -18,14 +18,6 @@ toc_sticky: true
 
   - Sectioning Elements 를 적재적소, 그리고 위치도 알맞게 썻는가?
 
-- 3. 적절하게 CSS를 사용했는가?
-
-  - 굳이 안써도 되는 CSS를 사용했는가?
-
-  - 쉽게 사용했어도 될 CSS인데 어렵게 사용한 CSS가 있나?
-
-  * Mobile 까지 생각하고 CSS를 적용했나?
-
 ### HTML 비교(1) - header , nav 부분
 
 - Expert Code :
@@ -37,12 +29,12 @@ toc_sticky: true
 ```html
 <nav id="navbar">
   <div class="navbar__logo">
-    <i class="fab fa-accusoft">Ellie</i>
+    <i class="fab fa-accusoft"></i>
     <a href="#">Ellie</a>
   </div>
   <div class="navbar__menu">
     <ul class="navbar__menu">
-      <li class="navbar__menu__item">Home</li>
+      <li class="navbar__menu__item active">Home</li>
       <li class="navbar__menu__item">About</li>
       <li class="navbar__menu__item">Skills</li>
       <li class="navbar__menu__item">My Work</li>
@@ -53,8 +45,9 @@ toc_sticky: true
     </ul>
   </div>
 </nav>
-<section id="home">
-  <img src="/imgs/yosup.jpg" alt="" />
+<!-- Home -->
+<section id="home" class="section">
+  <img src="/imgs/yosup.jpg" alt="" class="home__avatar" />
   <h1 class="home__title">
     Hello, <br />
     I'm Dream Coder
@@ -116,7 +109,7 @@ toc_sticky: true
 - 2. title과 descripion 부분을 div로 잡았다.
 
 ```html
-<section id="about">
+<section id="about" class="section section__container">
   <h1>About Me</h1>
   <p>
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Reprehenderit quae
@@ -129,9 +122,9 @@ toc_sticky: true
       <div class="major__icon">
         <i class="fab fa-accusoft"></i>
       </div>
-      <div class="major__title">
+      <h2 class="major__title">
         Front-end
-      </div>
+      </h2>
       <div class="major__description">
         HTML, CSS, Javascript, TypeScript,
         <br />React, Vue, Web APis
@@ -141,9 +134,9 @@ toc_sticky: true
       <div class="major__icon">
         <i class="fab fa-accusoft"></i>
       </div>
-      <div class="major__title">
+      <h2 class="major__title">
         Front-end
-      </div>
+      </h2>
       <div class="major__description">
         Android, IOS,React Native, Fullter,
         <br />Java, Swift, Kotlin
@@ -153,9 +146,9 @@ toc_sticky: true
       <div class="major__icon">
         <i class="fab fa-accusoft"></i>
       </div>
-      <div class="major__title">
+      <h2 class="major__title">
         Front-end
-      </div>
+      </h2>
       <div class="major__description">
         Java, Javascript, Go, NodeJs,
         <br />Rest APIs, GraphQL
@@ -167,9 +160,7 @@ toc_sticky: true
 
 - Yosup Code
 
-* 1. title과 descripion 부분을 p와 h1으로 잡았는데, Ellie님과의 방법을 비교했을때 어떤게 더 좋을까?
-
-- 2. **공통적으로 사용되는 부분에 이름을 주었는데, 그렇게 하는것보다 그냥 테그만을 사용하는게 좋다.**
+* 1. **공통적으로 사용되는 부분에 이름을 주었는데, 그렇게 하는것보다 그냥 테그만을 사용하는게 좋다.**
 
 ```html
 <section>
@@ -230,89 +221,91 @@ toc_sticky: true
 - 3. progress bar 를 작성할때, html에 테그로 존재한다고는 하나 CSS를 하기가 어려워 우리가 원하는 형식으로 만듬
 
 ```html
-<section id="skills">
-  <h1>Skills</h1>
-  <h2>Skills & Attributes</h2>
-  <p>
-    Experience with all phases of the software life-cycle. Passion for learning
-    new technologies. Capable of working within a team environment and
-    independently. Ability to plan and time schedule, work under strict time
-    pressure and adapt quicly when needed
-  </p>
-  <div class="skillset">
-    <div class="skillset__left">
-      <h3 class="skillset__title">Skills</h3>
-      <div class="skill">
-        <div class="skill_description">
-          <span>HTML</span>
-          <span>99%</span>
+<section id="skills" class="section">
+  <div class="section__container">
+    <h1>Skills</h1>
+    <h2>Skills & Attributes</h2>
+    <p>
+      Experience with all phases of the software life-cycle. Passion for
+      learning new technologies. Capable of working within a team environment
+      and independently. Ability to plan and time schedule, work under strict
+      time pressure and adapt quicly when needed
+    </p>
+    <div class="skillset">
+      <div class="skillset__left">
+        <h3 class="skillset__title">Skills</h3>
+        <div class="skill">
+          <div class="skill_description">
+            <span>HTML</span>
+            <span>99%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 99%;"></div>
+          </div>
         </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
+        <div class="skill">
+          <div class="skill_description">
+            <span>CSS</span>
+            <span>90%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="skill_description">
+            <span>Javascript</span>
+            <span>90%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 90%;"></div>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="skill_description">
+            <span>Typescript</span>
+            <span>80%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 80%;"></div>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="skill_description">
+            <span>React</span>
+            <span>88%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 88%;"></div>
+          </div>
+        </div>
+        <div class="skill">
+          <div class="skill_description">
+            <span>Nodejs</span>
+            <span>77%</span>
+          </div>
+          <div class="skill__bar">
+            <div class="skill__value" style="width: 77%;"></div>
+          </div>
         </div>
       </div>
-      <div class="skill">
-        <div class="skill_description">
-          <span>CSS</span>
-          <span>90%</span>
+      <div class="skillset__right">
+        <div class="tools">
+          <h3 class="skillset__title">Tools</h3>
+          <ul class="tools__list">
+            <li><span>Visual Studio Cpde</span></li>
+            <li><span>IntelliJ</span></li>
+            <li><span>Android Studio Code</span></li>
+            <li><span>IOS development tools</span></li>
+            <li><span>Setch app</span></li>
+          </ul>
         </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
+        <div class="etc">
+          <h3 class="skillset__title">Etc</h3>
+          <ul class="etc__list">
+            <li><span>Git</span></li>
+          </ul>
         </div>
-      </div>
-      <div class="skill">
-        <div class="skill_description">
-          <span>Javascript</span>
-          <span>90%</span>
-        </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
-        </div>
-      </div>
-      <div class="skill">
-        <div class="skill_description">
-          <span>Typescript</span>
-          <span>80%</span>
-        </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
-        </div>
-      </div>
-      <div class="skill">
-        <div class="skill_description">
-          <span>React</span>
-          <span>88%</span>
-        </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
-        </div>
-      </div>
-      <div class="skill">
-        <div class="skill_description">
-          <span>Nodejs</span>
-          <span>77%</span>
-        </div>
-        <div class="skill__bar">
-          <div class="skill__value"></div>
-        </div>
-      </div>
-    </div>
-    <div class="skillset__right">
-      <div class="tools">
-        <h3 class="skillset__title">Tools</h3>
-        <ul class="tools__list">
-          <li><span>Visual Studio Cpde</span></li>
-          <li><span>IntelliJ</span></li>
-          <li><span>Android Studio Code</span></li>
-          <li><span>IOS development tools</span></li>
-          <li><span>Setch app</span></li>
-        </ul>
-      </div>
-      <div class="etc">
-        <h3 class="skillset__title">Etc</h3>
-        <ul class="etc__list">
-          <li><span>Git</span></li>
-        </ul>
       </div>
     </div>
   </div>
@@ -716,445 +709,4 @@ toc_sticky: true
 
 6. **버튼을 만들때 , 어떨떄는 a 태그를 사용하고, 어떨때는 button을 사용하고 어떨때는 li 태그를 사용하고 어떨때는 button을 사용함 버튼을 만들때 명확한 구분이 필요할듯**
 
-### CSS 비교(1) - header , nav 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.intro {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 50px;
-}
-
-.intro .intro__img {
-  border-radius: 50%;
-  max-width: 130px;
-  margin-bottom: 15px;
-  display: inline-block;
-}
-
-.intro .intro__title {
-  width: 100%;
-  margin-bottom: 15px;
-  text-align: center;
-  font-size: var(--font-h1);
-}
-
-.intro .intro__inform {
-  margin-bottom: 15px;
-  font-size: var(--font-h3);
-}
-
-.intro button {
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  margin-bottom: 30px;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 7px;
-  background-color: inherit;
-  border-radius: 3px;
-}
-```
-
-### CSS 비교(2) - 첫번째 section 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.about {
-  margin-bottom: 50px;
-}
-
-.about__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
-  margin: 0 auto;
-}
-
-.about__container__title {
-  font-size: var(--font-h1);
-  margin-bottom: 20px;
-  display: block;
-}
-.about__container__introduce {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.about__container__items {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.about__container__items .item {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex: 0 1 25%;
-}
-.about__container__items .item .item__iconbox {
-  display: flex;
-  width: 150px;
-  height: 150px;
-  border: 1px solid #5b56f4;
-  background-color: inherit;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 10px;
-}
-.about__container__items .item .item__iconbox i {
-  font-size: 50px;
-  color: #5b56f4;
-}
-
-.about__container__items .item .item__title {
-  font-size: var(--font-h2);
-  margin-bottom: 10px;
-}
-.about__container__items .item .item__detail {
-  text-align: center;
-}
-```
-
-### CSS 비교(3) - 두번째 section 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.skills {
-  background-color: #f9f1ca;
-  margin-bottom: 50px;
-}
-
-.skills__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
-  margin: 0 auto;
-}
-
-.skills__container__title {
-  font-size: var(--font-h1);
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-.skills__container__subtitle {
-  font-size: var(--font-h2);
-  margin-bottom: 10px;
-}
-
-.skills__container__introduce {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.skills__container__box {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 30px;
-}
-
-.box__rightbox {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.8);
-  flex: 1 1 60%;
-  background-color: #5b5757;
-}
-
-.box__rightbox .rightbox__title {
-  font-size: var(--font-h3);
-  padding: 20px;
-}
-
-.box__rightbox ul {
-  padding: 0 40px;
-  width: 100%;
-}
-
-.box__rightbox ul li {
-  margin-bottom: 30px;
-}
-
-.rightbox__title {
-  text-align: center;
-  font-size: var(--font-h3);
-}
-
-.rightbox__list {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-.rightbox__list span {
-  text-transform: uppercase;
-}
-
-.percent {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
-
-.percent .percent__right {
-  height: 3px;
-  background-color: #eac300;
-}
-.percent .percent__left {
-  height: 3px;
-  background-color: #7c7979;
-}
-
-.box__leftbox {
-  color: rgba(255, 255, 255, 0.8);
-  flex: 1 1 40%;
-  background-color: #7c7979;
-  text-align: center;
-}
-
-.leftbox__tools {
-  height: 60%;
-}
-
-.leftbox__tools .tools__title {
-  padding: 20px;
-  font-size: var(--font-h3);
-}
-
-.box__leftbox .leftbox__etc {
-  background-color: #ada9a9;
-  height: 40%;
-}
-.leftbox__etc .etc__title {
-  padding: 20px;
-  font-size: var(--font-h3);
-}
-```
-
-### CSS 비교(4) - 세번째 section 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.work {
-  color: black;
-  margin-bottom: 50px;
-}
-
-.work__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.work__container__title {
-  font-size: var(--font-h1);
-  margin-bottom: 20px;
-}
-
-.work__container__subtitle {
-  font-size: var(--font-h3);
-  margin-bottom: 20px;
-}
-
-.work__container__menu {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-align: center;
-  margin-bottom: 20px;
-}
-.work__container__menu a {
-  border: 2px solid rgba(84, 61, 61, 0.39);
-  padding: 5px 30px;
-  background-color: rgba(255, 255, 255, 0.486);
-  border-radius: 3px;
-}
-
-.work__container__items {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-/* 이렇게 grid를 짜는게 맞을려나..?? */
-.work__container__items .item {
-  flex: 1 1 25%;
-  background-color: white;
-  margin-left: -10px;
-}
-
-.work__container__items .item img {
-  padding: 0 0px 10px 10px;
-  max-width: 100%;
-  vertical-align: top;
-}
-```
-
-### CSS 비교(5) - 네번째 section 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.testimonials {
-  background-color: #eae5e5;
-  margin-bottom: 50px;
-}
-
-.testimonials__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 85%;
-  margin: 0 auto;
-}
-
-.testimonials__container__title {
-  font-size: var(--font-h1);
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-.testimonials__container__subtitle {
-  font-size: var(--font-h3);
-  margin-bottom: 20px;
-}
-
-.container__items {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.container__items .item {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  margin-bottom: 20px;
-}
-.container__items .item img {
-  border-radius: 50%;
-  width: 130px;
-  height: 130px;
-}
-
-/* 중복되는 코드 고치는법 */
-.container__items .item .item__inform:nth-child(even) {
-  width: 100%;
-  height: 130px;
-  text-align: center;
-  background-color: aliceblue;
-  border-radius: 5px;
-  padding: 20px;
-  margin-left: 30px;
-}
-.container__items .item .item__inform:nth-child(odd) {
-  width: 100%;
-  height: 130px;
-  text-align: center;
-  background-color: aliceblue;
-  border-radius: 5px;
-  padding: 20px;
-  margin-right: 30px;
-}
-
-.item__inform p {
-  padding-bottom: 10px;
-}
-```
-
-### CSS 비교(6) - footer 부분
-
-- Expert Code
-
-```css
-```
-
-- Yosup Code
-
-```css
-.talk {
-  color: white;
-  background-color: #f9a2a2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.talk .talk__title {
-  margin: 50px 0px;
-  font-size: var(--font-h1);
-}
-
-.talk .talk__email {
-  margin-bottom: 20px;
-  font-size: var(--font-h2);
-}
-
-.talk .talk__sns {
-  margin-bottom: 20px;
-  display: flex;
-  flex-direction: row;
-}
-.talk .talk__rights {
-  margin-bottom: 20px;
-  font-size: var(--font-h3);
-}
-```
-
-- 궁금했던 사항
-
-* 1. BEM 구조에 맞는 클래스명 방법
-
-- 2. BEM 을 사용하면서 SASS 방법으로 사용하는 기술은 요즘 실무에서도 사용하는지
-
-- 3. BEM 구조 사용시 CSS 와 HTML이 길이저니느 현상 방지하는 방법
-
-- 4. 좀더 HTML과 CSS를 실무적으로 짜는방법
-
-* 꿀팁
+7. section ,header , 등에 큰 부분은 어차피 이름이 변하지 않으므로, class가 아닌 id를 주었다.
