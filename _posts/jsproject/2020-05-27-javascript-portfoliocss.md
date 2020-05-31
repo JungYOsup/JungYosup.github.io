@@ -518,7 +518,7 @@ p {
 
 * 1. flex에 미쳤나보다.. 굳이 이걸 flex를 사용해서 bar을 나타내다니..
 
-- 2. 코드의 양이 너무 많다..
+- 2. 코드의 양이 너무 많다.. 이제는 어떠한 방법으로든 화면을 구현할수 있게되었나. 하지만 코드의 양을 줄이는 방법을 아는것이 중요하겠다.
 
 ```css
 .skills {
@@ -641,7 +641,110 @@ p {
 
 - Expert Code
 
+* 1. transition과 transform으로도 다양한 animation을 줄수 있다.
+
+* 2. line-height 에 대해서 알아두는것이 좋겠다.
+
 ```css
+/* work */
+
+.work__categories {
+  margin: 40px;
+}
+
+.category__btn {
+  border: 1px solid var(--color-dark-white);
+  border-radius: var(--size-border-radius);
+  font-size: var(--font-regular);
+  padding: 8px 48px;
+}
+
+.category__btn.active,
+.category__btn:hover {
+  background-color: var(--color-pink);
+  color: var(--color-white);
+}
+
+.category__btn.active,
+.category__btn:hover .category__count {
+  opacity: 1;
+  top: 0;
+}
+
+.category__count {
+  background-color: var(--color-orange);
+  border-radius: 50%;
+  color: var(--color-white);
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  display: inline-block;
+  /* span은 line요소이므로 content를 꽉 잡아주게 생겼다
+  따라서 inline-block으로 바꿔야함 */
+  position: relative;
+  top: -20px;
+  left: 4px;
+  opacity: 0;
+  transition: all var(--animation-duration) ease;
+}
+
+.work__projects {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* 여기에 고정값을 준 이유는, 사실 디자이너의 맘이긴한데 내가 화면을 줄여도 개수만 바뀌고 그 크기를 유지하고 싶을때는 이렇게 고정값을 준다
+ */
+.project {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 280px;
+  height: 250px;
+  margin: 2px;
+  background-color: var(--color-light-white);
+}
+
+.project__img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.project__description {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all var(--animation-duration) ease;
+}
+
+.project:hover .project__description {
+  opacity: 0.8;
+  transform: translateY(0);
+}
+
+.project__description h3 {
+  color: var(--color-white);
+}
+
+.project__description h3:after {
+  content: " ";
+  width: 25px;
+  height: 2px;
+  background-color: var(--color-dark-white);
+  position: relative;
+  left: 50%;
+  margin-left: -12px;
+  margin-top: 8px;
+}
 ```
 
 - Yosup Code
@@ -709,9 +812,53 @@ p {
 - Expert Code
 
 ```css
+#testimonials {
+  background-color: var(--color-grey);
+}
+
+.testimonials {
+  margin: 40px;
+}
+
+.testimonial {
+  display: flex;
+}
+.testimonial__avatar {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+
+.testimonial__speech-bubble {
+  padding: 18px;
+  background-color: var(--color-white);
+  border-radius: var(--size-border-radius);
+}
+
+.testimonial__avatar:nth-child(odd) {
+  margin-right: 40px;
+}
+
+.testimonial__avatar:nth-child(even) {
+  margin-left: 40px;
+}
+
+.testimonial__speech-bubble p {
+  color: var(--color-dark-white);
+}
+
+.testimonial__speech-bubble a {
+  color: var(--color-dark-pink);
+}
 ```
 
 - Yosup Code
+
+* 1. 소개하는 부분에 높이를 정해버리니, 안의 content가 늘어나면 그 소개하는 부분의 높이를 content가 초과해버리는 현상이 발생했다. 이 부분을 고치기 위해 높이의 px을 제거해버리니, content의 높이에 따라 같이 소개하는 부분의 높이가 증가하게 되었다.
+
+- 2. 중복되는 코드가 있네, 충분히 고칠수 있었는데..
+
+* 3. 코드가 너무 길다..
 
 ```css
 .testimonials {
@@ -787,9 +934,39 @@ p {
 - Expert Code
 
 ```css
+/* contact */
+
+#contact {
+  background-color: var(--color-pink);
+}
+
+.contact__title,
+.contact__email,
+.contact__right {
+  color: var(--color-white);
+}
+
+.contact__title {
+  margin: 32px 0;
+}
+
+.contact__links {
+  font-size: var(--font-large);
+  margin: 24px 0;
+}
+
+.contact__links i {
+  transition: all var(--animation-duration) ease;
+}
+.contact__links i:hover {
+  transform: scale(1.1);
+  color: var(--color-yellow);
+}
 ```
 
 - Yosup Code
+
+* flex 남발...
 
 ```css
 .talk {
@@ -872,6 +1049,16 @@ p {
 
 * 3. **value 를 통해 width를 적용하게 되면 모든값이 적용되므로, 따로 CSS를 클래스를 만들어서 적용해주실줄 알았지만, 이런 것들은 나중에 데이터를 받아서 표현되어야 하므로 HTML tag에서 적용되어야한다. 이런것들은 따로 추출해서 json에서 관리해서 동적으로 받아온것들을 HTML 코드로 변환해서 자동적으로 생성해야하므로!!**
 
+- 4. 이제는 어떠한 방법으로든 화면을 구현할수 있게되었나. 하지만 **코드의 양을 줄이는 방법을 아는것이 중요하겠다.**
+
+  - 재활용
+
+  - CSS의 클래스명을 길게쓰지말기 !!
+
+  * 굳이 사용하지 않아도 될 CSS 사용 금지 (flex 남용금지..)
+
+* 5. **HTML, CSS를 잘 짜놔야지 반응형 만들때 코드가 많이 안들어간다.!!**
+
 ### 궁금했던 사항
 
 - 1. BEM 구조에 맞는 클래스명 방법
@@ -880,18 +1067,16 @@ p {
 
 * 3. BEM 구조 사용시 CSS 와 HTML이 길이가 늘어나는 현상 방지하는 방법
 
+  - 길게 늘릴필요가 굳이 없음
+
 * 4. 좀더 HTML과 CSS를 실무적으로 짜는방법
 
 - 5. 거의 모든 정렬에 flexbox를 사용했는데, flex박스의 남용인가? 아니면 잘 쓰는것일까?
 
-- 6. 가운데 정렬의 4가지(margin , text-align , translate ,flex)가 어떨때 사용되는걸까?
+  - 남용인듯.. 코드가 복잡해지고 더러워짐
+
+- 6. 가운데 정렬의 4가지(margin , text-align , translate ,line-height,flex)가 어떨때 사용되는걸까?
 
 - 7. **배경의 이미지를 줄때, 브라우저의 크기를 조정해도 이미지가 변하지 않게 유지하는 방법이 있을까?**
 
 * 8. **flex를 통한 자식 태그들의 가운데 정렬과, text-align을 통한 자식 태그들의(블록요소는 적용X) 가운데 정렬중 어떤게 더 나은 것일까? (flex 남용에 대한 노파심에 의한 질문)**
-
-- 꿀팁
-
-```
-
-```
