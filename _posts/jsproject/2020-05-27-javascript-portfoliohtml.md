@@ -12,19 +12,19 @@ toc_sticky: true
 
 ## 코딩비교
 
-- 1. BEM에 맞는 올바른 Class 명을 사용하였는가?
+1. BEM에 맞는 올바른 Class 명을 사용하였는가?
 
-- 2. 문서 구조에 맞는 HTML을 구성하였는가?
+2. 문서 구조에 맞는 HTML을 구성하였는가?
 
-  - Sectioning Elements 를 적재적소, 그리고 위치도 알맞게 썻는가?
+- Sectioning Elements 를 적재적소, 그리고 위치도 알맞게 썻는가?
 
 ### HTML 비교(1) - header , nav 부분
 
 - Expert Code :
 
-* 1. 버튼모양을 li 테그를 사용했네, 어차피 어디에 이동하는것이 아니기 때문에 li로 잡았다고함
+1. 버튼모양을 li 테그를 사용했네, 어차피 어디에 이동하는것이 아니기 때문에 li로 잡았다고함
 
-- 2. 같은 배경화면을 써야함에도 두가지로 나눴다. 그 이유는 나중에 css sticky를 적용하기 위해서인것 같다.
+2. 같은 배경화면을 써야함에도 두가지로 나눴다. 그 이유는 나중에 css sticky를 적용하기 위해서인것 같다.
 
 ```html
 <nav id="navbar">
@@ -61,7 +61,13 @@ toc_sticky: true
 </section>
 ```
 
-- Yosup Code : CSS방법론중 BEM에 맞는 명명법을 사용해봤다.
+- Yosup Code :
+
+1. CSS방법론중 BEM에 맞는 명명법을 사용해봤다.
+
+2. 만약 나처럼 html을 작성할경우 즉 container를 만들고 거기에 배경을 넣고 그 배경을 사용하기 위해 그 안에다가 nav를 넣을시 생기는 문제점중 하나가 nav에 css인 sticky를 적용할때, 그 sticky의 기준점 범위가 body가 아닌 container로 한정되버리는 문제가 발생한다 따라서 전문가처럼 HTML을 작성해야지만 이러한 문제가 발생하지 않는다.
+
+(sticky에 관한 정보)[https://jungyosup.github.io/css/css18/]
 
 ```html
 <header>
@@ -710,3 +716,7 @@ toc_sticky: true
 6. **버튼을 만들때 , 어떨떄는 a 태그를 사용하고, 어떨때는 button을 사용하고 어떨때는 li 태그를 사용하고 어떨때는 button을 사용함 버튼을 만들때 명확한 구분이 필요할듯**
 
 7. section ,header , 등에 큰 부분은 어차피 이름이 변하지 않으므로, class가 아닌 id를 주었다.
+
+8. **CSS를 어떻게 적용할지에 대한 생각도 하면서 HTML을 짜는것이 중요한것같다.**
+
+- nav 부분 작성할때 전문가와 나의 HTML의 차이를 통해, 그 이유가 나중에 CSS 적용때문에 저렇게 작성했어야 했던걸 알게되었다.
