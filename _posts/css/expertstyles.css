@@ -1,116 +1,22 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
+.nav__container {
+  width: 100%;
+  height: 700px;
+  background-color: black;
 }
 
-body {
-  font-family: "Noto Sans KR", sans-serif;
-  letter-spacing: -0.01em;
-}
-
-a {
-  text-decoration: none;
-}
-
-.landing {
-  background-image: url("/assets/images/css_img/img-bg.jpg");
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
-.landing-title {
-  line-height: 1.25;
-  letter-spacing: -0.03em;
-  color: #fff;
-}
-
-.landing-title strong {
-  display: block;
-  font-family: "Poppins", sans-serif;
-  letter-spacing: -0.01em;
-}
-
-.landing-link {
-  line-height: 1;
-  color: #fff;
-}
-
-.banner-title a {
-  color: #1f2d3d;
-}
-
-/* ▼ WHERE YOUR CODE BEGINS */
-
-.banner {
+.nav__bar {
   position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
-  background-color: rgb(255, 255, 255);
-  height: 64px;
+  height: 100px;
+  background-color: red;
 }
 
-.banner-title a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 64px;
-  font-size: 18px;
+.section--blue {
+  background-color: blue;
+  height: 700px;
 }
 
-/* 여기에 a태그를 버튼만큼 크게 늘렸을때 가장 효율적이 방법이 무엇일까? */
-
-.landing {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-  width: 100%;
-  height: 100vh;
-  padding-right: 20px;
-}
-.landing-title {
-  text-align: right;
-  margin-bottom: 24px;
-}
-
-.landing-link {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  width: 160px;
-  height: 52px;
-  font-size: 15px;
-  background-color: rgba(0, 0, 0, 0.5);
-  border: 2px solid white;
-  border-radius: 16px;
-}
-
-/* 이름은 white 색인데 배경색에 opacity를 줄경우 font도 흐려지는 현상을 고치는법?  a테그를 가운데 정렬하는방법? 
-  a테그에 flex를 주면 그 하위요소인 contents도 적용이 되는구나*/
-
-@media screen and (min-width: 768px) {
-  .banner {
-    top: 0;
-    bottom: auto;
-  }
-  .banner-title a {
-    height: 80px;
-  }
-
-  .landing-title {
-    text-align: center;
-    font-size: 50px;
-    padding-bottom: 15px;
-  }
-
-  .landing-link {
-    font-size: 18px;
-    width: 180px;
-    height: 56px;
-    margin-bottom: 32px;
-  }
+.section--red {
+  background-color: red;
+  height: 700px;
 }

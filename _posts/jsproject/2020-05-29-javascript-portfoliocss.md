@@ -999,6 +999,72 @@ p {
 }
 ```
 
+### CSS 비교(9) - 쿼리부분
+
+- Expert
+
+* 1. 미디어 쿼리에서는 최소한의 CSS만 작업해야한다.
+  - 에를들어 즉 여기서는 toggle버튼의 보여지고 안보여지는 정도만 작업해야지 여기서 toggle의 색상이나 어떠한 크기는 하면 안되고 미디어가 아닌 CSS에서 작업을 해줘야한다.
+
+```css
+@media screen and (max-width: 760px) {
+  .navbar__toggle-btn {
+    display: block;
+  }
+  #navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .navbar__menu {
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+  }
+
+  .about__majors {
+    flex-direction: column;
+  }
+
+  .major {
+    margin-bottom: 38px;
+  }
+
+  .skillset {
+    flex-direction: column;
+  }
+
+  .project {
+    flex-grow: 1;
+  }
+}
+```
+
+Yosup :
+
+- 1. **flex를 남용하다보니(display:flex 나 flex) 반응형 웹을 만들때 즉 미디어 쿼리에서 바꿔야하는 코드가 많아짐을 느꼈다. 이말인 즉슨 쓸대없는 CSS의 남용은 , 나중에 고칠게 많음을 알게 된 순간이었다. 또한 미디어쿼리에서 어떻게 동작할지도 미리 생각해놓고 짜야지만 미디어쿼리에서의 코딩양을 줄일수가 있다.**
+
+- **2. 또한 CSS에서 자식요소의 선택자를 자주쓸때 나중에 미디어쿼리에서 우선순위 문제가 발생할수 있기때문에, 최대한 CSS에서 자식선택자를 자주 쓰지는 말자.**
+
+```css
+.nav {
+  flex-direction: column;
+}
+.nav__logo {
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.nav__toggle {
+  display: block;
+}
+
+.nav .nav__menubar {
+  flex-direction: column;
+}
+```
+
 ### CSS Ellie vs Yosup 총평
 
 - 1. 자주 사용되는 CSS는 역시 root로 변수를 만드는것이 코딩이 더 깔금해보이며, h1,h2,h3,h4 , p 와 같은 자주 사용되므로 같은 간격을 유지하는경우 굳이 계속 CSS를 주기보다 다음과 같이 하는것이 보기 더 깔끔하다.
@@ -1058,6 +1124,12 @@ p {
   * 굳이 사용하지 않아도 될 CSS 사용 금지 (flex 남용금지..)
 
 * 5. **HTML, CSS를 잘 짜놔야지 반응형 만들때 코드가 많이 안들어간다.!!**
+
+- 6. **미디어 쿼리는 최소한의 CSS 작업만 할수 있게~**
+
+* 7. **flex를 남용하다보니(display:flex 나 flex) 반응형 웹을 만들때 즉 미디어 쿼리에서 바꿔야하는 코드가 많아짐을 느꼈다.이말인 즉슨 쓸대없는 CSS의 남용은 , 나중에 고칠게 많음을 알게 된 순간이었다. 또한 미디어쿼리에서 어떻게 동작할지도 미리 생각해놓고 짜야지만 미디어쿼리에서의 코딩양을 줄일수가 있다.**
+
+- 8. **또한 CSS에서 자식요소의 선택자를 자주쓸때 나중에 미디어쿼리에서 우선순위 문제가 발생할수 있기때문에, 최대한 CSS에서 자식선택자를 자주 쓰지는 말자.(ex) .parent .child .childson{} (x) , .childson{} (o)**
 
 ### 궁금했던 사항
 
