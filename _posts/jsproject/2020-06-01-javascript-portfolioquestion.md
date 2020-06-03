@@ -12,7 +12,7 @@ toc_sticky: true
 
 ### HTML 에서 가져가야할 것
 
-![]()
+![](/assets/images/project_img/portfolio.png);
 
 1. 다음과 같은 화면에서 배경이 들어갈 div 안에 nav를 넣는것이 아니라, nav 따로 배경이 들어갈 div 따로 만들어줘야한다?
 
@@ -20,7 +20,7 @@ toc_sticky: true
 
 * 그런데 일반적으로 nav는 fixed로 해주는것 같다.
 
-(sticky에 관한 정보)[https://jungyosup.github.io/css/css18/]
+[sticky에 관한 정보](https://jungyosup.github.io/css/css18/)
 
 2. section, header 등 테그요소들을 사용하는것에 두려움이 없어야한다. 단순히 HTML 구조를 잡는 용도라기보다 , 어떠한 기능을 넣어줌으로써 좀더 코드의 양을 줄일수 있을것 같다.
 
@@ -95,7 +95,9 @@ toc_sticky: true
 </div>
 ```
 
-- bad Example
+- 7. grid 작업할때, 굳이 li를 쓰던데 div를 많이 씀..(뭐가 더 좋은 방법일까??)
+
+* bad Example
 
 ### CSS 에서 가져가야할 것
 
@@ -257,7 +259,7 @@ p {
 
 - 공통 HTML : 완벽한 가운데 정렬을 필요로 하지 않은 HTML 이였다.
 
-![]();
+![](/assets/images/project_img/portfolio.png);
 
 ```html
 <section id="home" class="section">
