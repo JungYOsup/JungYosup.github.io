@@ -1,5 +1,5 @@
 ---
-title: "13.포트폴리오 클론코딩 만들기에서 가져가야할 능력들(별 100만개)"
+title: "14.포트폴리오 클론코딩 만들기에서 가져가야할 능력들(별 100만개)"
 excerpt: "포트폴리오 클론코딩에서 가져가야할 HTML, CSS , JAVASCRIPT"
 categories:
   - jsproject

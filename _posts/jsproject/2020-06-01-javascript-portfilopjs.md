@@ -1,5 +1,5 @@
 ---
-title: "12.포트폴리오 클론코딩 만들기 Javascript(별 100만개)"
+title: "13.포트폴리오 클론코딩 만들기 Javascript(별 100만개)"
 excerpt: "javascript 프로젝트 열한번째 CSS"
 categories:
   - jsproject
