@@ -1,3 +1,12 @@
-.canvas {
-  width: 500px;
+.background {
+  background: no-repeat center url("/assets//images/javascript_img/jeju01.jpg");
+
+  width: 100%;
+  height: 300px;
+}
+
+@media screen and (max-width: 1000px) {
+  .background {
+    background-size: cover;
+  }
 }

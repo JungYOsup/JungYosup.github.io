@@ -24,8 +24,6 @@ toc_sticky: true
 
 1. 버튼모양을 li 테그를 사용했네, 어차피 어디에 이동하는것이 아니기 때문에 li로 잡았다고함
 
-2. 같은 배경화면을 써야함에도 두가지로 나눴다. 그 이유는 나중에 css sticky를 적용하기 위해서인것 같다.
-
 ```html
 <nav id="navbar">
   <div class="navbar__logo">
