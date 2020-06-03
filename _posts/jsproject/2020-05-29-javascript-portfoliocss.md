@@ -1009,7 +1009,7 @@ p {
 
 ```css
 @media screen and (max-width: 760px) {
-  .navbar__toggle-btn {
+.navbar__toggle-btn {
     display: block;
   }
   #navbar {
@@ -1021,7 +1021,17 @@ p {
     flex-direction: column;
     text-align: center;
     width: 100%;
+    display: none;
+    transition: all var(--animation-duration) ease;
   }
+  .navbar__menu.display {
+    display: block;
+  }
+
+  .section{
+    padding:16px
+  }
+  /* 일반적으로 모바일은 padding:16px 이다 */
 
   .about__majors {
     flex-direction: column;
@@ -1038,7 +1048,6 @@ p {
   .project {
     flex-grow: 1;
   }
-}
 ```
 
 Yosup :
@@ -1135,3 +1144,5 @@ p {
 * 7. **flex를 남용하다보니(display:flex 나 flex) 반응형 웹을 만들때 즉 미디어 쿼리에서 바꿔야하는 코드가 많아짐을 느꼈다.이말인 즉슨 쓸대없는 CSS의 남용은 , 나중에 고칠게 많음을 알게 된 순간이었다. 또한 미디어쿼리에서 어떻게 동작할지도 미리 생각해놓고 짜야지만 미디어쿼리에서의 코딩양을 줄일수가 있다.**
 
 - 8. **또한 CSS에서 자식요소의 선택자를 자주쓸때 나중에 미디어쿼리에서 우선순위 문제가 발생할수 있기때문에, 최대한 CSS에서 자식선택자를 자주 쓰지는 말자.(ex) .parent .child .childson{} (x) , .childson{} (o)**
+
+* 9. 일반적으로 모바일은 브라우저가 제일 작은 화면 section들이 padding 16px이다.

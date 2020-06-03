@@ -306,6 +306,23 @@ p {
 }
 ```
 
+6. 브라우저를 좌우로 제일 많이 줄였을때, section이 padding 16px인것을 일반적으로 한다.
+
+7. 반응형 웹에서도 즉 media screen 에서도 또다른 root를 만들어서 사용한다.
+
+```css
+:root {
+  /* font size */
+  --font--large: 30px;
+  --font--medium: 18px;
+  --font--regular: 16px;
+  --font--small: 14px;
+  --font--micro: 12px;
+}
+```
+
+- 이렇게만 정의해줬는데 , 반응형일때 size들이 위의 사이즈로 바뀜 why? 변수의 값이 바꼈기때문에
+
 ### Javascript 에서 가져가야할 것(아니 버려야할것..)
 
 1. 좀더 쉽게 할수 있는것을 복잡하게 하는 코딩능력.. 제바류ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
