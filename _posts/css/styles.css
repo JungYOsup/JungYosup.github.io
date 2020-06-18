@@ -1,13 +1,33 @@
-.wrap {
-  width: 100px;
-  height: 500px;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-/* flex된 요소에서는 margin auto가 이유는 모르겠으나 먹힌다는거 너비를 주지 않고도 먹힌다는거 */
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(4, 1fr);
+  /* 1fr 1fr 1fr 1fr  */
 
-/* flex-dircetion : row일때는 item 들이 이상한 block 처럼 contents 만큼 너비를 차지하고
-높이는 container 높이만큼 늘어난다. */
+  /* grid-template-columns : 1fr 2fr 1fr 1fr  하면 두번째가 나머지보다 2배의 크기를 더 가짐*/
 
-/* flex-direction : column일때는 item들이 contents만큼 높이를 차지하고 너비는 container만큼 너비를 차지한다. */
+  grid-template-rows: repeat(4, 100px);
+}
 
-/* inline요소를 flex로 바꾸니까 모자란 block요소로 바뀌네 */
+.header {
+  background-color: #2ecc71;
+  grid-column: span 4;
+}
+.content {
+  background-color: #3498db;
+  grid-column: 1 / -2;
+  grid-row: span 2;
+}
+.nav {
+  background-color: #8e44ad;
+  grid-row: span 2;
+}
+.footer {
+  background-color: #f39c12;
+  grid-column: span 4;
+}
