@@ -21,6 +21,9 @@ main:
   - title: "vue"
     url: /vue/
 
+  - title: "etc"
+    url: /etc/
+
   - title: "알고리즘"
     url: /algorithm/
 
