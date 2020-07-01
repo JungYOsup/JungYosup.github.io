@@ -1,128 +1,113 @@
-// Q1. make a string out of an array(배열에서 문자열을 만들어보자)
-{
-  const fruits = ["apple", "banana", "orange"];
-  const result = fruits.join();
-  console.log(result);
-}
+"use strict";
 
-// Q2. make an array out of a string(문자열을 배열로 만들자.)
-{
-  const fruits = "🍎, 🥝, 🍌, 🍒";
-  const result = fruits.split(",", 3);
-  console.log(result);
-}
+// Promise is a Javascript object for asynchronous operation.
 
-// Q3. make this array look like this: [5, 4, 3, 2, 1]
-{
-  const array = [1, 2, 3, 4, 5];
-  const result = array.reverse();
-  console.log(result);
-}
-// Q4. make new array without the first two elements (splice vs slice)
-{
-  const array = [1, 2, 3, 4, 5];
-  const array2 = [1, 2, 3, 4, 5];
+// Promise는 비동기처리를 위한 자바스크립트 object이다.
 
-  const result1 = array.splice(0, 2); //기준 index부터 갯수
+// 1. producer
+// when new promise is created , the executor runs automatically(promise가 만들어지게 되면 , 자동적으로 실행해버린다. 따라서 버튼을 눌러서 어떠한 network나 readfiles를 하기위해서는 이렇게 작성해서는 안된다.)
+const promise = new Promise((resolve, reject) => {
+  //doing some heavy work(network, read files 는 비동기적으로 처리하는것이 좋다. 왜?? 오래걸리기 때문에 동기적으로 하면 다른일을 하지 못함)
 
-  console.log(result1); //[1,2]
-  console.log(array); //[3,4,5]
-  //splice는 원본에 영향을 미침(mutalbe)
+  console.log("doing something");
+  setTimeout(() => {
+    resolve("ellie"); //성공적으로 network or readfiles를 햇다면 resolve()함수를 사용한다.
 
-  const result2 = array2.slice(2, 5); //범위 index가 2 이상 5미만
-  console.log(result2); //[3,4,5]
-  console.log(array2); //[1,2,3,4,5]
-  //slice는 원본에 영향을 주지 않음(immutable)
-}
+    reject(new Error("no network"));
+    //만약 성공적으로 받아오지 못했다면 밑에reject()함수가 실행되어 그 이유를 나타내준다.
+  }, 2000);
+});
 
-class Student {
-  constructor(name, age, enrolled, score) {
-    this.name = name;
-    this.age = age;
-    this.enrolled = enrolled;
-    this.score = score;
-  }
-}
-const students = [
-  new Student("A", 29, true, 45),
-  new Student("B", 28, false, 90),
-  new Student("C", 30, true, 90),
-  new Student("D", 40, false, 66),
-  new Student("E", 18, true, 88),
-];
+// promise의 then과 catch를 통해 성공일때의 값과, 실패했을때의 error을 받아올수 있다.
 
-// Q5. find a student with the score 90
-{
-  const result = students.find((student, index) => {
-    return student.score === 90;
+//finally() 성공하든 실패하든 상관없이 무조건 실행시키는 함수
+
+promise
+  .then((value) => {
+    console.log(value); //ellie
+  })
+  .catch((error) => {
+    console.log(error); // no network
+  }) //error를 잡기위함
+  .finally(() => {
+    console.log("final");
   });
 
-  console.log(result);
+const fetchNumber = new Promise((resolve, reject) => {
+  setTimeout(() => resolve(1), 1000);
+});
+
+fetchNumber
+  .then((num) => num * 2)
+  .then((num) => num * 3)
+  .then((num) => {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => resolve(num - 1), 1000);
+    });
+  })
+  .then((num) => console.log(num));
+
+const getHen = () => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve("닭"), 1000);
+  });
+};
+
+const getEgg = (hen) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject(new Error(`error! ${hen}=>"달걀"`)), 1000);
+  });
+};
+const cook = (egg) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve(`${egg}=>병아리`), 1000);
+  });
+};
+
+getHen()
+  .then((hen) => getEgg(hen))
+  .catch((error) => {
+    return "빵";
+  })
+  .then((egg) => cook(egg))
+  .then(console.log)
+  .catch(console.log);
+//---------------------------------------------
+class UserStorage {
+  loginUser(id, password) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (
+          (id === "ellie" && password == "dream") ||
+          (id === "coder" && password === "academy")
+        ) {
+          resolve(id);
+        } else {
+          reject(new Error("not found"));
+        }
+      }, 2000);
+    });
+  }
+
+  getRoles(user, onSuccess, onError) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        if (user === "ellie") {
+          resolve({ name: "ellie", role: "admin" });
+        } else {
+          reject(new Error("no access"));
+        }
+      }, 1000);
+    });
+  }
 }
 
-// Q6. make an array of enrolled students
-{
-  const result = students.filter((student) => student.enrolled === true);
-  console.log(result);
-}
+const userStorage = new UserStorage();
 
-// Q7. make an array containing only the students' scores
-// result should be: [45, 80, 90, 66, 88]
-{
-  const result = students.map((student) => student.score);
+const id = prompt("enter your id");
+const password = prompt("enter your password");
 
-  console.log(result);
-}
-
-// Q8. check if there is a student with the score lower than 50
-{
-  const result = students.some((student) => student.score < 50);
-  console.log(result);
-}
-
-// Q9. compute students' average score
-{
-  const result = students.reduce((prev, curr) => prev + curr.score, 0);
-
-  const result3 = students
-    .filter((student, index) => {
-      if (index >= 3) {
-        return;
-      }
-      return student;
-    })
-    .reduce((prev, curr) => prev + curr.score, 0);
-
-  console.log(result3);
-}
-
-// Q10. make a string containing all the scores
-// result should be: '45, 80, 90, 66, 88'
-{
-  const result = students.map((student) => student.score).join();
-
-  console.log(result);
-}
-
-// Q11. make a string containing all the scores 중에 점수가 50점 미만 애들을 string으로 만들어주세요
-// result should be: '45'
-{
-  const result = students
-    .map((student) => student.score)
-    .filter((score) => score < 50)
-    .join();
-
-  //왜 이렇게 쓸수 잇을까?? 바로 map은 새로운 배열을 리턴해주기 때문이다
-  console.log(result);
-}
-
-// Bonus! do Q10 sorted in ascending order
-// result should be: '45, 66, 80, 88, 90'
-{
-  const result = students
-    .map((student) => student.score)
-    .sort((a, b) => a - b)
-    .join();
-
-  console.log(result);
-}
+userStorage
+  .loginUser(id, password)
+  .then((user) => alert(`Hello" ${user.name}, you have a ${user.role} role`))
+  .catch(console.log);
