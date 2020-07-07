@@ -1,6 +1,6 @@
 ---
-title: "1. ReactJs로 웹서비스 만들기"
-excerpt: "React 프로젝트 첫번째"
+title: "2.ReactJs로 웹서비스 만들기"
+excerpt: "'React로 영화 웹 서비스 만들기' 전문가(Nomad)와 코린이의 코딩 비교"
 categories:
   - react
 tags:
@@ -16,7 +16,11 @@ Nomad Coders를 기반으로 하고 있다.
 
 [Nomad코드](https://academy.nomadcoders.co/);
 
-### 0. Introduction
+## 0. Introduction
+
+### 0.1 Why React?
+
+:
 
 ### 1. Setup
 
@@ -161,14 +165,14 @@ function Food({ name, country }) {
 const abc = [
   { name: "kimchi", country: "korea" },
   { name: "sushi", country: "japan" },
-  { name: "maratang", country: "china" }
+  { name: "maratang", country: "china" },
 ];
 
 // 여기서 value는 객체
 function App() {
   return (
     <div>
-      {abc.map(function(value) {
+      {abc.map(function (value) {
         return <Food name={value.name} country={value.country} />;
       })}
     </div>
@@ -200,13 +204,13 @@ function Food({ name, country }) {
 const abc = [
   { name: "kimchi", country: "korea", id: 1 },
   { name: "sushi", country: "japan", id: 2 },
-  { name: "maratang", country: "china", id: 3 }
+  { name: "maratang", country: "china", id: 3 },
 ];
 
 function App() {
   return (
     <div>
-      {abc.map(function(value) {
+      {abc.map(function (value) {
         return (
           <Food key={value.id} name={value.name} country={value.country} />
         );
@@ -247,7 +251,7 @@ function Food({ name, country, score }) {
 Food.propTypes = {
   name: PropTypes.string.isRequired,
   country: PropTypes.string.isRequired,
-  score: PropTypes.string.isRequired //여기서 score의 타입이 무조건 string을 요구한다고 했는데
+  score: PropTypes.string.isRequired, //여기서 score의 타입이 무조건 string을 요구한다고 했는데
   //보내는 객체의 value값이 int 형이므로 propTypes에서 "나는 String을 원햇지만 int형 을 보내고 있다고 확인해보라고 오류가 뜬다"
   //But 화면에 보이는 결과값은 제대로 나온다.
 };
@@ -255,13 +259,13 @@ Food.propTypes = {
 const abc = [
   { name: "kimchi", country: "korea", id: 1, score: 5.0 },
   { name: "sushi", country: "japan", id: 2, score: 4.4 },
-  { name: "maratang", country: "china", id: 3, score: 4.5 }
+  { name: "maratang", country: "china", id: 3, score: 4.5 },
 ];
 
 function App() {
   return (
     <div>
-      {abc.map(function(value) {
+      {abc.map(function (value) {
         return (
           <Food
             key={value.id}
@@ -298,7 +302,7 @@ import React from "react";
 
 class App extends React.Component {
   state = {
-    count: 0
+    count: 0,
   };
 
   add = () => {
@@ -339,19 +343,19 @@ import React from "react";
 
 class App extends React.Component {
   state = {
-    count: 0
+    count: 0,
   };
 
   add = () => {
     this.setState({
-      count: this.state.count + 1 //좋은 코딩은 아니다. why? 외부에서 state를 의존하기 때문에 좋은방법이 아니다.
+      count: this.state.count + 1, //좋은 코딩은 아니다. why? 외부에서 state를 의존하기 때문에 좋은방법이 아니다.
     });
   };
 
   minus = () => {
     //current = this.state
-    this.setState(current => ({
-      count: current.count - 1 //좋은 코딩이다.
+    this.setState((current) => ({
+      count: current.count - 1, //좋은 코딩이다.
     }));
   };
 
@@ -398,14 +402,14 @@ import React from "react";
 class App extends React.Component {
   state = {
     ischecked: false,
-    book: "" //나중에 book이 쓰일것을 대비하여 초기화함 (쓰지 않아도 되지만 초기화 습관들이는게 좋다.)
+    book: "", //나중에 book이 쓰일것을 대비하여 초기화함 (쓰지 않아도 되지만 초기화 습관들이는게 좋다.)
   };
 
   componentDidMount() {
     setTimeout(() => {
       this.setState({
         ischecked: true,
-        book: false
+        book: false,
       });
     }, 6000);
   }
@@ -443,7 +447,7 @@ import axios from "axios";
 class App extends React.Component {
   state = {
     ischecked: false,
-    book: ""
+    book: "",
   };
 
   getMovies = async () => {
@@ -485,7 +489,7 @@ import Movie from "./Movie";
 class App extends React.Component {
   state = {
     isLoading: true,
-    movies: []
+    movies: [],
   };
 
   getMovies = async () => {
@@ -496,15 +500,15 @@ class App extends React.Component {
 
     const {
       data: {
-        data: { movies }
-      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+        data: { movies },
+      }, //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
     } = await axios.get(
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
 
     this.setState({
       movies, // == movies: movies
-      isLoading: false
+      isLoading: false,
     });
   };
 
@@ -521,7 +525,7 @@ class App extends React.Component {
       <div>
         {isLoading
           ? "Loading..."
-          : movies.map(movie => {
+          : movies.map((movie) => {
               return (
                 <Movie
                   key={movie.id}
@@ -561,7 +565,7 @@ Movies.prototype = {
   year: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
 };
 
 export default Movies;
@@ -587,7 +591,7 @@ import Movie from "./Movie";
 class App extends React.Component {
   state = {
     isLoading: true,
-    movies: []
+    movies: [],
   };
 
   getMovies = async () => {
@@ -598,15 +602,15 @@ class App extends React.Component {
 
     const {
       data: {
-        data: { movies }
-      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+        data: { movies },
+      }, //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
     } = await axios.get(
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
 
     this.setState({
       movies, // == movies: movies
-      isLoading: false
+      isLoading: false,
     });
   };
 
@@ -625,7 +629,7 @@ class App extends React.Component {
           </div>
         ) : (
           <div class="movies">
-            {movies.map(movie => (
+            {movies.map((movie) => (
               <Movie
                 key={movie.id}
                 id={movie.id}
@@ -674,7 +678,7 @@ Movies.prototype = {
   year: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired
+  poster: PropTypes.string.isRequired,
 };
 
 export default Movies;
@@ -699,7 +703,7 @@ import "./Movie.css";
 class App extends React.Component {
   state = {
     isLoading: true,
-    movies: []
+    movies: [],
   };
 
   getMovies = async () => {
@@ -710,15 +714,15 @@ class App extends React.Component {
 
     const {
       data: {
-        data: { movies }
-      } //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
+        data: { movies },
+      }, //바로 ES6 기능으로 , movies.data.data.movies 가져옴 , movies안에 movies.data.data.movies가 담김
     } = await axios.get(
       "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
     );
 
     this.setState({
       movies, // == movies: movies
-      isLoading: false
+      isLoading: false,
     });
   };
 
@@ -737,7 +741,7 @@ class App extends React.Component {
           </div>
         ) : (
           <div class="movies">
-            {movies.map(movie => (
+            {movies.map((movie) => (
               <Movie
                 key={movie.id}
                 id={movie.id}
@@ -796,7 +800,7 @@ Movies.prototype = {
   title: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired //프로프타입이 String인 배열이 요구되어진다.
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired, //프로프타입이 String인 배열이 요구되어진다.
 };
 
 export default Movies;
