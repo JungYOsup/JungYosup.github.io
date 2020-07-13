@@ -1,5 +1,5 @@
 ---
-title: "2.ReactJs로 고객관리 시스템 만들기"
+title: "3.ReactJs로 고객관리 시스템 만들기"
 excerpt: "React로 고객관리 시스템 만들기(feat. 동빈나)"
 categories:
   - react
@@ -372,6 +372,200 @@ export default Customer;
 * 영상 참조
 
 ## 5. Node.js Express에서 Rest API 구축하기
+
+- Rest Api란 , 상당수 웹 서버 프레임워크에서 기본적으로 지원하는 기능으로써 , 서버와 클라이언트가 웹 프로토콜을 기반으로 하여 효과적으로 데이터를 주고 받을 수 있도록 해준다.
+
+### 5.1 전체 고객 목록을 불러오는 Rest api를 구현하기
+
+1. 기존에 데이터들은 클라이언트에서 제공되었는데, 일반적으로 데이터는 서버에서 제공이 되어야한다. 그래서 기존에 데이터를 서버쪽으로 옴김
+
+- server.js
+
+```js
+const express = require("express");
+const bodyParser = require("body-parser");
+const app = express();
+const port = process.env.PORT || 5000;
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+app.get("/api/customers", (req, res) => {
+  res.send([
+    {
+      id: 1,
+      name: "홍길동",
+      image: "https://placeimg.com/64/64/1",
+      birthday: 960122,
+      gender: "남",
+      job: "대학생",
+    },
+    {
+      id: 2,
+      name: "정요섭",
+      image: "https://placeimg.com/64/64/2",
+      birthday: 911115,
+      gender: "남",
+      job: "대학생",
+    },
+    {
+      id: 3,
+      name: "김수진",
+      image: "https://placeimg.com/64/64/3",
+      birthday: 951207,
+      gender: "여",
+      job: "대학생",
+    },
+  ]);
+});
+
+app.listen(port, () => console.log(`Listening on port ${port}`));
+```
+
+2. rest api에서는 이러한 데이터를 주고 받을 때 Json이라는 데이터 형식을 이용하여 데이터를 주고 받는다.
+   (node js 익스프레스 기본적인 설정만으로도 배열형태의 데이터를 Json 데이터 형식으로 바꿔준다.)
+
+결과값 : (결과값)[http://localhost:5000/api/customers]
+
+### 5.2 클라이언트 쪽에서 데이터가 있는 서버에 접근하기
+
+1. 접근하기에 앞서, JSLint를 사용하요 데이터가 올바른 형식인지 파악해준다. 그것을 파악해주는것이 JSLint
+
+- JSLint : api서버가 출력해준 데이터가 올바른 형식인지 확인할 수 있도록 해줌
+
+2. 프록시 설정하기
+
+- (프록시란?)[https://brownbears.tistory.com/191]
+
+* package.json에 "proxy": "http://localhost:5000" 를 추가한다.
+
+3. React 클라이언트에서 해당 api에 접속해서 데이터 가져오기
+
+- react 에서는 일반적으로 비동기 통신을 이용해서 서버에 접근하여 데이터를 가져오도록 코딩을 한다.
+
+* 프로그램이 동작하는 과정중에서 변경될수 있는 데이터 이므로, state를 사용해야한다.
+
+```js
+import React, { Component } from "react";
+import Customer from "./components/Customer";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import { withStyles } from "@material-ui/core/styles";
+
+const styles = (theme) => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto",
+  },
+  table: {
+    minWidth: 1080,
+  },
+});
+
+class App extends Component {
+  state = {
+    customers: "",
+  };
+
+  componentDidMount() {
+    this.callAPi()
+      .then((res) => this.setState({ customers: res }))
+      .catch((err) => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/customers");
+    const body = await response.json();
+    return body;
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableCell>번호</TableCell>
+            <TableCell>이미지</TableCell>
+            <TableCell>이름</TableCell>
+            <TableCell>생년월일</TableCell>
+            <TableCell>성별</TableCell>
+            <TableCell>직업</TableCell>
+          </TableHead>
+          <TableBody>
+            {this.state.customers.map((custom) => (
+              <Customer
+                key={custom.id}
+                id={custom.id}
+                name={custom.name}
+                image={custom.image}
+                birthday={custom.birthday}
+                gender={custom.gender}
+                job={custom.job}
+              />
+            ))}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
+}
+
+export default withStyles(styles)(App);
+```
+
+- 문제점 발생
+
+  - 그 문제점중 하나가, 처음에 state가 비어있다가 ComponentDidmount가 실행해서 데이터를 가져오고 state가 바뀌고 다시 render 되는 과정에서 생기는데, 바로 처음에 state가 비어있다는것에서 오류가 발생한다. 아무리 데이터를 받아오는것이 빨라도 웹에서는 state가 비어있다는 오류를 먼저 내보내기 때문이다.
+
+  * 이 문제를 해결하기위해 데이터를 받기전 , state가 비어있는 상황에 로딩중이라는 또는 데이터를 받고있는 중이라는 표시를 해줘야한다.
+
+* bad example
+
+  ```js
+  {
+    this.state.customers.map((custom) => (
+      <Customer
+        key={custom.id}
+        id={custom.id}
+        name={custom.name}
+        image={custom.image}
+        birthday={custom.birthday}
+        gender={custom.gender}
+        job={custom.job}
+      />
+    ));
+  }
+  ```
+
+- good example : 삼항연산자를 통해, 데이터가 없는 상태에서는 다른 표시를 해준다.
+
+```js
+{
+  this.state.customers
+    ? this.state.customers.map((custom) => (
+        <Customer
+          key={custom.id}
+          id={custom.id}
+          name={custom.name}
+          image={custom.image}
+          birthday={custom.birthday}
+          gender={custom.gender}
+          job={custom.job}
+        />
+      ))
+    : "";
+}
+```
+
+### 5.3 꿀팁
+
+1. network 를 보면 Request URL: http://localhost:3000/ , 요청하는 URL이 3000이지만 실지로는 프록시에서 설정한 5000번 포트에서 데이터를 받는것이다.
 
 ## 6. 리액트의 라이프사이클 이해 및 API 로딩 처리 구현하기
 
