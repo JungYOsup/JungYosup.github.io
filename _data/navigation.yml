@@ -18,8 +18,8 @@ main:
   - title: "react"
     url: /react/
 
-  - title: "vue"
-    url: /vue/
+  - title: "python"
+    url: /python/
 
   - title: "etc"
     url: /etc/

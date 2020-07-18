@@ -569,7 +569,132 @@ export default withStyles(styles)(App);
 
 ## 6. 리액트의 라이프사이클 이해 및 API 로딩 처리 구현하기
 
+### 6.1 리액트의 라이프사이클(번호 순서대로 동작)
+
+1. constructor()
+
+2. componentWillMount()
+
+3. render()
+
+4. componentDidMount()
+
+5. props나 state가 변경될때 --> render()가 다시 동작함
+
+### 6.2 Material UI를 이용해서, API를 받아올때까지 Progressbar ui를 보여주기
+
+1. Material Ui를 이용하여 Progessbar ui를 import 한다.
+
+- import CircularProgress from "@material-ui/core/CircularProgress";
+
+2. 삼항연산자를 이용하여, 데이터가 없는 상태일때 Progressbar를 보여준다.
+
+```js
+import React, { Component } from "react";
+import Customer from "./components/Customer";
+import Paper from "@material-ui/core/Paper";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import { withStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+const styles = (theme) => ({
+  root: {
+    width: "100%",
+    marginTop: theme.spacing.unit * 3,
+    overflowX: "auto",
+  },
+  table: {
+    minWidth: 1080,
+  },
+  progress: {
+    margin: theme.spacing.unit * 2,
+  },
+});
+
+class App extends Component {
+  state = {
+    customers: "",
+    completed: 0,
+  };
+
+  componentDidMount() {
+    this.timer = setInterval(this.progress, 20);
+    this.callApi()
+      .then((res) => this.setState({ customers: res }))
+      .catch((err) => console.log(err));
+  }
+
+  callApi = async () => {
+    const response = await fetch("/api/customers");
+    const body = await response.json();
+    return body;
+  };
+
+  progress = () => {
+    const { completed } = this.state;
+    this.setState({
+      completed: completed >= 100 ? 0 : completed + 1,
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    return (
+      <Paper className={classes.root}>
+        <Table className={classes.table}>
+          <TableHead>
+            <TableCell>번호</TableCell>
+            <TableCell>이미지</TableCell>
+            <TableCell>이름</TableCell>
+            <TableCell>생년월일</TableCell>
+            <TableCell>성별</TableCell>
+            <TableCell>직업</TableCell>
+          </TableHead>
+          <TableBody>
+            {this.state.customers ? (
+              this.state.customers.map((custom) => (
+                <Customer
+                  key={custom.id}
+                  id={custom.id}
+                  name={custom.name}
+                  image={custom.image}
+                  birthday={custom.birthday}
+                  gender={custom.gender}
+                  job={custom.job}
+                />
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan="6" align="center">
+                  <CircularProgress
+                    className={classes.progress}
+                    variant="determinate"
+                    value={this.state.completed}
+                  />
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </Paper>
+    );
+  }
+}
+
+export default withStyles(styles)(App);
+```
+
 ## 7. AWS RDS 서비스를 이용하여 MYSQL DB 구축하기
+
+### 7.1 AWS(amazon web service) 를 이용하여 웹 서비스를 구축하기
+
+- Node Express 를 이용하여, 데이터를 가져왔다면, 이 데이터들을 수정하고 , 추가하고, 삭제하기 위해서는 데이터 베이스가 필요하다. 그렇기에 이번에는 AWS의 RDS 서비스를 이용하여 데이터 베이스를 구축해보겠다.
+
+* 하지만 AWS의 RDS 서비스는 비용이 드므로 MySQL을 이용하여 DB를 구성하는 방법을 채택하겠다.
 
 ## 8. 고객(Customer) DB 테이블 구축 및 Express 연동하기
 
