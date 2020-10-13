@@ -346,6 +346,7 @@ defaults:
       search: true
       related: true
 
+
     # _posts/jsproject
   - scope:
       path: "_posts/jsproject"
@@ -385,6 +386,7 @@ defaults:
       search: true
       related: true
 
+
     # _posts/HTML
   - scope:
       path: "_posts/html"
@@ -411,6 +413,7 @@ defaults:
       search: true
       related: true
 
+
     # _posts/etc
   - scope:
       path: "_posts/etc"
@@ -424,9 +427,24 @@ defaults:
       search: true
       related: true
 
+
       # _posts/etc
   - scope:
       path: "_posts/python"
+      type: posts
+    values:
+      layout: single
+      classes: wide
+      author_profile: true
+      comments: true
+      share: true
+      search: true
+      related:
+        true
+
+        # _posts/etc
+  - scope:
+      path: "_posts/java"
       type: posts
     values:
       layout: single

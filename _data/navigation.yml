@@ -21,6 +21,9 @@ main:
   - title: "python"
     url: /python/
 
+  - title: "java"
+    url: /java/
+
   - title: "etc"
     url: /etc/
 
