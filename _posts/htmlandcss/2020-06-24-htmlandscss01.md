@@ -10,7 +10,7 @@ toc: true
 toc_sticky: true
 ---
 
-## 1. Best Horror Scenes 사이트 만들기
+## 1.Best Horror Scenes 사이트 만들기
 
 - 다음과 같은 웹 사이트처럼 화면을 2분할로 되어있을때 layout을 만들것인가?
   (이 사이트의 특징은 왼쪽이 고정되어있고, 오른쪽은 스크롤이 되어있는 layout)
