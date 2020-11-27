@@ -472,3 +472,198 @@ export default Movies;
 > 6.[Movie_app_2019 Project](https://jungyosup.github.io/movie_app_2019)
 >
 > 7.다음에 수정된 것을 업로드 하기 위해서는 npm run deploy만 하면 된다. 우리가 npm run deply 입력만 하면 모든 동작을 하게끔 설정을 해놨기 떄문 (predploy로)
+
+## 4. ROUTING BONUS
+
+### 4.0 Getting Ready for the Router
+
+**4.1의 핵심**
+
+> 1. npm react-router-dom 으로 설치
+>
+> 2. react-router-dom이 뭘까? 바로 Navigation을 누를때마다 새로운 페이지를 보여주는 역할을 하는 router를 import 할수 있게 해준다.
+>
+> 3. compoents 폴더와 router 폴더를 만들때, 자주 활용되기 떄문에 정해진 이름이 있는것을 볼수 있다.
+
+### 4.2 Building the Router
+
+**4.2의 핵심**
+
+> 1. 화면에 2개의 컴포넌트가 동시에 나올경우 해결방법은 exact={true} 이다.
+
+#### 4.2.1 react-router-dom을 활용하는 방법
+
+> 1. install 한 react-router-dom 에서 HashRouter 과 Router를 가져온다.
+>
+> 2. 가져온 HashRouter안에 Route를 해주는데, Route안에는 중요한 props 들이 있다.
+>
+> 3. Route 안 props중에 중요한 props는 path 그리고 component 이다.
+>
+> 4. path 는 말 그래도 보여질 컴포넌트의 경로를 선언한다.
+>
+> 5. component는 path의 경로에 선언된 component를 말한다.
+>
+> 6. 만약 브라우저 url 에 #을 없애고 싶으면 HashRouter 대신에 BrowserRouter를 사용하면 됨
+
+<u>App.js</u>
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+function App() {
+  return (
+    <HashRouter>
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+- 따라서 여기에는 #/about 경로에 About 컴포넌트가 보인다는 말임.
+
+#### 4.2.2 두개의 컴포넌트가 동시에 랜더링
+
+> 1. 같은경로에 있을경우 두개의 컴포넌트가 동시에 랜더링 된다.
+>
+> 2. 하지만 우리는 한페이지에 2개의 컴포넌트가 동시에 보여지는것을 원하지 않는다.
+>
+> 3. 이를 해결하기 위해 exact={true}를 사용하는데, 이것의 의미는 "너의 path의 url이 선언된 그대로 랜더링을 해줘" 라는 뜻이다.
+
+<u>App.js</u>
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+import Home from "./routers/Home";
+function App() {
+  return (
+    <HashRouter>
+      <Route path="/" component={Home} />
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+이렇게 선언할경우 #/about경로에서 두개의 컴포넌트 home 과 about가 동시에 랜더링 되는것을 볼수있다.
+
+마찬가지로
+
+<u>App.js</u>
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+import Home from "./routers/Home";
+function App() {
+  return (
+    <HashRouter>
+      <Route path="/home" component={Home} />
+      <Route path="/home/introduce" component={Home} />
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+이렇게 선언할경우 #/home 경로에 home 컴포넌트가 보여지는데 , #/home/introduce 경로에 home과 introduce 컴포넌트가 동시에 보여지게된다.
+
+하지만 한페이지에 2개의 컴포넌트가 보여지는것은 우리가 원하지 않는다.
+
+<u>App.js</u>
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+import Home from "./routers/Home";
+function App() {
+  return (
+    <HashRouter>
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+### 4.3 Buiding the Navigation
+
+**4.3의 핵심**
+
+> 1. Route를 이용한 Navigation을 만들때 anchor tag를 사용하면 페이지를 새롭게 새로고침하기 때문에 내가 Home을 누를경우 react가 죽고 다시 실행되기 때문에 다시 로딩을 해야하는 경우가 발생한다. 하지만 react-router-dom 에서 제공하는 link를 사용하면
+
+> 2. anchor tag를 사용하며 about로 페이지 이동을 할때, about으로 이동할경우 /#/about가 나와야하는데 http://localhost:3001/about#/ 가 나오게됨
+
+> 3. link를 사용하여 about로 페이지 이동을 할때,
+
+<u>App</u>
+
+- Navigation은 home 컴포넌트가 보여지는 화면이나 , about가 보여지는 화면이나 둘다 있어야 하기 때문에 Navigation에 exact={true}를 하지 않음으로써 두 화면에 Navigation 컴포넌트가 보여지게 되는것이다.
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+import Home from "./routers/Home";
+
+import Navigation from "./components/Navigation";
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+- 이렇게 할경우 Route를 이용한 Navigation을 만들때 anchor tag를 사용하면 페이지를 새롭게 새로고침하기 때문에 Home인 페이지에서 다시 Home을 누를경우 react가 죽고 다시 실행되기 때문에 다시 로딩을 해야하는 경우가 발생한다.
+
+<u>Navigation</u>
+
+```js
+import React from "react";
+
+function Navigation() {
+  return (
+    <div>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+    </div>
+  );
+}
+
+export default Navigation;
+```
+
+- 하지만 react-router-dom 에서 제공하는 link를 사용하면 이런 문제를 해결할수 있다.
+
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+function Navigation() {
+  return (
+    <div>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+    </div>
+  );
+}
+
+export default Navigation;
+```
