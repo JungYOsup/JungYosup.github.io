@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.slide {
+  display: flex;
+  flex-direction: row;
+  width: 320vw;
+  height: 100vh;
+  background-color: blue;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  width: 320vw;
+  transform: rotate(90deg) translateY(-100vh);
+  transform-origin: top left;
+}
+
+.outer-wrapper {
+  background-color: red;
+  width: 100vh;
+  height: 100vw;
+  transform: rotate(-90deg) translateX(-100vh);
+  transform-origin: top left;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: absolute;
+}
+
+.outer-wrapper {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* component */
+
+#menu {
+  width: 5vw;
+  height: 100vh;
+  background-color: black;
+}
+
+#intro {
+  width: 65vw;
+  height: 100vh;
+  background-color: red;
+}
+#enroll {
+  width: 50vw;
+  height: 100vh;
+  background-color: bisque;
+}
+#team {
+  width: 50vw;
+  height: 100vh;
+  background-color: brown;
+}
+#ranking {
+  width: 50vw;
+  height: 100vh;
+  background-color: green;
+}
+#schedule {
+  width: 50vw;
+  height: 100vh;
+  background-color: aqua;
+}
+#about {
+  width: 50vw;
+  height: 100vh;
+  background-color: bisque;
+}
