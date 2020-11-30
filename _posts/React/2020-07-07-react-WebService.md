@@ -667,3 +667,200 @@ function Navigation() {
 
 export default Navigation;
 ```
+
+### 4.3 Sharing Props Between Routes
+
+**4.3의 핵심**
+
+> 1. 이 장에서는 클릭했을때 상세 페이지가 나오게끔 하는 작업을 할것이다.
+>
+> 2. 그러기 위해서는 Routes props 를 알아야한다.
+>
+> 3. Route는 기본 props를 가지고 있다. 따라서 about에 props전달은 하지 않았어도 console을 찍어보면 전달받은 기본 props가 찍힌다.
+>
+> 4. 우리가 전달할 props를 전달하기 위해 Movie에 Link를 걸어주고 전달할 props를 보내준다.
+
+#### 4.3.1 Movies to Detail
+
+<u>Movies.js</u>
+
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import "./Movie.css";
+
+//Movies.js 는 state가 필요 없기 때문에 class component로 선언해줄 필요가 없다.
+//why 필요가 없어?
+//class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+//그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster, genres }) {
+  return (
+    <Link
+      to={{
+        pathname: "/movie-detail",
+        state: {
+          year,
+          title,
+          summary,
+          poster,
+          genres,
+        },
+      }}
+    >
+      <div className="movie">
+        <img src={poster} alt={title} title={title} />
+        <div className="movie__data">
+          <h3 className="movie__title">{title}</h3>
+          <h5 className="movie__year">{year}</h5>
+          <ul className="movie__genres">
+            {genres.map((genre, index) => (
+              <li key={index} className="genres__genre">
+                {genre}
+              </li>
+            ))}
+          </ul>
+          <p className="movie__summary">{summary}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired, //프로프타입이 String인 배열이 요구되어진다.
+};
+
+export default Movies;
+```
+
+### 4.4 Redirecting(페이지 전환)
+
+**4.4의 핵심**
+
+> 1. 우리가 영화를 클릭해서 detail로 들어갈경우 props를 받게 되지만, 클릭하지 않고 URL로 쳐서 들어가면 props를 받지 못한다. 내가 props를 받지 못할경우에는 home화면으로 가게 만든다. 그 이유는 다시금 클릭을 하여 detail로 들어갈수 있게 만들기 위함이다.
+>
+> 2. Detail.js 의 Detail 함수 컴포넌트를 class 컴포넌트로 변환한다.
+>
+> 3. URL로 쳐서 들어가게 되면 props를 전달받지 못하고 undefined가 뜨게 된다. undefined가 뜰경우 홈으로 가게끔 만든다.
+>
+> 4. 각 영화들이 각자의 모습을 가지는게 좋기 때문에 url도 id로 지정해주는게 좋아보인다.
+
+### 4.4.3 why class funtion
+
+```js
+import React from "react";
+
+class Detail extends React.Component {
+  componentDidMount() {
+    const { location, history } = this.props;
+    if (location.state === undefined) {
+      history.push("/");
+    }
+  }
+  render() {
+    const { location } = this.props;
+    // URL이 아닌 클릭해서 들어간경우 location이 존재하므로 span 태그의 내요이 나온다
+    if (location.state) {
+      return <span>{location.state.title}</span>;
+    }
+    // 하지만 URL로 들어갈경우 location이 없기 때문에, location이 없을경우 null을 반환하고 componentDidMount()가 동작해 Home 페이지로 이동하게 된다.
+    else {
+      return null;
+    }
+  }
+}
+
+export default Detail;
+```
+
+### 4.4.4 cool URL
+
+<u>App.js</u>
+
+```js
+import React from "react";
+import { HashRouter, Route } from "react-router-dom";
+import About from "./routers/About";
+import Detail from "./routers/Detail";
+import Home from "./routers/Home";
+
+import Navigation from "./components/Navigation";
+function App() {
+  return (
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/movie/:id" component={Detail} />
+    </HashRouter>
+  );
+}
+
+export default App;
+```
+
+<u> Movie.js </u>
+
+```js
+import React from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import "./Movie.css";
+
+//Movies.js 는 state가 필요 없기 때문에 class component로 선언해줄 필요가 없다.
+//why 필요가 없어?
+//class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
+//그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster, genres }) {
+  return (
+    <Link
+      to={{
+        // 각 영화들이 각자의 모습을 가지는게 좋기 때문에 url도 id로 지정해주는게 좋아보인다.
+        pathname: `/movie/${id}`,
+        state: {
+          year,
+          title,
+          summary,
+          poster,
+          genres,
+        },
+      }}
+    >
+      <div className="movie">
+        <img src={poster} alt={title} title={title} />
+        <div className="movie__data">
+          <h3 className="movie__title">{title}</h3>
+          <h5 className="movie__year">{year}</h5>
+          <ul className="movie__genres">
+            {genres.map((genre, index) => (
+              <li key={index} className="genres__genre">
+                {genre}
+              </li>
+            ))}
+          </ul>
+          <p className="movie__summary">{summary}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired, //프로프타입이 String인 배열이 요구되어진다.
+};
+
+export default Movies;
+```
