@@ -104,6 +104,8 @@ export default App;
 > 따라서 Movie.js는 class compontnt를 쓸 필요가 없다.
 >
 > 2.밑 코드에서 ES6 기능들이 어떻게 쓰였는지 확인해보자
+>
+> 3. map(()=>{return}) 와 map(()=>{()}) 은 같지만, 후자는 자동으로 return을 시켜주는 반면 전자는 return을 명시해야한다.
 
 <u>App.js</u>
 
