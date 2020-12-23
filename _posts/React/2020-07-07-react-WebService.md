@@ -22,7 +22,7 @@ Nomad Coders를 기반으로 하고 있다.
 >
 > 2.State에 나중에 쓸경우 초기화 하는습관을 들이는게 좋다.
 
-```javascript
+```jsx
 import React from "react";
 
 class App extends React.Component {
@@ -66,7 +66,7 @@ export default App;
 > 비동기식은 요청과 결과가 동시에 일어나지 않는다.
 > [동기와 vs 비동기](https://private.tistory.com/24)
 
-```javascript
+```jsx
 import React from "react";
 import axios from "axios";
 
@@ -109,7 +109,7 @@ export default App;
 
 <u>App.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -175,7 +175,7 @@ export default App;
 
 <u>Movies.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -211,7 +211,7 @@ export default Movies;
 
 <u>App.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -279,7 +279,7 @@ export default App;
 
 <u>Movies.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -322,7 +322,7 @@ export default Movies;
 
 <u>App.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import axios from "axios";
 import Movie from "./Movie";
@@ -392,7 +392,7 @@ export default App;
 
 <u>Movies.js</u>
 
-```javascript
+```jsx
 import React from "react";
 import PropTypes from "prop-types";
 import "./Movie.css";
@@ -509,7 +509,7 @@ export default Movies;
 
 <u>App.js</u>
 
-```js
+```jsx
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import About from "./routers/About";
@@ -536,7 +536,7 @@ export default App;
 
 <u>App.js</u>
 
-```js
+```jsx
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import About from "./routers/About";
@@ -559,7 +559,7 @@ export default App;
 
 <u>App.js</u>
 
-```js
+```jsx
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import About from "./routers/About";
@@ -583,7 +583,7 @@ export default App;
 
 <u>App.js</u>
 
-```js
+```jsx
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import About from "./routers/About";
@@ -638,7 +638,7 @@ export default App;
 
 <u>Navigation</u>
 
-```js
+```jsx
 import React from "react";
 
 function Navigation() {
@@ -655,7 +655,7 @@ export default Navigation;
 
 - 하지만 react-router-dom 에서 제공하는 link를 사용하면 이런 문제를 해결할수 있다.
 
-```js
+```jsx
 import React from "react";
 import { Link } from "react-router-dom";
 function Navigation() {
@@ -686,7 +686,7 @@ export default Navigation;
 
 <u>Movies.js</u>
 
-```js
+```jsx
 import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -696,6 +696,50 @@ import "./Movie.css";
 //why 필요가 없어?
 //class component는 state를 사용하기 위함이고, state는 보통 동적 데이터(변하는 데이터)와 함께 작업할때 만들어진다.
 //그런데 Movies.js는 데이터를 받기만 하지 그 데이터로 작업을 하지는 않으므로
+
+function Movies({ id, year, title, summary, poster, genres }) {
+  return (
+    <Link
+      to={{
+        pathname: "/movie-detail",
+        state: {
+          year,
+          title,
+          summary,
+          poster,
+          genres,
+        },
+      }}
+    >
+      <div className="movie">
+        <img src={poster} alt={title} title={title} />
+        <div className="movie__data">
+          <h3 className="movie__title">{title}</h3>
+          <h5 className="movie__year">{year}</h5>
+          <ul className="movie__genres">
+            {genres.map((genre, index) => (
+              <li key={index} className="genres__genre">
+                {genre}
+              </li>
+            ))}
+          </ul>
+          <p className="movie__summary">{summary}</p>
+        </div>
+      </div>
+    </Link>
+  );
+}
+
+Movies.prototype = {
+  id: PropTypes.number.isRequired,
+  year: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  summary: PropTypes.string.isRequired,
+  poster: PropTypes.string.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired, //프로프타입이 String인 배열이 요구되어진다.
+};
+
+export default Movies;
 ```
 
 ### 4.4 Redirecting(페이지 전환)
@@ -712,7 +756,7 @@ import "./Movie.css";
 
 ### 4.4.3 why class funtion
 
-```js
+```jsx
 import React from "react";
 
 class Detail extends React.Component {
@@ -742,7 +786,7 @@ export default Detail;
 
 <u>App.js</u>
 
-```js
+```jsx
 import React from "react";
 import { HashRouter, Route } from "react-router-dom";
 import About from "./routers/About";
