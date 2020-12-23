@@ -699,6 +699,20 @@ import "./Movie.css";
 
 function Movies({ id, year, title, summary, poster, genres }) {
   return (
+    // *주의* <Link>가 있을경우 github blog에 올리면 오류가 나서 주석처리해줌
+
+    // <Link
+    //   to={{
+    //     pathname: "/movie-detail",
+    //     state: {
+    //       year,
+    //       title,
+    //       summary,
+    //       poster,
+    //       genres,
+    //     },
+    //   }}
+    // >
     <div className="movie">
       <img src={poster} alt={title} title={title} />
       <div className="movie__data">
@@ -714,6 +728,7 @@ function Movies({ id, year, title, summary, poster, genres }) {
         <p className="movie__summary">{summary}</p>
       </div>
     </div>
+    // </Link>
   );
 }
 
@@ -805,35 +820,37 @@ import "./Movie.css";
 
 function Movies({ id, year, title, summary, poster, genres }) {
   return (
-    <Link
-      to={{
-        // 각 영화들이 각자의 모습을 가지는게 좋기 때문에 url도 id로 지정해주는게 좋아보인다.
-        pathname: `/movie/${id}`,
-        state: {
-          year,
-          title,
-          summary,
-          poster,
-          genres,
-        },
-      }}
-    >
-      <div className="movie">
-        <img src={poster} alt={title} title={title} />
-        <div className="movie__data">
-          <h3 className="movie__title">{title}</h3>
-          <h5 className="movie__year">{year}</h5>
-          <ul className="movie__genres">
-            {genres.map((genre, index) => (
-              <li key={index} className="genres__genre">
-                {genre}
-              </li>
-            ))}
-          </ul>
-          <p className="movie__summary">{summary}</p>
-        </div>
+    // *주의* <Link>가 있을경우 github blog에 올리면 오류가 나서 주석처리해줌
+
+    // <Link
+    //   to={{
+    //     // 각 영화들이 각자의 모습을 가지는게 좋기 때문에 url도 id로 지정해주는게 좋아보인다.
+    //     pathname: `/movie/${id}`,
+    //     state: {
+    //       year,
+    //       title,
+    //       summary,
+    //       poster,
+    //       genres,
+    //     },
+    //   }}
+    // >
+    <div className="movie">
+      <img src={poster} alt={title} title={title} />
+      <div className="movie__data">
+        <h3 className="movie__title">{title}</h3>
+        <h5 className="movie__year">{year}</h5>
+        <ul className="movie__genres">
+          {genres.map((genre, index) => (
+            <li key={index} className="genres__genre">
+              {genre}
+            </li>
+          ))}
+        </ul>
+        <p className="movie__summary">{summary}</p>
       </div>
-    </Link>
+    </div>
+    // </Link>
   );
 }
 
