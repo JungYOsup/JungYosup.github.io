@@ -688,7 +688,7 @@ export default Navigation;
 
 ![](/assets/images/react_img/detail.PNG)
 
-![](/assets/images/react_img/detail2.PNG2)
+![](/assets/images/react_img/detail2.PNG)
 
 ### 4.4 Redirecting(페이지 전환)
 
@@ -760,4 +760,4 @@ export default App;
 
 ![](/assets/images/react_img/url.PNG)
 
-![](/assets/images/react_img/url.PNG2)
+![](/assets/images/react_img/url2.PNG)
