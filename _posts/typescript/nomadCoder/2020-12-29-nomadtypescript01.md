@@ -14,13 +14,13 @@ toc_sticky: true
 
 ## 1.1 Setting Typescript Up
 
-- 1. yarn init
+- (1).yarn init
 
-- 2. Typescript 설치
+- (2).Typescript 설치
 
   - > npm install typescript --save-dev
 
-- 3. tsconfig.json 파일 생성
+- (3).tsconfig.json 파일 생성
 
 ```json
 // module : node.js를 평범하게 사용하고 다양한걸 import 하거나 export 할 수 있게 만듬
@@ -39,14 +39,14 @@ toc_sticky: true
 }
 ```
 
-- 4. .ts 파일 생성 , index.ts
+- (4).ts 파일 생성 , index.ts
 
-* 5. .ts 를 .js로 바꿈
+* (5).ts 를 .js로 바꿈
 
   - > npx tsc
     > why ? Node.js는 Typescript를 이해하지 못하기 때문에 Javascript 코드로 컴파일 하는 작업이 필요함
 
-- 6. yarn start로 index.js를 실행히켜주기 위해 설정(매번 npx tsc를 할 필요없게 하기 위해)
+- (6)yarn start로 index.js를 실행히켜주기 위해 설정(매번 npx tsc를 할 필요없게 하기 위해)
 
 ```json
 {
