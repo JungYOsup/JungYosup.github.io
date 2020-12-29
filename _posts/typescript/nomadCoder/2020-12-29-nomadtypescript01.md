@@ -44,9 +44,10 @@ toc_sticky: true
 * (5).ts 를 .js로 바꿈
 
   - > npx tsc
+    >
     > why ? Node.js는 Typescript를 이해하지 못하기 때문에 Javascript 코드로 컴파일 하는 작업이 필요함
 
-- (6)yarn start로 index.js를 실행히켜주기 위해 설정(매번 npx tsc를 할 필요없게 하기 위해)
+- (6)yarn start로 index.js를 실행시켜주기 위해 설정(매번 npx tsc를 할 필요없게 하기 위해)
 
 ```json
 {
