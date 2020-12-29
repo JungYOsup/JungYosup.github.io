@@ -177,7 +177,7 @@ export {};
 
 > TSC watch : 원래는 ts코드가 바뀔 때마다 js로 컴파일 한 뒤, node로 실행하는 과정을 반복해야했지만, tsc-watch를 사용하면 ts코드가 바뀔때마다 자동으로 컴파일 해준 뒤 js로 실행시켜준다.
 
-- 순서
+- (3).TSC watch 설치 순서
 
   - 1.tsc-watch 설치 : yarn add tsc-watch --dev
 
