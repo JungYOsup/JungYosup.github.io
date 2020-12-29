@@ -60,7 +60,7 @@ toc_sticky: true
   * createTextNode("문자열")
     ex) createTextNode("Hi");
 
-  - createAttribute() 메서드는 사용이 금지되었고, 이를 대신하기 위해 getAttribute(),setAttribute(),removeAttrbute()메서드를 사용한다.
+  - createAttribute() 메서드는 사용이 금지되었고, 이를 대신하기 위해 getAttribute(),setAttribute(),removeAttribute()메서드를 사용한다.
 
 * 1.1.7 javascript 문자열을 사용하여 DOM에 Element 및 Text 노드를 생성 및 추가하기
 
@@ -105,7 +105,7 @@ toc_sticky: true
 
   [textContent vs innerText](http://perfectionkills.com/the-poor-misunderstood-innerText/)를 참조하자
 
-  - insertAdjacentHTML() 메ㅓ드는 이전에 언급된 메서드들에 비해 보다 세밀하게 다를수 있다. 이 메서드를 사용하면 시작테그의 앞 , 뒤 종류 태그의 앞, 뒤에 노드를 삽입하는게 가능하다.
+  - insertAdjacentHTML() 메서드는 이전에 언급된 메서드들에 비해 보다 세밀하게 다를수 있다. 이 메서드를 사용하면 시작테그의 앞 , 뒤 종류 태그의 앞, 뒤에 노드를 삽입하는게 가능하다.
 
   ```html
   <i id="elm">how</i>
@@ -209,7 +209,7 @@ toc_sticky: true
   ```
 
   ```javascript
-  //ement 노드 바꾸기
+  //element 노드 바꾸기
   let divA = document.getElementById("A");
   let newSpan = document.createElement("span");
 
