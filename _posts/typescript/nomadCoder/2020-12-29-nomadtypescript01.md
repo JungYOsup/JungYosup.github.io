@@ -12,6 +12,32 @@ toc_sticky: true
 
 ## 1.0 Introuction and What are we building
 
+- (1).TypeScript 를 사용하는 이유?
+  : 자바스크립트는 규칙없이 사용하기 쉽고 우리가 원하는 방향대로 수정이 편하다, 하지만 그렇기 때문에 큰 프로젝트를 하거나 팀으로 일할때, 버그를 최소화 하고 싶을때는 단점이 된다. 그렇기에 규칙이 있는 Typescript를 사용하는것이다.
+
+* (2).아래의 예시를 통해 어떤 차이가 있는지 알수 있다.
+
+  - 아래 코드는 자바스크립트 문법상 어떠한 문제도 없으므로 자바스크립트 엔진은 아무런 이의 제기없이 위 코드를 실행할 것이다. 이러한 상황이 발생한 이유는 변수나 반환값의 타입을 사전에 지정하지 않는 자바스크립트의 동적 타이핑(Dynamic Typing)에 의한 것이다.
+
+  ```js
+  function sum(a, b) {
+    return a + b;
+  }
+
+  sum("x", "y"); // 'xy'
+  ```
+
+  - TypeScript는 정적 타입을 지원하므로 컴파일 단계에서 **오류를 포착할 수 있는 장점**이 있다. **명시적인 정적 타입 지정은 개발자의 의도를 명확하게 코드로 기술**할 수 있다. 이는 코드의 가독성을 높이고 예측할 수 있게 하며 디버깅을 쉽게 한다.
+
+  ```ts
+  function sum(a: number, b: number) {
+    return a + b;
+  }
+
+  sum("x", "y");
+  // error TS2345: Argument of type '"x"' is not assignable to parameter of type 'number'.
+  ```
+
 ## 1.1 Setting Typescript Up
 
 - (1).yarn init
@@ -68,3 +94,5 @@ toc_sticky: true
   }
 }
 ```
+
+## 1.2 First steps with Typescript
