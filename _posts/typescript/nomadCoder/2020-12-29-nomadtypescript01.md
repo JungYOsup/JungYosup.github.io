@@ -228,3 +228,99 @@ export {};
   - 4.ts값 수정시 node script 할 필요없이 자동으로 수정되는것이 보임
 
 ## 1.4 interface on Typesscript
+
+- (1).Typescript에서 파리미터를 값이 아닌 객체를 전달하는 방법, interface를 활용한다.
+
+> interface란 무엇일까?
+>
+> 인터페이스는 일반적으로 타입 체크를 위해 사용되며 변수, 함수, 클래스에 사용할 수 있다. 인터페이스는 여러가지 타입을 갖는 프로퍼티로 이루어진 새로운 타입을 정의하는 것과 유사하다. 인터페이스에 선언된 프로퍼티 또는 메소드의 구현을 강제하여 일관성을 유지할 수 있도록 하는 것이다. ES6는 인터페이스를 지원하지 않지만 TypeScript는 인터페이스를 지원한다.
+
+> 인터페이스는 프로퍼티와 메소드를 가질 수 있다는 점에서 클래스와 유사하나 직접 인스턴스를 생성할 수 없고 모든 메소드는 추상 메소드이다. 단, 추상 클래스의 추상 메소드와 달리 abstract 키워드를 사용하지 않는다.
+
+```ts
+interface Human {
+  name: string;
+  age: number;
+  gender: string;
+}
+
+const person = {
+  name: "yo",
+  age: 23,
+  gender: "male",
+};
+
+const sayHi = (person: Human): string => {
+  return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}`;
+};
+
+console.log(sayHi(person));
+
+export {};
+```
+
+## 1.5 Classes on Typescript part One
+
+- (1).TypeScript에서 클래스 사용하기
+
+```ts
+class Human {
+  public name: string;
+  public age: number;
+  public gender: string;
+  constructor(name: string, age: number, gender: string) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+}
+
+const lynn = new Human("Lynn", 1, "male");
+
+const sayHi = (person: Human): string => {
+  return `Hello ${person.name}, you are ${person.age}, you are a ${person.gender}`;
+};
+
+console.log(sayHi(lynn));
+
+export {};
+```
+
+- (2).private 와 public
+
+  - Java에서 배웠던 것과 같음
+
+## 1.7 Blockchain Creating a Block
+
+```ts
+class Block {
+  public index: number;
+  public hash: string;
+  public previousHash: string;
+  public data: string;
+  public timestamp: number;
+  constructor(
+    index: number,
+    hash: string,
+    previousHash: string,
+    data: string,
+    timestamp: number
+  ) {
+    this.index = index;
+    this.hash = hash;
+    this.previousHash = previousHash;
+    this.data = data;
+    this.timestamp = timestamp;
+  }
+}
+
+const genesisBlock: Block = new Block(0, "2020202020202", "", "Hello", 123456);
+
+let blockchain: [Block] = [genesisBlock];
+
+console.log(blockchain);
+
+export {};
+```
+
+## 1.8 Creating a Block part Two
