@@ -322,5 +322,3 @@ console.log(blockchain);
 
 export {};
 ```
-
-## 1.8 Creating a Block part Two
