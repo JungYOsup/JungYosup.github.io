@@ -288,7 +288,9 @@ export {};
 
 - (2).private 와 public
 
-  - Java에서 배웠던 것과 같음
+>
+
+- Java에서 배웠던 것과 같음
 
 ## 1.7 Blockchain Creating a Block
 
@@ -316,7 +318,65 @@ class Block {
 
 const genesisBlock: Block = new Block(0, "2020202020202", "", "Hello", 123456);
 
-let blockchain: [Block] = [genesisBlock];
+const genesisBlock2: Block = new Block(0, "2020202020202", "", "Hello", 123456);
+
+let blockchain: Block[] = [genesisBlock];
+
+blockchain.push("dd"); //(x) why ? blockchain 변수의 타입이 Block 배열이니까 , Block 타입이 들어가야하는데, dd는 String 타입이므로
+blockchain.push(genesisBlock2); // (O)
+
+console.log(blockchain);
+
+export {};
+```
+
+## 1.8 Creacting a Block part Two
+
+>
+
+```ts
+import * as CryptoJs from "crypto-js";
+
+class Block {
+  public index: number;
+  public hash: string;
+  public previousHash: string;
+  public data: string;
+  public timestamp: number;
+
+  static calculateBlockHash = (
+    index: number,
+    hash: string,
+    previousHash: string,
+    data: string,
+    timestamp: number
+  ): string =>
+    CryptoJs.SHA256(index + previousHash + timestamp + data).toString();
+
+  constructor(
+    index: number,
+    hash: string,
+    previousHash: string,
+    data: string,
+    timestamp: number
+  ) {
+    this.index = index;
+    this.hash = hash;
+    this.previousHash = previousHash;
+    this.data = data;
+    this.timestamp = timestamp;
+  }
+}
+
+const genesisBlock: Block = new Block(0, "2020202020202", "", "Hello", 123456);
+
+let blockchain: Block[] = [genesisBlock];
+
+const getBlockchain = (): Block[] => blockchain;
+
+const getLatestBlock = (): Block => blockchain[blockchain.length - 1];
+
+const getNewTimeStamp = (): Number => Math.round(new Date().getTime() / 1000);
 
 console.log(blockchain);
 

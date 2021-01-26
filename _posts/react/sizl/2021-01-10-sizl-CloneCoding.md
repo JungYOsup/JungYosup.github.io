@@ -357,7 +357,7 @@ export default ContentsLists;
 
 ### 4.3 Admin 페이지의 Component 구성
 
-**처음 Admin 페이지의 모습** : 컴포넌트를 적극 활용하지 않아서, 다른곳에서도 똑같은 기능이 있음에도 다른곳에서도 필요하지만 여기서만 사용가능하게 만듬
+**1. 처음 Admin 페이지의 모습** : 컴포넌트를 적극 활용하지 않아서, 다른곳에서도 똑같은 기능이 있음에도 다른곳에서도 필요하지만 여기서만 사용가능하게 만들었기에 **좋지않은 Component 구성**
 
 - ContentsManage
 
@@ -371,7 +371,7 @@ export default ContentsLists;
 
     - map으로 paging 구성(다른곳에서도 컴포넌트로 만들지 않았기에 여기서만 사용가능)
 
-**수정후 Admin 페이지의 모습**
+**2. 수정후 Admin 페이지의 모습**
 
 - ContentsManage
 
