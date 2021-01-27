@@ -913,3 +913,19 @@ function mapStateToProps(state, ownProps) {
 
 export default connect(mapStateToProps)(Detail);
 ```
+
+# 4 REDUX TOOLKIT (BONUS)
+
+## 4.0 Redux Toolkit
+
+> 리덕스의 방대한 코딩량을 줄이기 위한방법이다. 하지만 Redux를 완전히 이해하고 사용할떄까지 잠시 접어두자
+
+## 4.1 createAction
+
+## 4.2 createReducer
+
+## 4.3 configureStore
+
+## 4.4 createSlice
+
+## 4.5 Conclusions
