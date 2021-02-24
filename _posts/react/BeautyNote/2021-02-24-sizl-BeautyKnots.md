@@ -18,9 +18,11 @@ toc_sticky: true
 >
 > 그러나 useEffect 안에 비동기 처리함수가 들어가기 위해서는 즉시 실행 함수로 선언해줘야한다.
 
-[useEffect 비동기함수 처리하는법]("https://stackoverflow.com/questions/53332321/react-hook-warnings-for-async-function-in-useeffect-useeffect-function-must-ret")
-[비동기 vs 동기]("https://private.tistory.com/24")
-[즉시 실행함수란]("")
+- [useEffect 비동기함수 처리하는법]("https://stackoverflow.com/questions/53332321/react-hook-warnings-for-async-function-in-useeffect-useeffect-function-must-ret")
+
+* [비동기 vs 동기]("https://private.tistory.com/24")
+
+- [즉시 실행함수란]("")
 
 ### 2. spread 연산자 두번사용하기
 
