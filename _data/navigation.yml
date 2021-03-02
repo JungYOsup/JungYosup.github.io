@@ -35,6 +35,10 @@ main:
 
   - title: "typescript"
     url: /typescript/
+
+  - title: "git"
+    url: /git/
+
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
