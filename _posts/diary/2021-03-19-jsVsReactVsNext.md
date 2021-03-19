@@ -1,5 +1,5 @@
 ---
-title: "13.일반 웹의 동작방식 vs React의 동작방식 vs Next의 동작방식"
+title: "일반 웹의 동작방식 vs React의 동작방식 vs Next의 동작방식"
 excerpt: "왜 JS만하다가 React가 등장했고 , Next가 등장했는지에 대한 설명"
 categories:
   - diary

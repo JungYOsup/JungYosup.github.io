@@ -1,5 +1,5 @@
 ---
-title: "11.React 는 라이브러리? or 프레임워크?"
+title: "React 는 라이브러리? or 프레임워크?"
 excerpt: "React는 라이브러리인가 아니면 프레임워크인가에 대한 물음"
 categories:
   - diary
