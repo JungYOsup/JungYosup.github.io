@@ -1,11 +1,11 @@
 ---
-title: "Posts by etc"
+title: "Posts by diary"
 layout: archive
-permalink: /etc/
+permalink: /diary/
 author_profile: true
 ---
 
-{% assign posts = site.categories.etc | sort:"date" %}
+{% assign posts = site.categories.diary | sort:"date" %}
 
 {% for post in posts %}
 {% include archive-single.html type=page.entries_layout %}

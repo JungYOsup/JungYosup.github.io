@@ -411,9 +411,9 @@ defaults:
       search: true
       related: true
 
-    # _posts/etc
+    # _posts/diary
   - scope:
-      path: "_posts/etc"
+      path: "_posts/diary"
       type: posts
     values:
       layout: single

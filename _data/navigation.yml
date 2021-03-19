@@ -24,8 +24,8 @@ main:
   - title: "java"
     url: /java/
 
-  - title: "etc"
-    url: /etc/
+  - title: "diary"
+    url: /diary/
 
   - title: "알고리즘"
     url: /algorithm/
