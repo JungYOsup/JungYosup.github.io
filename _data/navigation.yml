@@ -42,6 +42,9 @@ main:
   - title: "next"
     url: /next/
 
+  - title: "jest"
+    url: /jest/
+
   # - title: "About"
   #   url: https://mmistakes.github.io/minimal-mistakes/about/
   # - title: "Sample Posts"
